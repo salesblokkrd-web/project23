@@ -37,13 +37,16 @@ a{color:inherit;text-decoration:none}
 header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:30px;height:70px}
 .logo{display:flex;align-items:center;gap:13px}
-.logo .cross{position:relative;width:30px;height:30px;flex:0 0 auto}
+.logo .cross{position:relative;width:34px;height:34px;flex:0 0 auto}
 .logo .cross .lx,.logo .cross .ly{position:absolute;background:var(--acc)}
 .logo .cross .lx{top:50%;left:0;width:100%;height:2px;transform:translateY(-50%)}
 .logo .cross .ly{left:50%;top:0;height:100%;width:2px;transform:translateX(-50%)}
-.logo .cross .sq{position:absolute;left:50%;top:50%;width:13px;height:13px;border:2px solid var(--acc);transform:translate(-50%,-50%)}
-.logo .wm{font-family:'Geologica','Onest',sans-serif;font-weight:800;font-size:1.18rem;letter-spacing:-.01em;color:var(--ink)}
+.logo .cross .sq{position:absolute;left:50%;top:50%;width:14px;height:14px;border:2px solid var(--acc);transform:translate(-50%,-50%)}
+.logo .wm-stack{display:flex;flex-direction:column;gap:3px}
+.logo .wm{font-family:'Geologica','Onest',sans-serif;font-weight:800;font-size:1.18rem;letter-spacing:-.01em;color:var(--ink);line-height:1}
 .logo .wm b{color:var(--acc)}
+.logo .coord{font-family:'JBMono',monospace;font-size:.56rem;letter-spacing:.1em;color:var(--mut);text-transform:uppercase}
+@media(max-width:520px){.logo .coord{display:none}}
 .nav-links{display:flex;gap:26px;margin-left:auto;font-size:.95rem;color:var(--mut)}
 .nav-links a:hover{color:var(--ink)}
 .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:8px;font-weight:700;font-size:.95rem;transition:.2s;border:1px solid transparent}
@@ -135,9 +138,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
   <div class="wrap nav">
     <div class="logo">
       <span class="cross"><span class="lx"></span><span class="ly"></span><span class="sq"></span></span>
-      <span class="wm">ПРОЕКТ&nbsp;<b>23</b></span>
+      <span class="wm-stack">
+        <span class="wm">ПРОЕКТ&nbsp;<b>23</b></span>
+        <span class="coord">45.03° N · 38.97° E · Краснодар</span>
+      </span>
     </div>
-    <nav class="nav-links"><a href="#how">Как работаем</a><a href="#works">Работы</a><a href="#price">Цена</a><a href="#contact">Контакты</a></nav>
+    <nav class="nav-links"><a href="#how">Как работаем</a><a href="#price">Цена</a><a href="#contact">Контакты</a></nav>
     <a class="btn btn-a" href="#contact">Обсудить сайт</a>
   </div>
 </header>
@@ -190,29 +196,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
   </div>
 </section>
 
-<section id="works">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <div class="mono">03 · Работы</div>
-      <h2>Примеры из нашей отрасли</h2>
-    </div>
-    <div class="cases reveal">
-      <div class="case">
-        <div class="shot"><img src="assets/case-arhip.png" alt="Сайт карьера"></div>
-        <div class="cap"><div class="mono">Карьер · инертные материалы</div><b>Архиповский карьер</b><p>Видео-hero, крутилки продукции, заявки в мессенджер, GEO под нейросети. Клики в WhatsApp выросли с нуля на запуске.</p></div>
-      </div>
-      <div class="case">
-        <div class="shot"><img src="assets/case-beton.png" alt="Сайт бетонного завода"></div>
-        <div class="cap"><div class="mono">Бетонный завод · пример</div><b>Товарный бетон с доставкой</b><p>Прайс марок сразу на первом экране, живые счётчики объёмов, расчёт в WhatsApp, кинематографичное видео производства.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="price">
   <div class="wrap">
     <div class="sec-h reveal">
-      <div class="mono">04 · Цена</div>
+      <div class="mono">03 · Цена</div>
       <h2>Честно и без вилок</h2>
       <p>Одна цена за сайт под ключ. Никаких «от» и доплат по ходу.</p>
     </div>
@@ -247,7 +234,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
   <div class="wrap">
     <div class="contact reveal">
       <div>
-        <div class="mono" style="margin-bottom:14px">05 · Контакты</div>
+        <div class="mono" style="margin-bottom:14px">04 · Контакты</div>
         <h2>Разберём ваш сайт бесплатно</h2>
         <p>Напишите название компании — пришлём разбор текущего сайта и прототип нового. Ни к чему не обязывает.</p>
         <div class="cbtns">
