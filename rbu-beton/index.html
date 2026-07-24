@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>РБУ БетонСервис — Бетон от завода с доставкой по Алматы</title>
+<meta name="description" content="РБУ БетонСервис: Бетон от завода с доставкой по Алматы. Алматы. +7 777 241 01 19.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#e8801a;--ink:#1b1e24;--muted:#6a7280;--bg:#ffffff;--soft:#f4f5f7;--line:#e6e8ec}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:22px;height:66px}
+.logo{font-weight:800;font-size:1.15rem}.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:20px;margin-left:auto;font-size:.94rem;color:var(--muted)}
+.nav-links a:hover{color:var(--ink)}
+.nav-phone{font-weight:800;white-space:nowrap}
+.btn{display:inline-block;padding:14px 28px;border-radius:10px;font-weight:800;transition:.2s;text-align:center}
+.btn-accent{background:var(--accent);color:#fff}.btn-accent:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-white{background:#fff;color:var(--ink)}.btn-white:hover{transform:translateY(-1px)}
+.btn-wa{background:#25d366;color:#fff}
+/* видео-hero */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,12,16,.82) 30%,rgba(10,12,16,.35) 75%,rgba(10,12,16,.15))}
+.hero .wrap{position:relative;padding:90px 20px}
+.hero .kicker{display:inline-block;background:var(--accent);color:#fff;font-weight:800;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border-radius:6px;margin-bottom:18px}
+.hero h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.1;font-weight:800;max-width:18ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{margin:18px 0 26px;font-size:1.15rem;color:#dfe3e9;max-width:52ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.hero .facts{display:flex;flex-wrap:wrap;gap:26px;margin-top:44px}
+.hero .fact b{display:block;font-size:1.9rem;font-weight:800;color:var(--accent)}
+.hero .fact span{color:#c9ced6;font-size:.92rem}
+/* секции */
+section{padding:72px 0}
+.sec-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;margin-bottom:8px}
+.sec-sub{color:var(--muted);margin-bottom:36px;max-width:62ch}
+.accent-line{width:56px;height:4px;background:var(--accent);border-radius:2px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;transition:.25s;box-shadow:0 1px 2px rgba(16,20,28,.04)}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(16,20,28,.10);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.card .ico{font-size:2rem;margin-bottom:10px}
+.card h3{font-size:1.1rem;margin-bottom:6px}.card p{color:var(--muted);font-size:.95rem}
+.card .price{margin-top:12px;font-weight:800;color:var(--accent)}
+.band{background:var(--soft)}
+.price-table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.price-table th{background:var(--ink);color:#fff;text-align:left;padding:15px 20px;font-size:.95rem}
+.price-table td{padding:14px 20px;border-top:1px solid var(--line)}
+.price-table tr:hover td{background:var(--soft)}
+.price-table .m{font-weight:800}.price-table .p{font-weight:800;color:var(--accent);white-space:nowrap}
+.price-note{color:var(--muted);font-size:.92rem;margin-top:12px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;counter-reset:step}
+.step{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 28px 28px 78px}
+.step::before{counter-increment:step;content:counter(step);position:absolute;left:24px;top:26px;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:1.05rem;margin-bottom:4px}.step p{color:var(--muted);font-size:.93rem}
+.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:34px;align-items:start}
+.c-item{display:flex;gap:14px;margin-bottom:16px;align-items:baseline}
+.c-item .l{color:var(--muted);min-width:90px;font-size:.92rem}.c-item .v{font-weight:700}
+.c-item .v.big{font-size:1.5rem;font-weight:800}
+.contact-card{background:var(--ink);color:#fff;border-radius:16px;padding:30px}
+.contact-card p{color:#b9c0ca}
+.contact-card .btn{width:100%;margin-top:12px}
+footer{border-top:1px solid var(--line);padding:26px 0 92px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s,transform .6s}
+.reveal.on{opacity:1;transform:none}
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:60;display:none;gap:10px;padding:10px 14px;background:rgba(255,255,255,.97);border-top:1px solid var(--line)}
+.sticky-cta .btn{flex:1;padding:12px}
+@media(max-width:760px){.nav-links{display:none}.contact-grid{grid-template-columns:1fr}section{padding:50px 0}.sticky-cta{display:flex}.hero{min-height:78vh}}
+</style>
+
+<style>
+.bgvid{position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;z-index:-2}
+.bgshade{position:fixed;inset:0;background:linear-gradient(rgba(9,11,15,.42),rgba(9,11,15,.66));z-index:-1}
+body{background:transparent;color:#eef0f3}
+header{background:rgba(13,15,20,.82);border-color:rgba(255,255,255,.09)}
+.nav-links{color:#c9ced6}.nav-links a:hover{color:#fff}
+.hero{min-height:86vh}.hero .shade{display:none}
+section .wrap{background:rgba(14,16,21,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:38px 34px}
+.hero .wrap{background:transparent;backdrop-filter:none;border:none}
+.band{background:transparent}
+.sec-title{color:#fff}.sec-sub{color:#c9ced6}
+.card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.13);color:#fff;box-shadow:none}
+.card p{color:#c9ced6}
+.step{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.13)}
+.step h3{color:#fff}.step p{color:#c9ced6}
+.price-table{background:rgba(10,12,16,.55);border-color:rgba(255,255,255,.13);color:#eef0f3}
+.price-table td{border-color:rgba(255,255,255,.10)}
+.price-table tr:hover td{background:rgba(255,255,255,.05)}
+.price-note{color:#c9ced6}
+.c-item .l{color:#9aa1ab}.c-item .v{color:#fff}
+footer{border-color:rgba(255,255,255,.09);color:#c9ced6}
+.sticky-cta{background:rgba(13,15,20,.94);border-color:rgba(255,255,255,.09)}
+</style>
+<style>
+.bgshade{background:linear-gradient(rgba(9,11,15,.22),rgba(9,11,15,.46))}
+section .wrap{background:rgba(10,12,16,.32);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.10)}
+.hero .wrap{background:transparent;border:none;backdrop-filter:none}
+.card{background:rgba(12,14,18,.38);border-color:rgba(255,255,255,.14);padding:0 0 22px;overflow:hidden}
+.card h3,.card p,.card .price{padding:0 22px}
+.card h3{margin-top:2px}
+.card .ph{width:100%;height:172px;object-fit:cover;display:block;margin-bottom:16px;border-radius:0}
+.step{background:rgba(12,14,18,.38);border-color:rgba(255,255,255,.14)}
+.price-table{background:rgba(8,10,14,.42)}
+.contact-card{background:rgba(12,14,18,.55);border:1px solid rgba(255,255,255,.14)}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="РБУ БетонСервис — бетон от завода с доставкой по Алматы">
+<meta property="og:description" content="М50–М600 по ГОСТ, миксеры 6–15 м³, бетононасосы до 62 м. Работаем 24/7. Расчёт за 10 минут.">
+<meta property="og:image" content="https://project23.ru/rbu-beton/hero.jpg">
+<meta property="og:url" content="https://project23.ru/rbu-beton/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏗️</text></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"РБУ БетонСервис","telephone":"+77772410119","address":{"@type":"PostalAddress","addressLocality":"Алматы","streetAddress":"Коксай, уч. 5001/1"},"openingHours":"Mo-Su 00:00-24:00","priceRange":"от 18 200 ₸/м³"}</script>
+<script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(110914321,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});</script>
+</head>
+<body>
+<video class="bgvid" autoplay muted loop playsinline><source src="bg2.mp4?v=3" type="video/mp4"></video>
+<div class="bgshade"></div>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">РБУ Бетон<span>Сервис</span></div>
+    <nav class="nav-links"><a href="#prices">Цены</a><a href="#services">Услуги</a><a href="#steps">Как заказать</a><a href="#contacts">Контакты</a></nav>
+    <a class="nav-phone" onclick="ym(110914321,'reachGoal','call')" href="tel:+77772410119">+7 777 241 01 19</a>
+  </div>
+</header>
+
+<section class="hero">
+  
+  <div class="shade"></div>
+  <div class="wrap">
+    <span class="kicker">Бетонный завод · Алматы</span>
+    <h1>Бетон от завода — <em>миксер у вас через 2 часа</em></h1>
+    <p class="lead">Собственное производство работает круглосуточно. Марки М50–М600 по ГОСТ, доставка миксерами 6–15 м³, автобетононасосы со стрелой до 62 метров.</p>
+    <div class="cta-row">
+      <a class="btn btn-accent" onclick="ym(110914321,'reachGoal','call')" href="tel:+77772410119">Позвонить: +7 777 241 01 19</a>
+      <a class="btn btn-wa" onclick="ym(110914321,'reachGoal','wa')" href="https://wa.me/77772410119?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%A0%D0%91%D0%A3%20%D0%91%D0%B5%D1%82%D0%BE%D0%BD%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%BF%D0%BE%20%D1%86%D0%B5%D0%BD%D0%B0%D0%BC%20%D0%B8%20%D0%BD%D0%B0%D0%BB%D0%B8%D1%87%D0%B8%D1%8E.">WhatsApp</a>
+      <a class="btn btn-white" href="#prices">Цены на бетон</a>
+    </div>
+    <div class="facts"><div class="fact"><b>М50–М600</b><span>все марки по ГОСТ</span></div><div class="fact"><b>24/7</b><span>производство и отгрузка</span></div><div class="fact"><b>6–15 м³</b><span>миксеры под любой объём</span></div><div class="fact"><b>62 м</b><span>стрела бетононасоса</span></div></div>
+  </div>
+</section>
+
+<section style="padding:34px 0">
+  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between">
+    <div>
+      <h2 class="sec-title" style="font-size:1.4rem">Ответим за минуту</h2>
+      <p style="color:#c9ced6;max-width:46ch">Напишите марку, объём и адрес — сразу рассчитаем стоимость бетона с доставкой и подберём миксер.</p>
+    </div>
+    <a class="btn btn-wa" style="padding:16px 34px" onclick="ym(110914321,'reachGoal','wa')" href="https://wa.me/77772410119?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%9D%D1%83%D0%B6%D0%B5%D0%BD%20%D1%80%D0%B0%D1%81%D1%87%D1%91%D1%82%20%D0%B1%D0%B5%D1%82%D0%BE%D0%BD%D0%B0%20%D1%81%20%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%BE%D0%B9">Рассчитать в WhatsApp</a>
+  </div>
+</section>
+
+<section id="prices">
+  <div class="wrap reveal">
+    <div class="accent-line"></div>
+    <h2 class="sec-title">Цены на бетон</h2>
+    <p class="sec-sub">Цены завода без посредников. Доставка — от 2 000 ₸ за м³ по Алматы.</p>
+    <table class="price-table">
+      <thead><tr><th>Марка</th><th>Применение</th><th>Цена за м³</th></tr></thead>
+      <tbody><tr><td class="m">М100</td><td>подготовка, подбетонка</td><td class="p">18 200 ₸</td></tr><tr><td class="m">М150</td><td>стяжки, дорожки</td><td class="p">19 800 ₸</td></tr><tr><td class="m">М200</td><td>фундаменты частных домов</td><td class="p">21 200 ₸</td></tr><tr><td class="m">М250</td><td>ленточные фундаменты, плиты</td><td class="p">22 000 ₸</td></tr><tr><td class="m">М300</td><td>монолит, перекрытия</td><td class="p">23 600 ₸</td></tr><tr><td class="m">М350</td><td>нагруженные конструкции</td><td class="p">25 900 ₸</td></tr><tr><td class="m">М400</td><td>мосты, спецобъекты</td><td class="p">28 000 ₸</td></tr><tr><td class="m">М500</td><td>гидротехника</td><td class="p">32 300 ₸</td></tr></tbody>
+    </table>
+    <p class="price-note">Также растворы М75–М200 от 19 200 ₸/м³. Точный расчёт с доставкой — по телефону или в WhatsApp.</p>
+  </div>
+</section>
+
+<section id="services" class="band">
+  <div class="wrap reveal">
+    <div class="accent-line"></div>
+    <h2 class="sec-title">Услуги и техника</h2>
+    <p class="sec-sub">Свой автопарк — не зависим от подрядчиков.</p>
+    <div class="grid"><div class="card"><img class="ph" src="ph-mixer.jpg" alt=""><h3>Доставка миксерами</h3><p>Автобетоносмесители 6, 7, 9, 10, 12 и 15 м³ — под любой объём заливки.</p><div class="price">от 2 000 ₸/м³</div></div><div class="card"><img class="ph" src="ph-pump.jpg" alt=""><h3>Автобетононасосы</h3><p>Стрела 37–62 м — подача бетона на высоту и в глубину участка.</p><div class="price">от 40 000 ₸/час</div></div><div class="card"><img class="ph" src="ph-mortar.jpg" alt=""><h3>Растворы М75–М200</h3><p>Кладочные и штукатурные растворы с завода.</p><div class="price">от 19 200 ₸/м³</div></div><div class="card"><img class="ph" src="ph-lab.jpg" alt=""><h3>Документы и ГОСТ</h3><p>Паспорт качества на каждую партию, отгрузка с документами.</p><div class="price">всегда</div></div></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap reveal">
+    <div class="accent-line"></div>
+    <h2 class="sec-title">Завод в цифрах</h2>
+    <div class="nums" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px">
+      <div class="step" style="padding:28px;text-align:center"><b data-cnt="1951" style="display:block;font-size:2.4rem;font-weight:800;color:var(--accent)">0</b><span style="color:#c9ced6">довольных клиентов</span></div>
+      <div class="step" style="padding:28px;text-align:center"><b data-cnt="11" style="display:block;font-size:2.4rem;font-weight:800;color:var(--accent)">0</b><span style="color:#c9ced6">миксеров в автопарке</span></div>
+      <div class="step" style="padding:28px;text-align:center"><b data-cnt="29587533" data-suf="+" style="display:block;font-size:2.4rem;font-weight:800;color:var(--accent)">0</b><span style="color:#c9ced6">м³ бетона произведено</span></div>
+      <div class="step" style="padding:28px;text-align:center"><b data-cnt="24" data-suf="/7" style="display:block;font-size:2.4rem;font-weight:800;color:var(--accent)">0</b><span style="color:#c9ced6">производство без пауз</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="steps">
+  <div class="wrap reveal">
+    <div class="accent-line"></div>
+    <h2 class="sec-title">Как заказать</h2>
+    <div class="steps">
+      <div class="step"><h3>Звонок или WhatsApp</h3><p>Объект, объём, марка — подскажем, если сомневаетесь.</p></div>
+      <div class="step"><h3>Расчёт с доставкой</h3><p>Цена сразу с миксером под ваш адрес и время заливки.</p></div>
+      <div class="step"><h3>Отгрузка точно к часу</h3><p>Паспорт качества и документы — с машиной.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacts" class="band">
+  <div class="wrap reveal">
+    <div class="accent-line"></div>
+    <h2 class="sec-title">Контакты</h2>
+    <div class="contact-grid">
+      <div>
+        <div class="c-item"><span class="l">Телефон</span><a class="v big" onclick="ym(110914321,'reachGoal','call')" href="tel:+77772410119">+7 777 241 01 19</a></div>
+        <div class="c-item"><span class="l">Ещё</span><a class="v" onclick="ym(110914321,'reachGoal','call')" href="tel:+77756298819">+7 775 629 88 19</a></div>
+        <div class="c-item"><span class="l">Адрес</span><span class="v">Алматы, Коксай, уч. 5001/1</span></div>
+        <div class="c-item"><span class="l">Режим</span><span class="v">Круглосуточно, без выходных</span></div>
+        <p style="color:var(--muted);max-width:52ch">Собственный растворобетонный узел в Коксае. Производим бетон всех марок от М50 до М600 и растворы, отгружаем круглосуточно. Свой парк миксеров и автобетононасосов — привозим точно к часу заливки.</p>
+      </div>
+      <div class="contact-card">
+        <b style="font-size:1.15rem">Быстрый расчёт</b>
+        <p style="font-size:.94rem;margin-top:6px">Напишите марку и объём — пришлём цену с доставкой за 10 минут.</p>
+        <a class="btn btn-wa" onclick="ym(110914321,'reachGoal','wa')" href="https://wa.me/77772410119?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%A0%D0%91%D0%A3%20%D0%91%D0%B5%D1%82%D0%BE%D0%BD%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%BF%D0%BE%20%D1%86%D0%B5%D0%BD%D0%B0%D0%BC%20%D0%B8%20%D0%BD%D0%B0%D0%BB%D0%B8%D1%87%D0%B8%D1%8E.">Написать в WhatsApp</a>
+        <a class="btn btn-accent" onclick="ym(110914321,'reachGoal','call')" href="tel:+77772410119">Позвонить</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 РБУ БетонСервис</span><span>Алматы · +7 777 241 01 19</span></div></footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-accent" onclick="ym(110914321,'reachGoal','call')" href="tel:+77772410119">Позвонить</a>
+  <a class="btn btn-wa" onclick="ym(110914321,'reachGoal','wa')" href="https://wa.me/77772410119?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%A0%D0%91%D0%A3%20%D0%91%D0%B5%D1%82%D0%BE%D0%BD%D0%A1%D0%B5%D1%80%D0%B2%D0%B8%D1%81.%20%D0%9F%D0%BE%D0%B4%D1%81%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%20%D0%BF%D0%BE%20%D1%86%D0%B5%D0%BD%D0%B0%D0%BC%20%D0%B8%20%D0%BD%D0%B0%D0%BB%D0%B8%D1%87%D0%B8%D1%8E.">WhatsApp</a>
+</div>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script>
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,end=+el.dataset.cnt,suf=el.dataset.suf||'',t0=performance.now();
+  const tick=t=>{const p=Math.min((t-t0)/1600,1);
+    el.textContent=Math.round(end*(1-Math.pow(1-p,3))).toLocaleString('ru-RU')+suf;
+    p<1&&requestAnimationFrame(tick)};
+  requestAnimationFrame(tick);
+}),{threshold:.5});
+document.querySelectorAll('[data-cnt]').forEach(el=>cio.observe(el));
+</script>
+</body>
+</html>
