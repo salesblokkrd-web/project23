@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ПРОЕКТ 23 — интро</title>
+<style>
+@font-face{font-family:'Geologica';font-weight:700 800;src:url('Geologica-cyr.woff2') format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Geologica';font-weight:700 800;src:url('Geologica-lat.woff2') format('woff2');unicode-range:U+0000-00FF}
+@font-face{font-family:'Tektur';font-weight:700 800;src:url('Tektur-cyr.woff2') format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Tektur';font-weight:700 800;src:url('Tektur-lat.woff2') format('woff2');unicode-range:U+0000-00FF}
+@font-face{font-family:'JBMono';font-weight:400 700;src:url('JetBrainsMono-cyr.woff2') format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'JBMono';font-weight:400 700;src:url('JetBrainsMono-lat.woff2') format('woff2');unicode-range:U+0000-00FF}
+:root{--acc:#2DD4BF}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#02040a;font-family:'Geologica',sans-serif}
+#stage{position:fixed;inset:0}
+canvas{display:block}
+/* ── overlay поверх сцены ── */
+.hud{position:fixed;inset:0;pointer-events:none;z-index:5}
+/* виньетка + сканлайны «спутникового сигнала» (проявляются на наведении) */
+.fx{position:fixed;inset:0;pointer-events:none;z-index:4;opacity:0;transition:opacity .8s}
+.fx::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 46%,rgba(2,6,14,.55) 100%)}
+.fx::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(120,220,210,.05) 0 1px,transparent 1px 3px);mix-blend-mode:screen}
+/* прицел-рамка (наводится) */
+.recticle{position:absolute;left:50%;top:50%;width:0;height:0;transform:translate(-50%,-50%);opacity:0}
+.recticle .cor{position:absolute;width:26px;height:26px;border:2px solid var(--acc)}
+.recticle .k1{left:0;top:0;border-right:none;border-bottom:none}
+.recticle .k2{right:0;top:0;border-left:none;border-bottom:none}
+.recticle .k3{left:0;bottom:0;border-right:none;border-top:none}
+.recticle .k4{right:0;bottom:0;border-left:none;border-top:none}
+.recticle .cx,.recticle .cy{position:absolute;background:var(--acc);opacity:.85}
+.recticle .cx{left:50%;top:0;width:1px;height:100%;transform:translateX(-50%)}
+.recticle .cy{top:50%;left:0;height:1px;width:100%;transform:translateY(-50%)}
+.recticle .dot{position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;background:var(--acc);transform:translate(-50%,-50%);box-shadow:0 0 12px var(--acc)}
+/* координаты (печатаются) */
+.coord{position:absolute;left:50%;top:calc(50% + 90px);transform:translateX(-50%);
+  font-family:'JBMono',monospace;font-size:15px;letter-spacing:.22em;color:var(--acc);
+  text-transform:uppercase;white-space:nowrap;opacity:0}
+.coord .city{color:#eafcfd}
+/* сканлайн-подпись сверху */
+.scan{position:absolute;left:0;right:0;top:34px;text-align:center;
+  font-family:'JBMono',monospace;font-size:11px;letter-spacing:.4em;color:rgba(120,200,190,.5);
+  text-transform:uppercase;opacity:0}
+/* вспышка */
+.flash{position:fixed;inset:0;background:#eafcfd;opacity:0;z-index:6;pointer-events:none}
+/* финальный логотип */
+.logo{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;gap:34px;z-index:7;opacity:0;background:#0B1F3A}
+.logo .cross{position:relative;width:92px;height:92px;flex:0 0 auto}
+.logo .cross .lx,.logo .cross .ly{position:absolute;left:50%;top:50%;background:var(--acc)}
+.logo .cross .lx{width:56px;height:4px;transform:translate(-50%,-50%)}
+.logo .cross .ly{height:56px;width:4px;transform:translate(-50%,-50%)}
+.logo .cross .rr{position:absolute;left:50%;top:50%;width:36px;height:36px;border:4px solid var(--acc);border-radius:50%;background:#0B1F3A;transform:translate(-50%,-50%)}
+.logo .wm{display:flex;flex-direction:column;gap:10px}
+.logo .wm .l1{font-family:'Geologica';font-weight:800;font-size:76px;color:#F0F5F9;letter-spacing:-.01em;line-height:.9}
+.logo .wm .l1 b{color:var(--acc)}
+.logo .wm .l2{font-family:'JBMono';font-weight:500;font-size:15px;letter-spacing:.22em;color:#8298B0;text-transform:uppercase}
+/* skip */
+.skip{position:fixed;right:24px;bottom:22px;z-index:8;pointer-events:auto;
+  font-family:'JBMono',monospace;font-size:11px;letter-spacing:.16em;color:rgba(180,210,220,.6);
+  text-transform:uppercase;cursor:pointer;border:1px solid rgba(180,210,220,.25);
+  padding:8px 14px;border-radius:4px;background:rgba(6,14,22,.4);transition:.2s}
+.skip:hover{color:#fff;border-color:var(--acc)}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div class="fx" id="fx"></div>
+<div class="hud">
+  <div class="scan" id="scan">[ спутниковое наведение ]</div>
+  <div class="recticle" id="rec">
+    <span class="cx"></span><span class="cy"></span>
+    <span class="cor k1"></span><span class="cor k2"></span><span class="cor k3"></span><span class="cor k4"></span>
+    <span class="dot"></span>
+  </div>
+  <div class="coord" id="coord"><span id="coordtxt"></span></div>
+</div>
+<div class="flash" id="flash"></div>
+<div class="logo" id="logo">
+  <div class="cross"><span class="lx"></span><span class="ly"></span><span class="rr"></span></div>
+  <div class="wm"><div class="l1">ПРОЕКТ&nbsp;<b>23</b></div><div class="l2">45.03° N · 38.97° E · Краснодар</div></div>
+</div>
+<div class="skip" id="skip">Пропустить →</div>
+
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+const stage = document.getElementById('stage');
+const W = () => window.innerWidth, H = () => window.innerHeight;
+
+// ── рендерер/сцена/камера ──
+const renderer = new THREE.WebGLRenderer({antialias:true, alpha:false});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(W(),H());
+stage.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(42, W()/H(), 0.01, 1000);
+
+// ── звёзды ──
+{
+  const g = new THREE.BufferGeometry();
+  const n = 2600, pos = new Float32Array(n*3);
+  for(let i=0;i<n;i++){
+    const r = 90 + Math.random()*260;
+    const t = Math.random()*Math.PI*2, p = Math.acos(2*Math.random()-1);
+    pos[i*3]   = r*Math.sin(p)*Math.cos(t);
+    pos[i*3+1] = r*Math.sin(p)*Math.sin(t);
+    pos[i*3+2] = r*Math.cos(p);
+  }
+  g.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  const m = new THREE.PointsMaterial({color:0xbcd3e6, size:0.5, sizeAttenuation:true, transparent:true, opacity:.9});
+  scene.add(new THREE.Points(g,m));
+}
+
+// ── планета ──
+const loader = new THREE.TextureLoader();
+const R = 2;
+const earth = new THREE.Mesh(
+  new THREE.SphereGeometry(R, 96, 96),
+  new THREE.MeshStandardMaterial({
+    map: loader.load('earth_atmos_2048.jpg'),
+    normalMap: loader.load('earth_normal_2048.jpg'),
+    normalScale: new THREE.Vector2(0.7,0.7),
+    roughnessMap: loader.load('earth_specular_2048.jpg'),
+    roughness: 1, metalness: 0.1
+  })
+);
+scene.add(earth);
+// облака
+const clouds = new THREE.Mesh(
+  new THREE.SphereGeometry(R*1.012, 96, 96),
+  new THREE.MeshStandardMaterial({map: loader.load('earth_clouds_1024.png'), transparent:true, opacity:.5, depthWrite:false})
+);
+scene.add(clouds);
+// атмосфера-ободок (backside, fresnel-подобный через простой материал)
+{
+  const atm = new THREE.Mesh(
+    new THREE.SphereGeometry(R*1.06, 64, 64),
+    new THREE.ShaderMaterial({
+      transparent:true, side:THREE.BackSide, depthWrite:false,
+      uniforms:{ c:{value:new THREE.Color(0x3fd8c8)} },
+      vertexShader:`varying vec3 vN; void main(){ vN=normalize(normalMatrix*normal); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+      fragmentShader:`varying vec3 vN; uniform vec3 c; void main(){ float i=pow(0.7-dot(vN,vec3(0,0,1.0)),3.0); gl_FragColor=vec4(c,1.0)*i; }`
+    })
+  );
+  scene.add(atm);
+}
+
+// ── свет (солнце) — фронтально-сбоку, чтобы видимая сторона Земли была освещена ──
+const sun = new THREE.DirectionalLight(0xfff4e6, 2.6);
+sun.position.set(1.4, 0.7, 3.2);
+scene.add(sun);
+scene.add(new THREE.AmbientLight(0x3a5578, 0.75));
+
+// ── позиция Краснодара (45.03N, 38.97E) как единичный вектор ──
+function latLonToVec3(lat, lon){
+  const phi = (90-lat)*Math.PI/180, theta = (lon+180)*Math.PI/180;
+  return new THREE.Vector3(
+    -Math.sin(phi)*Math.cos(theta),
+     Math.cos(phi),
+     Math.sin(phi)*Math.sin(theta)
+  ).normalize();
+}
+// формула latLonToVec3 проверена (маркер NYC лёг точно) → калибровка не нужна
+const krdN = latLonToVec3(45.03, 38.97);
+// ориентация планеты: Краснодар смотрит на камеру (+Z) И север выправлен вверх
+// (setFromUnitVectors сам по себе даёт случайный крен — доворачиваем вокруг оси взгляда)
+function aimQuat(n){
+  const q1 = new THREE.Quaternion().setFromUnitVectors(n, new THREE.Vector3(0,0,1));
+  const north = new THREE.Vector3(0,1,0).applyQuaternion(q1);   // куда ушёл сев. полюс
+  const roll = Math.atan2(north.x, north.y);                    // отклонение от вертикали
+  const q2 = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,0,1), -roll);
+  return q2.multiply(q1);
+}
+const targetQuat = aimQuat(krdN);
+const AIM = location.search.includes('aim');   // ?aim — статичный кадр финального наведения
+
+// ── таймлайн (без Date.now: свой аккумулятор времени) ──
+const rec = document.getElementById('rec');
+const coord = document.getElementById('coord');
+const coordtxt = document.getElementById('coordtxt');
+const scan = document.getElementById('scan');
+const flash = document.getElementById('flash');
+const logoEl = document.getElementById('logo');
+const skip = document.getElementById('skip');
+const fx = document.getElementById('fx');
+
+const COORD_FULL = '45.03° N · 38.97° E · КРАСНОДАР';
+let t = 0, done = false, startQuat = null;
+const ease = x => x<0.5 ? 4*x*x*x : 1-Math.pow(-2*x+2,3)/2;   // easeInOutCubic
+const clamp01 = x => Math.min(1,Math.max(0,x));
+
+// дистанция камеры от центра планеты: далеко (14) → подлёт (5) → близко (2.75)
+function cameraDist(tt){
+  if(tt<2.8) return 14 - ease(clamp01(tt/2.8))*(14-5.4);        // 0..2.8с: 14→5.4
+  if(tt<5.2) return 5.4 - ease(clamp01((tt-2.8)/2.4))*(5.4-3.3); // 2.8..5.2с: 5.4→3.3
+  return 3.3;
+}
+
+function finish(){
+  if(done) return; done = true;
+  // вспышка + логотип
+  flash.animate([{opacity:0},{opacity:.9},{opacity:0}], {duration:900, easing:'ease-out'});
+  logoEl.animate([{opacity:0},{opacity:1}], {duration:800, delay:360, fill:'forwards', easing:'ease-out'});
+  setTimeout(()=>{ /* тут будет переход на сайт */ }, 1600);
+}
+skip.onclick = ()=>{ t = 6.2; };
+
+const clock = new THREE.Clock();
+function frame(){
+  const dt = Math.min(clock.getDelta(), 0.05);
+  t += dt;
+
+  // режим ?aim — статичный кадр «прицел точно на Краснодаре» (для проверки без таймингов)
+  if(AIM){
+    earth.quaternion.copy(targetQuat); clouds.quaternion.copy(targetQuat);
+    camera.position.set(0,0,3.3); camera.lookAt(0,0,0);
+    rec.style.width = rec.style.height = '72px'; rec.style.opacity = 1;
+    scan.style.opacity = 1; fx.style.opacity = 1;
+    coordtxt.textContent = COORD_FULL; coord.style.opacity = 1;
+    renderer.render(scene, camera); requestAnimationFrame(frame); return;
+  }
+
+  // вращение/доворот планеты
+  if(t<1.6){
+    // свободное медленное вращение в начале (красивый пролёт)
+    earth.rotateY(dt*0.16); clouds.rotateY(dt*0.18);
+  } else {
+    // фиксируем стартовый разворот один раз и жёстко интерполируем к цели:
+    // при p=1 планета ТОЧНО повёрнута Краснодаром в центр (без недокрута)
+    if(!startQuat){ startQuat = earth.quaternion.clone(); }
+    const p = ease(clamp01((t-1.6)/2.8));
+    earth.quaternion.slerpQuaternions(startQuat, targetQuat, p);
+    clouds.quaternion.copy(earth.quaternion);
+  }
+
+  // камера — фронтально в центр планеты, дистанция по таймлайну
+  const d = cameraDist(t);
+  camera.position.set(0, 0, d);
+  camera.lookAt(0, 0, 0);
+
+  // прицел — появляется на подлёте (t>2.9), сжимается к центру (на Краснодар)
+  if(t>2.9 && t<5.4){
+    const p = clamp01((t-2.9)/2.0);
+    const size = 240 - ease(p)*168;                  // 240→72
+    rec.style.width = rec.style.height = size+'px';
+    rec.style.opacity = (p<0.12? p/0.12 : 1);
+    scan.style.opacity = Math.min(1,(t-2.9)/0.6);
+    fx.style.opacity = Math.min(1,(t-2.9)/0.6);
+  }
+  // координаты печатаются 3.9..4.9
+  if(t>=3.9 && coordtxt.textContent.length < COORD_FULL.length){
+    const k = clamp01((t-3.9)/0.9);
+    coordtxt.textContent = COORD_FULL.slice(0, Math.floor(k*COORD_FULL.length));
+    coord.style.opacity = 1;
+  }
+  // финал
+  if(t>=5.5) finish();
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+addEventListener('resize', ()=>{ camera.aspect=W()/H(); camera.updateProjectionMatrix(); renderer.setSize(W(),H()); });
+</script>
+</body>
+</html>
