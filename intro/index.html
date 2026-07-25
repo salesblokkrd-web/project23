@@ -15,6 +15,10 @@
 html,body{height:100%;overflow:hidden;background:#02040a;font-family:'Geologica',sans-serif}
 #stage{position:fixed;inset:0}
 canvas{display:block}
+/* ── спутниковый снимок Краснодара (долёт «в город» после глобуса) ── */
+.sat{position:fixed;inset:0;z-index:3;opacity:0;
+  background:url('krd-sat.jpg') 46% 51% / cover no-repeat;
+  transform:scale(1.08);transform-origin:46% 51%;will-change:transform,opacity}
 /* ── overlay поверх сцены ── */
 .hud{position:fixed;inset:0;pointer-events:none;z-index:5}
 /* виньетка + сканлайны «спутникового сигнала» (проявляются на наведении) */
@@ -64,6 +68,7 @@ canvas{display:block}
 </head>
 <body>
 <div id="stage"></div>
+<div class="sat" id="sat"></div>
 <div class="fx" id="fx"></div>
 <div class="hud">
   <div class="scan" id="scan">[ спутниковое наведение ]</div>
@@ -187,6 +192,7 @@ const flash = document.getElementById('flash');
 const logoEl = document.getElementById('logo');
 const skip = document.getElementById('skip');
 const fx = document.getElementById('fx');
+const sat = document.getElementById('sat');
 
 const COORD_FULL = '45.03° N · 38.97° E · КРАСНОДАР';
 let t = 0, done = false, startQuat = null;
@@ -214,12 +220,11 @@ function frame(){
   const dt = Math.min(clock.getDelta(), 0.05);
   t += dt;
 
-  // режим ?aim — статичный кадр «прицел точно на Краснодаре» (для проверки без таймингов)
+  // режим ?aim — статичный кадр «долетели в город» (спутник Краснодара + прицел)
   if(AIM){
-    earth.quaternion.copy(targetQuat); clouds.quaternion.copy(targetQuat);
-    camera.position.set(0,0,3.3); camera.lookAt(0,0,0);
+    sat.style.opacity = 1; sat.style.transform = 'scale(1.6)';
+    fx.style.opacity = 1; scan.style.opacity = 1;
     rec.style.width = rec.style.height = '72px'; rec.style.opacity = 1;
-    scan.style.opacity = 1; fx.style.opacity = 1;
     coordtxt.textContent = COORD_FULL; coord.style.opacity = 1;
     renderer.render(scene, camera); requestAnimationFrame(frame); return;
   }
@@ -250,6 +255,12 @@ function frame(){
     rec.style.opacity = (p<0.12? p/0.12 : 1);
     scan.style.opacity = Math.min(1,(t-2.9)/0.6);
     fx.style.opacity = Math.min(1,(t-2.9)/0.6);
+  }
+  // долёт «в город»: кроссфейд глобус→спутник Краснодара + продолжающийся зум
+  if(t>3.6){
+    sat.style.opacity = clamp01((t-3.6)/0.7);              // 3.6..4.3 проявление
+    const z = ease(clamp01((t-3.6)/1.9));
+    sat.style.transform = 'scale('+(1.08 + z*0.72)+')';   // 1.08→1.8 зум в город
   }
   // координаты печатаются 3.9..4.9
   if(t>=3.9 && coordtxt.textContent.length < COORD_FULL.length){
