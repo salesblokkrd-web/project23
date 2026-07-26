@@ -13,7 +13,8 @@
 :root{--acc:#2DD4BF}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden;background:#000;font-family:'Geologica',sans-serif}
-#cesiumContainer{position:fixed;inset:0}
+#cesiumContainer{position:fixed;inset:0;opacity:0;transition:opacity 1s ease}
+#solar{position:fixed;inset:0;z-index:2;display:block;transition:opacity 1s ease}
 .cesium-widget-credits,.cesium-credit-lightbox-overlay{display:none!important}
 /* виньетка + сканлайны «спутникового сигнала» */
 .fx{position:fixed;inset:0;pointer-events:none;z-index:4;opacity:0;transition:opacity .6s}
@@ -40,6 +41,10 @@ html,body{height:100%;overflow:hidden;background:#000;font-family:'Geologica',sa
 .alt{position:absolute;right:34px;top:50%;transform:translateY(-50%);
   font-family:'JBMono',monospace;font-size:12px;letter-spacing:.16em;color:rgba(150,230,220,.6);
   text-align:right;opacity:0;text-shadow:0 1px 6px rgba(0,0,0,.6);white-space:nowrap}
+/* титр парада планет */
+.sysname{position:absolute;left:0;right:0;top:44px;text-align:center;
+  font-family:'JBMono',monospace;font-size:12px;letter-spacing:.5em;color:rgba(170,210,230,.6);
+  text-transform:uppercase;opacity:0;transition:opacity 1s}
 .flash{position:fixed;inset:0;background:#eafcfd;opacity:0;z-index:6;pointer-events:none}
 .logo{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;gap:34px;z-index:7;opacity:0;background:#0B1F3A}
 .logo .cross{position:relative;width:92px;height:92px;flex:0 0 auto}
@@ -59,9 +64,11 @@ html,body{height:100%;overflow:hidden;background:#000;font-family:'Geologica',sa
 </style>
 </head>
 <body>
+<canvas id="solar"></canvas>
 <div id="cesiumContainer"></div>
 <div class="fx" id="fx"></div>
 <div class="hud">
+  <div class="sysname" id="sysname">Солнечная система</div>
   <div class="scan" id="scan">[ спутниковое наведение ]</div>
   <div class="alt" id="alt"></div>
   <div class="recticle" id="rec">
@@ -78,24 +85,14 @@ html,body{height:100%;overflow:hidden;background:#000;font-family:'Geologica',sa
 </div>
 <div class="skip" id="skip">Пропустить →</div>
 
+<!-- ═══════════ CESIUM (влёт на Краснодар) — стартует по window.beginCesium() ═══════════ -->
 <script src="https://cdn.jsdelivr.net/npm/cesium@1.123/Build/Cesium/Cesium.js"></script>
 <script>
-// Cesium без Ion — спутниковые тайлы напрямую с ESRI World Imagery (без токена)
 Cesium.Ion.defaultAccessToken = undefined;
-
-const rec = document.getElementById('rec');
-const coord = document.getElementById('coord');
-const coordtxt = document.getElementById('coordtxt');
-const scan = document.getElementById('scan');
-const alt = document.getElementById('alt');
-const flash = document.getElementById('flash');
-const logoEl = document.getElementById('logo');
-const skip = document.getElementById('skip');
-const fx = document.getElementById('fx');
-
 const KRD_LON = 38.9769, KRD_LAT = 45.0355;
 const COORD_FULL = '45.03° N · 38.97° E · КРАСНОДАР';
 const clamp = (x,a,b)=>Math.min(b,Math.max(a,x));
+const smooth = x => x*x*(3 - 2*x);
 
 const viewer = new Cesium.Viewer('cesiumContainer', {
   baseLayer: Cesium.ImageryLayer.fromProviderAsync(
@@ -105,49 +102,50 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
   baseLayerPicker:false, geocoder:false, homeButton:false, sceneModePicker:false,
   navigationHelpButton:false, animation:false, timeline:false, fullscreenButton:false,
   infoBox:false, selectionIndicator:false, navigationInstructionsInitiallyVisible:false,
-  requestRenderMode:false, contextOptions:{webgl:{alpha:false}}
+  contextOptions:{webgl:{alpha:false}}
 });
 const scene = viewer.scene;
-window.__viewer = viewer;   // для отладки из playwright
+window.__viewer = viewer;
 scene.skyAtmosphere.show = true;
 scene.globe.showGroundAtmosphere = true;
-scene.globe.enableLighting = false;         // равномерно освещено — всегда читаемо
+scene.globe.enableLighting = false;
 scene.globe.baseColor = Cesium.Color.BLACK;
-scene.screenSpaceCameraController.enableInputs = false;  // зритель не крутит
+scene.screenSpaceCameraController.enableInputs = false;
 scene.postProcessStages.fxaa.enabled = true;
-viewer.cesiumWidget.creditContainer.style.display = 'none';
-// цвет фона космоса
 scene.backgroundColor = Cesium.Color.BLACK;
+viewer.cesiumWidget.creditContainer.style.display = 'none';
 
-// дальняя точка старта — планета МАЛЕНЬКАЯ в звёздах, потом растёт
-const H_START = 160000000;  // 160 000 км — Земля точкой
-const H_END   = 3500;       // 3.5 км над центром — город крупно, читаются кварталы
-// стартовая долгота НЕ краснодарская (Атлантика) — чтобы был виден доворот на Краснодар
+// Cesium подхватывает Землю ПОСЛЕ парада — на высоте, где Земля примерно того же
+// размера, что и «шарик» в Three.js на момент перехода (подгоняется H_START).
+const H_START = 155000000;  // 155 000 км — Земля некрупным шариком (~20%, стык с Three.js)
+const H_MID   = 18000;      // 18 км — высота обзора для «поиска» и фокуса
+const H_END   = 3500;       // 3.5 км над центром — город крупно
+const APR_LON = KRD_LON - 0.4, APR_LAT = KRD_LAT - 0.3;
+const START_LON = -40, START_LAT = 12;
+const APPR_DUR = 4.5, SRCH_DUR = 3.2, FOC_DUR = 3.2;
+
 viewer.camera.setView({
-  destination: Cesium.Cartesian3.fromDegrees(-40, 12, H_START),
-  orientation: { heading: Cesium.Math.toRadians(0), pitch: Cesium.Math.toRadians(-90), roll: 0 }
+  destination: Cesium.Cartesian3.fromDegrees(START_LON, START_LAT, H_START),
+  orientation: { heading: 0, pitch: Cesium.Math.toRadians(-90), roll: 0 }
 });
 
-// фазы: wait → spin (крутится далеко) → approach (снижение до 18км) →
-//       search (поиск Краснодара на высоте) → focus (фокус-зум до земли) → done
-let phase = 'wait';
+let cphase = 'idle';   // idle → approach → search → focus → done
 let finished = false;
-let lastT = performance.now();
-let spinT = 0, apprP = 0, srchP = 0, focP = 0;
-let spinLon = -40, startLon = -40;
+let apprP = 0, srchP = 0, focP = 0, clast = 0;
 
-const H_MID = 18000;     // 18 км — высота обзора, с которой «ищем» и фокусируемся
-const APR_LON = KRD_LON - 0.4, APR_LAT = KRD_LAT - 0.3;  // точка подлёта — рядом, город в стороне
-const SPIN_RATE = 20;    // °/с — вращение Земли
-const START_LAT = 12;
-// длительности фаз (сумма = 15 с)
-const SPIN_DUR = 3.0, APPR_DUR = 5.0, SRCH_DUR = 3.5, FOC_DUR = 3.5;
-const smooth = x => x*x*(3 - 2*x);
+const rec = document.getElementById('rec');
+const coord = document.getElementById('coord');
+const coordtxt = document.getElementById('coordtxt');
+const scan = document.getElementById('scan');
+const alt = document.getElementById('alt');
+const fx = document.getElementById('fx');
+const flash = document.getElementById('flash');
+const logoEl = document.getElementById('logo');
 
 function setCam(lon, lat, h){
   viewer.camera.setView({
     destination: Cesium.Cartesian3.fromDegrees(lon, lat, h),
-    orientation: { heading: Cesium.Math.toRadians(0), pitch: Cesium.Math.toRadians(-90), roll: 0 }
+    orientation: { heading: 0, pitch: Cesium.Math.toRadians(-90), roll: 0 }
   });
 }
 function altHUD(h, op){
@@ -155,8 +153,6 @@ function altHUD(h, op){
   const km = h/1000;
   alt.textContent = (km >= 10 ? Math.round(km)+' КМ' : (km>=1 ? km.toFixed(1)+' КМ' : Math.round(h)+' М')) + '↓';
 }
-
-// у земли дождаться прогрузки детальных тайлов, чтобы финальный кадр был резким
 function waitTilesThenFinish(){
   let tries = 0;
   const iv = setInterval(()=>{
@@ -164,67 +160,6 @@ function waitTilesThenFinish(){
     if(scene.globe.tilesLoaded || tries > 60){ clearInterval(iv); finishSeq(); }
   }, 100);
 }
-
-scene.preRender.addEventListener(function(){
-  const now = performance.now();
-  const dt = Math.min((now - lastT)/1000, 0.05); lastT = now;
-  if(finished) return;
-
-  // ── SPIN: планета маленькая и КРУТИТСЯ, камера далеко ──
-  if(phase === 'spin'){
-    spinT += dt;
-    spinLon += SPIN_RATE*dt;
-    setCam(spinLon, START_LAT, H_START);
-    if(spinT > SPIN_DUR){ phase = 'approach'; startLon = spinLon; }
-    return;
-  }
-
-  // ── APPROACH: планета приближается (спуск до 18 км), доворот к региону Краснодара ──
-  if(phase === 'approach'){
-    apprP += dt/APPR_DUR; const p = clamp(apprP,0,1);
-    const h = H_START * Math.pow(H_MID/H_START, p);            // экспоненц. спуск → равномерный рост
-    const lon = startLon + (APR_LON - startLon)*smooth(p);
-    const lat = START_LAT + (APR_LAT - START_LAT)*smooth(p);
-    setCam(lon, lat, h);
-    altHUD(h, clamp((p-0.45)/0.2, 0, 1));                      // высотомер к концу приближения
-    if(p >= 1){ phase = 'search'; }
-    return;
-  }
-
-  // ── SEARCH: «ищем Краснодар» — на высоте панорама сдвигается к городу, прицел сканирует ──
-  if(phase === 'search'){
-    srchP += dt/SRCH_DUR; const p = clamp(srchP,0,1);
-    const h = H_MID - (H_MID - 15000)*smooth(p);              // лёгкое снижение 18→15 км
-    const lon = APR_LON + (KRD_LON - APR_LON)*smooth(p);
-    const lat = APR_LAT + (KRD_LAT - APR_LAT)*smooth(p);
-    setCam(lon, lat, h);
-    altHUD(h, 1);
-    fx.style.opacity = clamp(p/0.3,0,1); scan.style.opacity = clamp(p/0.3,0,1);
-    rec.style.opacity = clamp(p/0.25,0,1);
-    rec.style.width = rec.style.height = (300 - smooth(p)*40) + 'px';  // широкий прицел «ищет»
-    if(p >= 1){ phase = 'focus'; }
-    return;
-  }
-
-  // ── FOCUS: город найден — фокус-зум до земли на Краснодаре, прицел сжимается, координаты ──
-  if(phase === 'focus'){
-    focP += dt/FOC_DUR; const p = clamp(focP,0,1);
-    const h = 15000 * Math.pow(H_END/15000, p);              // фокус-зум 15 км → 3.5 км
-    setCam(KRD_LON, KRD_LAT, h);
-    altHUD(h, 1);
-    fx.style.opacity = 1; scan.style.opacity = 1;
-    rec.style.opacity = 1;
-    rec.style.width = rec.style.height = (260 - smooth(p)*186) + 'px';  // 260→74 сжатие на город
-    if(coordtxt.textContent.length < COORD_FULL.length){
-      const k = clamp((p - 0.1)/0.6, 0, 1);
-      coordtxt.textContent = COORD_FULL.slice(0, Math.floor(k*COORD_FULL.length));
-      coord.style.opacity = 1;
-    }
-    if(p >= 1 && phase === 'focus'){ phase = 'done'; waitTilesThenFinish(); }
-    return;
-  }
-});
-
 function finishSeq(){
   if(finished) return; finished = true;
   coordtxt.textContent = COORD_FULL; coord.style.opacity = 1;
@@ -232,15 +167,210 @@ function finishSeq(){
   logoEl.animate([{opacity:0},{opacity:1}], {duration:800, delay:340, fill:'forwards', easing:'ease-out'});
   setTimeout(()=>{ /* сюда — переход на сайт студии */ }, 1500);
 }
-skip.onclick = ()=>{ viewer.camera.cancelFlight(); finishSeq(); };
 
-// как только первые тайлы готовы (не крутить по чёрному глобусу) — запускаем вращение,
-// затем фаза spin сама перейдёт в влёт на Краснодар
-let waited = 0;
-const tick = setInterval(()=>{
-  waited += 100;
-  if(scene.globe.tilesLoaded || waited > 2500){ clearInterval(tick); phase = 'spin'; lastT = performance.now(); }
-}, 100);
+// запускается из Three.js в момент, когда Земля стала небольшим шариком
+window.beginCesium = function(){
+  if(cphase !== 'idle') return;
+  document.getElementById('cesiumContainer').style.opacity = 1;   // кроссфейд-ин
+  document.getElementById('solar').style.opacity = 0;             // Three.js уходит
+  cphase = 'approach';
+  clast = performance.now();
+};
+
+scene.preRender.addEventListener(function(){
+  if(cphase === 'idle' || finished) return;
+  const now = performance.now();
+  const dt = Math.min((now - clast)/1000, 0.05); clast = now;
+
+  // APPROACH: планета приближается (спуск до 18 км), доворот к региону Краснодара
+  if(cphase === 'approach'){
+    apprP += dt/APPR_DUR; const p = clamp(apprP,0,1);
+    const h = H_START * Math.pow(H_MID/H_START, p);
+    const lon = START_LON + (APR_LON - START_LON)*smooth(p);
+    const lat = START_LAT + (APR_LAT - START_LAT)*smooth(p);
+    setCam(lon, lat, h);
+    altHUD(h, clamp((p-0.4)/0.2, 0, 1));
+    if(p >= 1){ cphase = 'search'; }
+    return;
+  }
+  // SEARCH: «ищем Краснодар» — панорама сдвигается к городу, прицел сканирует
+  if(cphase === 'search'){
+    srchP += dt/SRCH_DUR; const p = clamp(srchP,0,1);
+    const h = H_MID - (H_MID - 15000)*smooth(p);
+    const lon = APR_LON + (KRD_LON - APR_LON)*smooth(p);
+    const lat = APR_LAT + (KRD_LAT - APR_LAT)*smooth(p);
+    setCam(lon, lat, h);
+    altHUD(h, 1);
+    fx.style.opacity = clamp(p/0.3,0,1); scan.style.opacity = clamp(p/0.3,0,1);
+    rec.style.opacity = clamp(p/0.25,0,1);
+    rec.style.width = rec.style.height = (300 - smooth(p)*40) + 'px';
+    if(p >= 1){ cphase = 'focus'; }
+    return;
+  }
+  // FOCUS: фокус-зум до земли на Краснодаре, прицел сжимается, координаты
+  if(cphase === 'focus'){
+    focP += dt/FOC_DUR; const p = clamp(focP,0,1);
+    const h = 15000 * Math.pow(H_END/15000, p);
+    setCam(KRD_LON, KRD_LAT, h);
+    altHUD(h, 1);
+    fx.style.opacity = 1; scan.style.opacity = 1; rec.style.opacity = 1;
+    rec.style.width = rec.style.height = (260 - smooth(p)*186) + 'px';
+    if(coordtxt.textContent.length < COORD_FULL.length){
+      const k = clamp((p - 0.1)/0.6, 0, 1);
+      coordtxt.textContent = COORD_FULL.slice(0, Math.floor(k*COORD_FULL.length));
+      coord.style.opacity = 1;
+    }
+    if(p >= 1 && cphase === 'focus'){ cphase = 'done'; waitTilesThenFinish(); }
+    return;
+  }
+});
+
+document.getElementById('skip').onclick = ()=>{ finishSeq(); };
+</script>
+
+<!-- ═══════════ THREE.JS (парад планет → подлёт к Земле) ═══════════ -->
+<script type="importmap">
+{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+const canvas = document.getElementById('solar');
+const W = ()=>window.innerWidth, H = ()=>window.innerHeight;
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(W(),H());
+
+const scene3 = new THREE.Scene();
+const cam3 = new THREE.PerspectiveCamera(45, W()/H(), 0.1, 20000);
+
+const loader = new THREE.TextureLoader();
+const tx = f => loader.load('planets/'+f);
+
+// звёздный фон (Млечный Путь) — большая сфера изнутри
+{
+  const sky = new THREE.Mesh(
+    new THREE.SphereGeometry(9000, 64, 64),
+    new THREE.MeshBasicMaterial({map: tx('2k_stars_milky_way.jpg'), side: THREE.BackSide})
+  );
+  scene3.add(sky);
+}
+
+// Солнце-спрайт красиво в глубине справа; СВЕТ отдельно — сбоку-спереди,
+// чтобы освещались ВИДИМЫЕ стороны планет (терминатор, полудиски — реалистично)
+const sunPos = new THREE.Vector3(340, 120, -1400);
+const LIGHT_POS = new THREE.Vector3(900, 220, -60);
+const sunLight = new THREE.DirectionalLight(0xfff4e0, 2.8);
+sunLight.position.copy(LIGHT_POS);
+scene3.add(sunLight);
+scene3.add(new THREE.AmbientLight(0x2a3a52, 0.68));
+
+// планета-хелпер
+function planet(fileMap, radius, pos, tilt){
+  const m = new THREE.Mesh(
+    new THREE.SphereGeometry(radius, 64, 64),
+    new THREE.MeshStandardMaterial({map: tx(fileMap), roughness:1, metalness:0})
+  );
+  m.position.set(pos.x, pos.y, pos.z);
+  m.rotation.z = tilt || 0;
+  scene3.add(m);
+  return m;
+}
+
+// СОЛНЦЕ (emissive-диск + мягкое свечение)
+const sun = new THREE.Mesh(
+  new THREE.SphereGeometry(90, 64, 64),
+  new THREE.MeshBasicMaterial({map: tx('2k_sun.jpg')})
+);
+sun.position.copy(sunPos);
+scene3.add(sun);
+{ // glow — билборд с радиальным градиентом
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const g = c.getContext('2d');
+  const grd = g.createRadialGradient(128,128,20, 128,128,128);
+  grd.addColorStop(0,'rgba(255,240,200,0.9)');
+  grd.addColorStop(0.25,'rgba(255,200,120,0.5)');
+  grd.addColorStop(1,'rgba(255,180,80,0)');
+  g.fillStyle = grd; g.fillRect(0,0,256,256);
+  const spr = new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c), transparent:true, blending:THREE.AdditiveBlending, depthWrite:false}));
+  spr.scale.set(520,520,1); spr.position.copy(sunPos);
+  scene3.add(spr);
+}
+
+// ПАРАД: планеты на пути к Земле (художественная расстановка, не масштаб)
+const saturn = planet('2k_saturn.jpg', 34, {x:-190, y:34, z:-980}, 0.24);
+{ // кольца Сатурна
+  const rg = new THREE.RingGeometry(42, 74, 96);
+  // подправляем UV, чтобы радиальная текстура колец легла корректно
+  const pos = rg.attributes.position, uv = rg.attributes.uv;
+  const v = new THREE.Vector3();
+  for(let i=0;i<pos.count;i++){
+    v.fromBufferAttribute(pos,i);
+    const r = v.length();
+    uv.setXY(i, (r-42)/(74-42), 0.5);
+  }
+  const ring = new THREE.Mesh(rg, new THREE.MeshBasicMaterial({
+    map: tx('2k_saturn_ring_alpha.png'), side:THREE.DoubleSide, transparent:true, opacity:0.9, depthWrite:false
+  }));
+  ring.rotation.x = Math.PI/2 - 0.34; ring.rotation.z = 0.24;
+  saturn.add(ring);
+}
+const venus = planet('2k_venus_atmosphere.jpg', 21, {x:150, y:-40, z:-560}, 0.05);
+const mars  = planet('2k_mars.jpg', 17, {x:-120, y:52, z:-360}, 0.3);
+
+// ЗЕМЛЯ — цель, по курсу камеры; Луна рядом
+const EARTH_POS = new THREE.Vector3(0, 0, -150);
+const earth = planet('2k_earth_daymap.jpg', 10, EARTH_POS, 0.15);
+const moon  = planet('2k_moon.jpg', 2.7, {x:24, y:-11, z:-140}, 0);
+
+// ── камера-таймлайн ──
+const sysname = document.getElementById('sysname');
+let t3 = 0, last3 = performance.now(), handed = false;
+const PARADE = 5.0;     // обзор системы
+const APPROACH = 3.2;   // подлёт к Земле
+const ease = x => x<0.5 ? 4*x*x*x : 1-Math.pow(-2*x+2,3)/2;
+
+// камера: обзорная точка → подлёт к Земле по её курсу (+Z от Земли)
+const CAM_START = new THREE.Vector3(70, 26, 120);
+const CAM_MID   = new THREE.Vector3(18, 8, 40);      // конец парада (система в кадре)
+const CAM_END   = new THREE.Vector3(0, 0, -28);      // Земля небольшим шариком (~20%) для незаметного стыка
+const lookStart = new THREE.Vector3(-30, 6, -320);   // смотрим в центр системы
+const lookEnd   = EARTH_POS.clone();
+
+function frame3(){
+  const now = performance.now();
+  const dt = Math.min((now-last3)/1000, 0.05); last3 = now;
+  t3 += dt;
+
+  // вращение планет
+  earth.rotation.y += dt*0.10; venus.rotation.y += dt*0.05;
+  mars.rotation.y += dt*0.08; saturn.rotation.y += dt*0.06;
+  moon.rotation.y += dt*0.03; sun.rotation.y += dt*0.01;
+
+  if(t3 < PARADE){
+    const p = ease(clamp(t3/PARADE,0,1));
+    cam3.position.lerpVectors(CAM_START, CAM_MID, p);
+    const lk = new THREE.Vector3().lerpVectors(lookStart, EARTH_POS, p*0.5);
+    cam3.lookAt(lk);
+    sysname.style.opacity = clamp((t3-0.4)/1.0,0,1) * (t3>PARADE-1 ? clamp((PARADE-t3)/1,0,1) : 1);
+  } else {
+    const p = ease(clamp((t3-PARADE)/APPROACH,0,1));
+    cam3.position.lerpVectors(CAM_MID, CAM_END, p);
+    const lk = new THREE.Vector3().lerpVectors(EARTH_POS.clone(), lookEnd, 1);
+    cam3.lookAt(EARTH_POS);
+    // передаём в Cesium ближе к концу подлёта (Земля — небольшой шарик)
+    if(p >= 1 && !handed){
+      handed = true;
+      if(window.beginCesium) window.beginCesium();
+    }
+  }
+
+  renderer.render(scene3, cam3);
+  if(!handed || t3 < PARADE+APPROACH+1) requestAnimationFrame(frame3);
+}
+requestAnimationFrame(frame3);
+
+addEventListener('resize', ()=>{ cam3.aspect=W()/H(); cam3.updateProjectionMatrix(); renderer.setSize(W(),H()); });
 </script>
 </body>
 </html>
