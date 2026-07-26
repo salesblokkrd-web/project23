@@ -119,23 +119,29 @@ viewer.cesiumWidget.creditContainer.style.display = 'none';
 // цвет фона космоса
 scene.backgroundColor = Cesium.Color.BLACK;
 
-// стартовая точка — высоко над Краснодаром (космос)
-const H_START = 14000000;   // 14 000 км
-const H_END   = 7000;       // 7 км над центром — весь город с излучиной Кубани, тайлы zoom~13 успевают
+// дальняя точка старта — планета МАЛЕНЬКАЯ в звёздах, потом растёт
+const H_START = 160000000;  // 160 000 км — Земля точкой
+const H_END   = 3500;       // 3.5 км над центром — город крупно, читаются кварталы
+// стартовая долгота НЕ краснодарская (Атлантика) — чтобы был виден доворот на Краснодар
 viewer.camera.setView({
-  destination: Cesium.Cartesian3.fromDegrees(KRD_LON, KRD_LAT, H_START),
+  destination: Cesium.Cartesian3.fromDegrees(-40, 12, H_START),
   orientation: { heading: Cesium.Math.toRadians(0), pitch: Cesium.Math.toRadians(-90), roll: 0 }
 });
 
-let started = false, finished = false;
-function startFlight(){
-  if(started) return; started = true;
-  viewer.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(KRD_LON, KRD_LAT, H_END),
-    orientation: { heading: Cesium.Math.toRadians(0), pitch: Cesium.Math.toRadians(-90), roll: 0 },
-    duration: 8.0,
-    easingFunction: Cesium.EasingFunction.QUADRATIC_IN_OUT, // равномерный рост зума, мягкое торможение
-    complete: waitTilesThenFinish
+let phase = 'wait';            // wait → spin (Земля крутится) → fly (влёт на Краснодар) → done
+let finished = false;
+let spinT = 0, lastT = performance.now();
+// ручная траектория (flyTo не даёт экспоненциального профиля высоты → рост неравномерный)
+let spinLon = -40, flyP = 0, startLon = -40;
+const SPIN_RATE = 20;    // °/с — вращение Земли в фазе spin
+const START_LAT = 12;    // широта обзора в начале (экватор-ish)
+const FLY_DUR   = 7.5;   // с — влёт из космоса до города
+const smooth = x => x*x*(3 - 2*x);   // smoothstep для мягких концов доворота
+
+function setCam(lon, lat, h){
+  viewer.camera.setView({
+    destination: Cesium.Cartesian3.fromDegrees(lon, lat, h),
+    orientation: { heading: Cesium.Math.toRadians(0), pitch: Cesium.Math.toRadians(-90), roll: 0 }
   });
 }
 
@@ -150,32 +156,52 @@ function waitTilesThenFinish(){
 
 // HUD привязан к ВЫСОТЕ камеры — синхронно с реальным полётом и подгрузкой тайлов
 scene.preRender.addEventListener(function(){
-  if(!started || finished) return;
-  const h = viewer.camera.positionCartographic.height;   // метры
+  const now = performance.now();
+  const dt = Math.min((now - lastT)/1000, 0.05); lastT = now;
+
+  // ── фаза вращения: планета маленькая и КРУТИТСЯ, пока камера далеко ──
+  if(phase === 'spin'){
+    spinT += dt;
+    spinLon += SPIN_RATE*dt;                 // долгота под камерой растёт → Земля крутится
+    setCam(spinLon, START_LAT, H_START);
+    if(spinT > 3.0){ phase = 'fly'; startLon = spinLon; }
+    return;
+  }
+  if(phase !== 'fly' || finished) return;
+
+  // ── влёт: экспоненциальная высота (равномерный рост планеты) + доворот на Краснодар ──
+  flyP += dt / FLY_DUR;
+  const p = clamp(flyP, 0, 1);
+  const h = H_START * Math.pow(H_END / H_START, p);           // экспонента → равномерный зум
+  const lon = startLon + (KRD_LON - startLon) * smooth(p);    // доворот к Краснодару
+  const lat = START_LAT + (KRD_LAT - START_LAT) * smooth(p);
+  setCam(lon, lat, h);
+  if(p >= 1 && phase === 'fly'){ phase = 'done'; waitTilesThenFinish(); }
+
   // прогресс сближения по логарифму высоты: g=0 далеко(космос) → g=1 у земли
   const g = clamp((Math.log(H_START) - Math.log(h)) / (Math.log(H_START) - Math.log(H_END)), 0, 1);
 
-  // «спутниковый сигнал» + сканлайны включаются во второй половине сближения
-  const sig = clamp((g - 0.45) / 0.2, 0, 1);
+  // «спутниковый сигнал» + сканлайны включаются ближе к земле
+  const sig = clamp((g - 0.55) / 0.15, 0, 1);
   fx.style.opacity = sig; scan.style.opacity = sig;
 
   // высотомер (живой): км → м
-  if(g > 0.3){
-    alt.style.opacity = clamp((g-0.3)/0.15,0,1);
+  if(g > 0.32){
+    alt.style.opacity = clamp((g-0.32)/0.12,0,1);
     const km = h/1000;
     alt.textContent = (km >= 10 ? Math.round(km) + ' КМ' : (km>=1 ? km.toFixed(1)+' КМ' : Math.round(h)+' М')) + '↓';
   }
 
   // прицел появляется на подлёте и плавно сжимается к центру по мере зума
-  if(g > 0.5){
-    const p = clamp((g - 0.5) / 0.45, 0, 1);
+  if(g > 0.6){
+    const p = clamp((g - 0.6) / 0.35, 0, 1);
     const size = 260 - p*186;          // 260→74
     rec.style.width = rec.style.height = size + 'px';
-    rec.style.opacity = clamp((g-0.5)/0.08, 0, 1);
+    rec.style.opacity = clamp((g-0.6)/0.06, 0, 1);
   }
   // координаты печатаются ближе к концу
-  if(g > 0.72 && coordtxt.textContent.length < COORD_FULL.length){
-    const k = clamp((g - 0.72) / 0.2, 0, 1);
+  if(g > 0.78 && coordtxt.textContent.length < COORD_FULL.length){
+    const k = clamp((g - 0.78) / 0.16, 0, 1);
     coordtxt.textContent = COORD_FULL.slice(0, Math.floor(k*COORD_FULL.length));
     coord.style.opacity = 1;
   }
@@ -190,11 +216,12 @@ function finishSeq(){
 }
 skip.onclick = ()=>{ viewer.camera.cancelFlight(); finishSeq(); };
 
-// стартуем полёт, как только первые тайлы готовы (чтобы не лететь по чёрному глобусу)
+// как только первые тайлы готовы (не крутить по чёрному глобусу) — запускаем вращение,
+// затем фаза spin сама перейдёт в влёт на Краснодар
 let waited = 0;
 const tick = setInterval(()=>{
   waited += 100;
-  if(scene.globe.tilesLoaded || waited > 2500){ clearInterval(tick); startFlight(); }
+  if(scene.globe.tilesLoaded || waited > 2500){ clearInterval(tick); phase = 'spin'; lastT = performance.now(); }
 }, 100);
 </script>
 </body>
