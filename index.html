@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-<title>ПРОЕКТ 23 — сайты для промышленных компаний Юга</title>
-<meta name="description" content="Веб-студия ПРОЕКТ 23: сайты для стройки, техники и заводов Краснодарского края. Разбор вашего сайта бесплатно, прототип на ваших данных, внедрение за 2–3 дня.">
+<title>ПРОЕКТ 23 — сайты и ИИ-автоматизация для промышленных компаний Юга</title>
+<meta name="description" content="Веб-студия ПРОЕКТ 23: сайты для стройки, техники и заводов Краснодарского края + внедрение ИИ в бизнес-процессы. Разбор вашего сайта бесплатно, прототип на ваших данных, внедрение за 2–3 дня.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ПРОЕКТ 23 — сайты для промышленных компаний Юга">
-<meta property="og:description" content="Делаем сайты для стройки, техники и заводов. Разбор бесплатно, прототип на ваших данных, внедрение за 2–3 дня.">
+<meta property="og:title" content="ПРОЕКТ 23 — сайты и ИИ-автоматизация для промышленных компаний Юга">
+<meta property="og:description" content="Делаем сайты для стройки, техники и заводов + внедряем ИИ в рутину: заявки 24/7, учёт, отчёты. Разбор бесплатно, прототип на ваших данных, внедрение за 2–3 дня.">
 <meta property="og:url" content="https://project23.ru/">
 <link rel="icon" type="image/png" href="assets/favicon-180.png">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
@@ -30,8 +30,11 @@
 html{scroll-behavior:smooth}
 body{font-family:'Onest',system-ui,sans-serif;color:var(--ink);background:var(--deep);line-height:1.6;-webkit-font-smoothing:antialiased}
 /* ── видео-фон: интро крутится за контентом ── */
-.bgvid{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.bgtint{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,11,18,.72) 0%,rgba(6,11,18,.5) 40%,rgba(6,11,18,.72) 100%)}
+.bgvid{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;
+  filter:brightness(1.22) saturate(1.08);background:#060b12}
+.bgtint{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,11,18,.52) 0%,rgba(6,11,18,.28) 40%,rgba(6,11,18,.52) 100%)}
+/* телефон (портрет): показываем кадр целиком — меньше кропа, больше захвата */
+@media(orientation:portrait){.bgvid{object-fit:contain}}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
 .mono{font-family:'JBMono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--mut)}
@@ -158,9 +161,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
 <div class="wrap">
 <section class="hero" style="border:none">
   <div class="mono">Веб-студия · Краснодарский край</div>
-  <h1>Сайты для <em>промышленных</em> компаний Юга</h1>
-  <p>Техника, заводы, стройматериалы, инжиниринг. Не универсальная студия — работаем
-  только в этой отрасли и говорим на языке ваших заказчиков.</p>
+  <h1>Сайты и <em>ИИ-автоматизация</em> для промышленных компаний Юга</h1>
+  <p>Техника, заводы, стройматериалы, инжиниринг. Делаем сайты, которые приносят заявки,
+  и внедряем искусственный интеллект в рутину: приём заявок 24/7, учёт, отчёты, контроль процессов.</p>
   <div class="cta">
     <a class="btn btn-a" href="#contact">Обсудить сайт →</a>
     <a class="btn btn-o" href="#works">Смотреть работы</a>
