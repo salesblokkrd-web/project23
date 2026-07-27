@@ -88,7 +88,7 @@ section{padding:80px 0;border-top:1px solid var(--line)}
 .step p{color:var(--mut);font-size:.98rem}
 .step .tag{display:inline-block;margin-top:14px;font-family:'JBMono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);border:1px solid var(--acc);border-radius:20px;padding:5px 12px}
 
-.cases{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:26px}
 .case{border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.25s;background:var(--paper);backdrop-filter:blur(14px)}
 .case:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(0,0,0,.5);border-color:rgba(45,212,191,.4)}
 .case .shot{aspect-ratio:16/10;overflow:hidden;background:#0e1116}
@@ -222,6 +222,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
         <div class="shot"><img src="assets/work-rbu.jpg" alt="Сайт бетонного завода" loading="lazy"></div>
         <div class="cap"><div class="mono">Бетонный завод · доставка</div><b>РБУ БетонСервис</b><p>Живое видео заливки бетононасосом, прайс марок сразу на виду, счётчики объёмов, расчёт в мессенджере.</p></div>
       </a>
+      <div class="case">
+        <div class="shot"><img src="assets/work-metrics.jpg" alt="Дашборд медиа-метрик по всем каналам" loading="lazy"></div>
+        <div class="cap"><div class="mono">ИИ-автоматизация · медиа-аналитика</div><b>Метрики блогера: все каналы в одной коробке</b><p>Instagram, YouTube, Likee — автосбор статистики по всем площадкам в единый дашборд + автоотчёт в Telegram каждое утро. Видно, что растёт и какой контент заходит.</p></div>
+      </div>
     </div>
   </div>
 </section>
