@@ -76,14 +76,18 @@ section{padding:80px 0;border-top:1px solid var(--line)}
 .sec-h p{color:var(--mut);max-width:58ch;margin-top:14px;font-size:1.05rem}
 
 .who{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;backdrop-filter:blur(14px)}
-.who div{background:var(--paper);padding:30px 26px}
-.who .n{font-family:'JBMono',monospace;font-size:.72rem;color:var(--acc);letter-spacing:.12em;margin-bottom:14px}
+.who>div{background:var(--paper);display:flex;flex-direction:column}
+.who .ph{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;filter:saturate(.92)}
+.who .tx{padding:22px 26px 26px}
+.who .n{font-family:'JBMono',monospace;font-size:.72rem;color:var(--acc);letter-spacing:.12em;margin-bottom:12px}
 .who b{display:block;font-size:1.12rem;margin-bottom:6px}
 .who p{color:var(--mut);font-size:.94rem}
 
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;counter-reset:s}
-.step{position:relative;padding:24px 22px 22px;border-top:2px solid var(--acc);background:var(--paper);backdrop-filter:blur(14px);border-radius:0 0 12px 12px}
-.step::before{counter-increment:s;content:"0" counter(s);font-family:'JBMono',monospace;font-weight:700;font-size:.9rem;color:var(--acc)}
+.step{position:relative;border-top:2px solid var(--acc);background:var(--paper);backdrop-filter:blur(14px);border-radius:0 0 12px 12px;overflow:hidden}
+.step .sph{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;filter:saturate(.92)}
+.step .sx{padding:18px 22px 22px}
+.step .sx::before{counter-increment:s;content:"0" counter(s);font-family:'JBMono',monospace;font-weight:700;font-size:.9rem;color:var(--acc)}
 .step h3{font-size:1.3rem;font-weight:800;margin:12px 0 8px;letter-spacing:-.01em}
 .step p{color:var(--mut);font-size:.98rem}
 .step .tag{display:inline-block;margin-top:14px;font-family:'JBMono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);border:1px solid var(--acc);border-radius:20px;padding:5px 12px}
@@ -182,10 +186,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
       Мы делаем каждый под то, как в этой нише принимают решение о покупке.</p>
     </div>
     <div class="who reveal">
-      <div><div class="n">01</div><b>Техника и аренда</b><p>Краны, спецтехника, оборудование, подъёмники. Парк, ТТХ, допуски, скорость выхода.</p></div>
-      <div><div class="n">02</div><b>Стройматериалы</b><p>Бетон, ЖБИ, кирпич, щебень, карьеры. Марка, цена за куб, доставка сегодня.</p></div>
-      <div><div class="n">03</div><b>Услуги и монтаж</b><p>Строительство, кровля, инженерные системы. Портфолио объектов, доверие к бригаде.</p></div>
-      <div><div class="n">04</div><b>Инжиниринг</b><p>Проектирование, сервис, лаборатории. Компетенция, лицензии, процессы.</p></div>
+      <div><img class="ph" src="assets/who-tech.jpg" alt="Башенный кран на стройке" loading="lazy"><div class="tx"><div class="n">01</div><b>Техника и аренда</b><p>Краны, спецтехника, оборудование, подъёмники. Парк, ТТХ, допуски, скорость выхода.</p></div></div>
+      <div><img class="ph" src="assets/who-mat.jpg" alt="Бетонный завод" loading="lazy"><div class="tx"><div class="n">02</div><b>Стройматериалы</b><p>Бетон, ЖБИ, кирпич, щебень, карьеры. Марка, цена за куб, доставка сегодня.</p></div></div>
+      <div><img class="ph" src="assets/who-build.jpg" alt="Монтажники на объекте" loading="lazy"><div class="tx"><div class="n">03</div><b>Услуги и монтаж</b><p>Строительство, кровля, инженерные системы. Портфолио объектов, доверие к бригаде.</p></div></div>
+      <div><img class="ph" src="assets/who-eng.jpg" alt="Инженеры за чертежами" loading="lazy"><div class="tx"><div class="n">04</div><b>Инжиниринг</b><p>Проектирование, сервис, лаборатории. Компетенция, лицензии, процессы.</p></div></div>
     </div>
   </div>
 </section>
@@ -199,9 +203,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
       прежде, чем вы заплатите.</p>
     </div>
     <div class="steps reveal">
-      <div class="step"><h3>Разбор вашего сайта</h3><p>Находим, где сайт теряет заявки: скрытые цены, нет мессенджеров, слабый первый экран. Присылаем документ.</p><span class="tag">Бесплатно</span></div>
-      <div class="step"><h3>Прототип на ваших данных</h3><p>Собираем новый сайт на вашем реальном контенте — товары, цены, объекты. Открываете и смотрите вживую.</p><span class="tag">2–3 дня</span></div>
-      <div class="step"><h3>Внедрение и запуск</h3><p>Переносим весь контент, ставим домен, аналитику, мессенджеры. Дальше сайт ваш — правки сами или через нас.</p><span class="tag">Под ключ</span></div>
+      <div class="step"><img class="sph" src="assets/step-audit.jpg" alt="Разбор сайта с пометками" loading="lazy"><div class="sx"><h3>Разбор вашего сайта</h3><p>Находим, где сайт теряет заявки: скрытые цены, нет мессенджеров, слабый первый экран. Присылаем документ.</p><span class="tag">Бесплатно</span></div></div>
+      <div class="step"><img class="sph" src="assets/step-proto.jpg" alt="Прототип сайта на ноутбуке" loading="lazy"><div class="sx"><h3>Прототип на ваших данных</h3><p>Собираем новый сайт на вашем реальном контенте — товары, цены, объекты. Открываете и смотрите вживую.</p><span class="tag">2–3 дня</span></div></div>
+      <div class="step"><img class="sph" src="assets/step-launch.jpg" alt="Запуск проекта на объекте" loading="lazy"><div class="sx"><h3>Внедрение и запуск</h3><p>Переносим весь контент, ставим домен, аналитику, мессенджеры. Дальше сайт ваш — правки сами или через нас.</p><span class="tag">Под ключ</span></div></div>
     </div>
   </div>
 </section>
@@ -240,10 +244,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
       ищет информацию и готовит отчёты. Работает круглосуточно — и уже работает у реальных клиентов.</p>
     </div>
     <div class="who reveal">
-      <div><div class="n">01</div><b>Всегда на связи</b><p>Живёт в Telegram и MAX, отвечает 24/7. Спросили — ответил, поручили — сделал и отчитался.</p></div>
-      <div><div class="n">02</div><b>Долгая память</b><p>Помнит контекст ваших дел, людей и договорённостей. Не нужно объяснять одно и то же дважды.</p></div>
-      <div><div class="n">03</div><b>Понимает голос</b><p>Наговорите поручение голосовым сообщением на ходу — распознает, поймёт и выполнит.</p></div>
-      <div><div class="n">04</div><b>Задачи и документы</b><p>Напоминания, поиск в интернете, работа с файлами и таблицами, ежедневные сводки по делам.</p></div>
+      <div><img class="ph" src="assets/ai-chat.jpg" alt="Чат с ИИ-помощником в телефоне" loading="lazy"><div class="tx"><div class="n">01</div><b>Всегда на связи</b><p>Живёт в Telegram и MAX, отвечает 24/7. Спросили — ответил, поручили — сделал и отчитался.</p></div></div>
+      <div><img class="ph" src="assets/ai-mem.jpg" alt="Нейросеть — долгая память" loading="lazy"><div class="tx"><div class="n">02</div><b>Долгая память</b><p>Помнит контекст ваших дел, людей и договорённостей. Не нужно объяснять одно и то же дважды.</p></div></div>
+      <div><img class="ph" src="assets/ai-voice.jpg" alt="Голосовое управление" loading="lazy"><div class="tx"><div class="n">03</div><b>Понимает голос</b><p>Наговорите поручение голосовым сообщением на ходу — распознает, поймёт и выполнит.</p></div></div>
+      <div><img class="ph" src="assets/ai-docs.jpg" alt="Отчёты и документы" loading="lazy"><div class="tx"><div class="n">04</div><b>Задачи и документы</b><p>Напоминания, поиск в интернете, работа с файлами и таблицами, ежедневные сводки по делам.</p></div></div>
     </div>
     <div class="reveal" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-top:26px">
       <span class="mono">Бизнес-Управляющий Логичный Автономный Терминал · по подписке</span>
