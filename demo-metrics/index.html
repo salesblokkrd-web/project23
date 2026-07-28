@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Демо-дашборд метрик — ПРОЕКТ 23</title>
+<meta name="description" content="Живой пример дашборда медиа-метрик: все каналы в одной коробке. Данные условные — демонстрация.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="../assets/favicon-180.png">
+<style>
+@font-face{font-family:'Geologica';font-weight:700 800;font-display:swap;src:url('../assets/Geologica-cyr.woff2') format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Geologica';font-weight:700 800;font-display:swap;src:url('../assets/Geologica-lat.woff2') format('woff2');unicode-range:U+0000-00FF}
+@font-face{font-family:'Onest';font-weight:300 800;font-display:swap;src:url('../assets/Onest-cyr.woff2') format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Onest';font-weight:300 800;font-display:swap;src:url('../assets/Onest-lat.woff2') format('woff2');unicode-range:U+0000-00FF}
+@font-face{font-family:'JBMono';font-weight:400 700;font-display:swap;src:url('../assets/JetBrainsMono-cyr.woff2') format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'JBMono';font-weight:400 700;font-display:swap;src:url('../assets/JetBrainsMono-lat.woff2') format('woff2');unicode-range:U+0000-00FF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Onest',system-ui,sans-serif;background:#0B1F3A;color:#F0F5F9;min-height:100vh;position:relative;line-height:1.5}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(45,212,191,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(45,212,191,.04) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px;position:relative}
+.mono{font-family:'JBMono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.14em}
+
+.top{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding:26px 0 6px}
+.ttl{font-family:'Geologica',sans-serif;font-weight:800;font-size:clamp(1.3rem,3vw,1.7rem)}
+.ttl b{color:#2DD4BF}
+.badge{display:inline-block;font-family:'JBMono',monospace;font-size:.66rem;letter-spacing:.2em;color:#ffce67;border:1px solid rgba(255,206,103,.55);border-radius:20px;padding:5px 13px;text-transform:uppercase}
+.sub{color:#8298B0;font-size:.92rem;margin-top:4px}
+
+.per{display:flex;gap:8px;margin:18px 0 0}
+.per button{font-family:'JBMono',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#a3b2c0;background:rgba(9,17,27,.7);border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:9px 16px;cursor:pointer;transition:.2s}
+.per button.on{color:#06231f;background:#2DD4BF;border-color:#2DD4BF;font-weight:700}
+.per button:hover:not(.on){color:#F0F5F9}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:18px}
+.card{background:rgba(9,17,27,.8);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:18px 20px}
+.card .nm{display:flex;align-items:center;gap:9px;font-family:'JBMono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:#a3b2c0}
+.dotc{width:10px;height:10px;border-radius:50%;flex:0 0 auto}
+.card .v{font-family:'Geologica',sans-serif;font-weight:800;font-size:1.9rem;margin-top:8px}
+.card .d{font-family:'JBMono',monospace;font-size:.72rem;margin-top:3px}
+.up{color:#2DD4BF}
+
+.panel{margin-top:16px;background:rgba(9,17,27,.8);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:20px 24px}
+.panel .h{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.panel .h b{font-family:'Geologica',sans-serif;font-size:1.02rem}
+.panel .h span{font-family:'JBMono',monospace;font-size:.66rem;color:#8298B0;letter-spacing:.14em;text-transform:uppercase}
+.bars{display:flex;align-items:flex-end;gap:8px;height:180px}
+.bar{flex:1;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#2DD4BF,rgba(45,212,191,.25));transition:height .5s ease;position:relative;cursor:default}
+.bar.g{background:linear-gradient(180deg,#5b8cff,rgba(91,140,255,.22))}
+.bar:hover::after{content:attr(data-v);position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:6px;font-family:'JBMono',monospace;font-size:.68rem;color:#0B1F3A;background:#F0F5F9;border-radius:6px;padding:3px 8px;white-space:nowrap}
+.legend{display:flex;gap:22px;margin-top:12px;font-family:'JBMono',monospace;font-size:.66rem;color:#a3b2c0;letter-spacing:.1em}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:7px}
+
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th{font-family:'JBMono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8298B0;text-align:left;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.12)}
+td{padding:10px;border-bottom:1px solid rgba(255,255,255,.07)}
+td:last-child,th:last-child{text-align:right}
+.tbl-wrap{overflow-x:auto}
+
+.tg{background:rgba(9,17,27,.8);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:20px 24px}
+.msg{background:#182533;border-radius:12px 12px 12px 4px;padding:14px 16px;max-width:520px;font-size:.9rem;margin-top:12px}
+.msg .from{color:#2DD4BF;font-weight:700;font-size:.82rem;margin-bottom:6px}
+.msg p{margin:3px 0;color:#d7e1ea}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+
+.cta{margin:26px 0 34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;border:1px solid rgba(45,212,191,.4);border-radius:14px;padding:20px 24px;background:rgba(45,212,191,.07)}
+.cta p{color:#c3cede;font-size:.95rem;max-width:52ch}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:8px;font-weight:700;font-size:.95rem;background:#2DD4BF;color:#06231f;text-decoration:none;transition:.2s}
+.btn:hover{filter:brightness(1.08)}
+.note{color:#61738a;font-family:'JBMono',monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;padding-bottom:26px}
+a.back{color:#8298B0;text-decoration:none;font-size:.88rem}
+a.back:hover{color:#F0F5F9}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <div class="ttl">Медиа-метрики <b>· все каналы в одной коробке</b></div>
+      <div class="sub">Живой пример дашборда, который мы собираем под ваши каналы</div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center">
+      <span class="badge">Демо · данные условные</span>
+      <a class="back" href="https://project23.ru/">← на сайт студии</a>
+    </div>
+  </div>
+
+  <div class="per">
+    <button class="on" data-p="w">Неделя</button>
+    <button data-p="m">Месяц</button>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="panel">
+    <div class="h"><b>Просмотры по дням</b><span>сводно по всем платформам</span></div>
+    <div class="bars" id="bars"></div>
+    <div class="legend"><span><i style="background:#2DD4BF"></i>Shorts / Reels</span><span><i style="background:#5b8cff"></i>Длинные видео</span></div>
+  </div>
+
+  <div class="two">
+    <div class="panel" style="margin-top:0">
+      <div class="h"><b>Топ-5 роликов за период</b><span>по просмотрам</span></div>
+      <div class="tbl-wrap"><table>
+        <tr><th>Ролик</th><th>Платформа</th><th>Просмотры</th></tr>
+        <tr><td>«Утро в цеху: как мы делаем…»</td><td>Likee</td><td>412 000</td></tr>
+        <tr><td>«Разбор заказа за 60 секунд»</td><td>Instagram</td><td>287 500</td></tr>
+        <tr><td>«Ответы на вопросы №14»</td><td>YouTube</td><td>158 200</td></tr>
+        <tr><td>«Закулисье съёмки»</td><td>Likee</td><td>126 800</td></tr>
+        <tr><td>«5 ошибок новичков»</td><td>YouTube</td><td>98 400</td></tr>
+      </table></div>
+    </div>
+    <div class="tg">
+      <div class="h" style="margin-bottom:2px"><b>Автоотчёт в Telegram</b><span>каждое утро 08:00</span></div>
+      <div class="msg">
+        <div class="from">ПРОЕКТ 23 · Метрики</div>
+        <p>☀️ Доброе утро! Сводка за вчера:</p>
+        <p>📈 Просмотры: <b>184 300</b> (+12%)</p>
+        <p>👥 Подписчики: <b>+1 060</b> суммарно</p>
+        <p>🔥 Выстрелил ролик «Утро в цеху» — 96К за день</p>
+        <p>💡 Совет: Shorts во вторник дают ×1,4 к охвату</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <p><b>Такой дашборд собирается под ваши каналы за несколько дней.</b><br>
+    Статистика стягивается автоматически, каждое утро — отчёт в мессенджер. Вы просто смотрите цифры.</p>
+    <a class="btn" href="https://project23.ru/#contact">Хочу такой же →</a>
+  </div>
+
+  <div class="note">Демонстрационная страница · все цифры условные · ПРОЕКТ 23 · project23.ru</div>
+</div>
+
+<script>
+// данные условные; period-переключатель для «живости»
+const DATA={
+  w:{cards:[["Instagram","#E1306C","128 400","▲ +3 240 за неделю"],["YouTube","#FF0000","64 900","▲ +1 180 за неделю"],["Likee","#00E0D5","211 300","▲ +6 850 за неделю"],["Охват · всего","#8298B0","2,4 млн","▲ +14% к прошлой неделе"]],
+     bars:[[34,"96К"],[48,"132К",1],[41,"114К"],[56,"155К",1],[62,"171К"],[51,"141К",1],[70,"194К"],[64,"177К",1],[83,"229К"],[74,"205К",1],[91,"252К"],[100,"277К",1]]},
+  m:{cards:[["Instagram","#E1306C","131 900","▲ +11 800 за месяц"],["YouTube","#FF0000","67 200","▲ +5 400 за месяц"],["Likee","#00E0D5","224 700","▲ +28 300 за месяц"],["Охват · всего","#8298B0","9,1 млн","▲ +23% к июню"]],
+     bars:[[28,"1,9М"],[36,"2,4М",1],[44,"2,9М"],[39,"2,6М",1],[52,"3,5М"],[61,"4,1М",1],[57,"3,8М"],[66,"4,4М",1],[73,"4,9М"],[81,"5,4М",1],[92,"6,1М"],[100,"6,7М",1]]}
+};
+function render(p){
+  document.getElementById('cards').innerHTML=DATA[p].cards.map(c=>
+    `<div class="card"><div class="nm"><span class="dotc" style="background:${c[1]}"></span>${c[0]}</div><div class="v">${c[2]}</div><div class="d up">${c[3]}</div></div>`).join('');
+  document.getElementById('bars').innerHTML=DATA[p].bars.map(b=>
+    `<div class="bar${b[2]?' g':''}" style="height:${b[0]}%" data-v="${b[1]}"></div>`).join('');
+}
+document.querySelectorAll('.per button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.per button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');render(b.dataset.p);
+});
+render('w');
+</script>
+</body>
+</html>
