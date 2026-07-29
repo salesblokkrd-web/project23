@@ -279,6 +279,8 @@ footer{padding:26px 0 96px;color:var(--mut)}
   .rise-prog{right:14px;height:34vh}
   .specline div{flex:1 1 45%;border-right:none}
   .hero .wrap{padding-bottom:38px}
+  /* таблица парка шире экрана — скроллим её внутри, а не всю страницу */
+  .spec{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
 @media(prefers-reduced-motion:reduce){
   .grain{animation:none}
