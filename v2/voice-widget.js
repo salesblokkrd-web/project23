@@ -1,0 +1,140 @@
+/* Голосовой помощник сайта ПРОЕКТ 23 (прототип, как у STRON из референса 5401).
+   Микрофон браузера → расшифровка → мозги (DeepSeek через наш прокси на Beget)
+   → голосовой ответ + действия на странице (скролл к секции). */
+(function () {
+  const API = "https://law.radarstats.ru/p23voice/chat";
+  const SECTIONS = {
+    "#who": "для кого мы работаем", "#how": "как мы работаем (3 шага)",
+    "#works": "живые работы: Новокран, РБУ, метрики", "#bulat": "БУЛАТ — ИИ-помощник руководителя",
+    "#agents": "ИИ-агенты под каждый отдел", "#price": "цены", "#contact": "контакты",
+  };
+  const SYSTEM = `Ты — голосовой помощник сайта веб-студии «ПРОЕКТ 23» (Краснодар, project23.ru).
+Мы делаем сайты для промышленных компаний Юга (25 000 ₽ под ключ за 2-3 дня, домен+аналитика+мессенджеры;
+доп. ИИ-агент в Telegram и MAX +25 000 ₽), продаём БУЛАТ — ИИ-помощника руководителя по подписке
+(живёт в TG и MAX, память, голосовые, задачи, отчёты), строим ИИ-агентов под отделы (механик автопарка
+с ГЛОНАСС, документы, продажи, метрики, контент, финансы). Разбор сайта клиента — бесплатно.
+Связь: кнопки MAX и Telegram в разделе контактов.
+ОТВЕЧАЙ СТРОГО в JSON без пояснений: {"say":"короткий устный ответ 1-3 предложения","action":"scroll:#секция или null"}
+Секции: ${Object.entries(SECTIONS).map(([k, v]) => k + " (" + v + ")").join(", ")}.
+Если вопрос про цену/работы/контакты и т.п. — скажи ответ И укажи action на соответствующую секцию.
+Не выдумывай услуги и цены, которых нет. Говори по-русски, живо и коротко.`;
+
+  const css = document.createElement("style");
+  css.textContent = `
+  .vw-btn{position:fixed;right:22px;bottom:22px;z-index:99;display:flex;align-items:center;gap:10px;
+    padding:14px 20px;border:none;border-radius:40px;cursor:pointer;font:700 15px 'Onest',sans-serif;
+    color:#06231f;background:#2DD4BF;box-shadow:0 10px 30px rgba(45,212,191,.45);transition:.2s}
+  .vw-btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .vw-btn.rec{background:#ff7a6b;color:#2b0a06;animation:vwpulse 1.2s infinite}
+  @keyframes vwpulse{50%{box-shadow:0 0 0 14px rgba(255,122,107,.15)}}
+  .vw-panel{position:fixed;right:22px;bottom:86px;z-index:99;width:min(340px,calc(100vw - 44px));
+    background:rgba(9,17,27,.94);border:1px solid rgba(45,212,191,.35);border-radius:16px;
+    backdrop-filter:blur(14px);padding:16px;display:none;color:#F0F5F9;font:400 14px 'Onest',sans-serif}
+  .vw-panel.on{display:block}
+  .vw-status{font:700 11px 'JBMono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#2DD4BF;margin-bottom:10px}
+  .vw-log{max-height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+  .vw-m{padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.45}
+  .vw-m.u{background:rgba(45,212,191,.14);align-self:flex-end}
+  .vw-m.a{background:rgba(255,255,255,.07);align-self:flex-start}
+  .vw-row{display:flex;gap:8px}
+  .vw-in{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:9px;
+    color:#F0F5F9;padding:9px 12px;font:400 13px 'Onest',sans-serif;outline:none}
+  .vw-send{border:none;border-radius:9px;background:#2DD4BF;color:#06231f;font-weight:800;padding:0 14px;cursor:pointer}
+  .vw-hl{outline:3px solid rgba(45,212,191,.75);outline-offset:6px;border-radius:8px;transition:outline .3s}`;
+  document.head.appendChild(css);
+
+  const btn = document.createElement("button");
+  btn.className = "vw-btn";
+  btn.innerHTML = "🎙 Поговорить с сайтом";
+  const panel = document.createElement("div");
+  panel.className = "vw-panel";
+  panel.innerHTML = `<div class="vw-status" id="vwst">Готов слушать</div>
+    <div class="vw-log" id="vwlog"></div>
+    <div class="vw-row"><input class="vw-in" id="vwin" placeholder="Или напишите текстом…">
+    <button class="vw-send" id="vwsend">→</button></div>`;
+  document.body.append(panel, btn);
+  const st = panel.querySelector("#vwst"), log = panel.querySelector("#vwlog"),
+        inp = panel.querySelector("#vwin"), send = panel.querySelector("#vwsend");
+  const hist = [{ role: "system", content: SYSTEM }];
+
+  function add(cls, text) {
+    const d = document.createElement("div");
+    d.className = "vw-m " + cls;
+    d.textContent = text;
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+  }
+  function speak(text) {
+    try {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "ru-RU";
+      const v = speechSynthesis.getVoices().find(v => v.lang.startsWith("ru"));
+      if (v) u.voice = v;
+      u.rate = 1.05;
+      speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function act(action) {
+    if (!action || typeof action !== "string") return;
+    const m = action.match(/scroll:(#[\w-]+)/);
+    if (!m) return;
+    const el = document.querySelector(m[1]);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    el.classList.add("vw-hl");
+    setTimeout(() => el.classList.remove("vw-hl"), 2600);
+  }
+  async function ask(text) {
+    add("u", text);
+    hist.push({ role: "user", content: text });
+    st.textContent = "Думаю…";
+    try {
+      const r = await fetch(API, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: hist.slice(0, 1).concat(hist.slice(-9)) }),
+      });
+      const d = await r.json();
+      let say = d.text || "Не расслышал, повторите, пожалуйста.";
+      let action = null;
+      try {
+        const j = JSON.parse((say.match(/\{[\s\S]*\}/) || [say])[0]);
+        if (j.say) { say = j.say; action = j.action; }
+      } catch (e) {}
+      hist.push({ role: "assistant", content: say });
+      add("a", say);
+      speak(say);
+      act(action);
+      st.textContent = "Готов слушать";
+    } catch (e) {
+      st.textContent = "Ошибка сети";
+      add("a", "Связь прервалась, попробуйте ещё раз.");
+    }
+  }
+
+  // распознавание речи (Chrome/Safari); нет — остаётся текстовый ввод
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let rec = null, recOn = false;
+  if (SR) {
+    rec = new SR();
+    rec.lang = "ru-RU";
+    rec.interimResults = false;
+    rec.maxAlternatives = 1;
+    rec.onresult = e => { const t = e.results[0][0].transcript; if (t) ask(t); };
+    rec.onend = () => { recOn = false; btn.classList.remove("rec"); btn.innerHTML = "🎙 Поговорить с сайтом"; };
+    rec.onerror = () => { st.textContent = "Микрофон недоступен — пишите текстом"; };
+  }
+  btn.onclick = () => {
+    panel.classList.add("on");
+    if (!rec) { st.textContent = "Голос не поддерживается — пишите текстом"; inp.focus(); return; }
+    if (recOn) { rec.stop(); return; }
+    speechSynthesis.cancel();
+    recOn = true;
+    btn.classList.add("rec");
+    btn.innerHTML = "⏺ Говорите…";
+    st.textContent = "Слушаю…";
+    try { rec.start(); } catch (e) {}
+  };
+  send.onclick = () => { if (inp.value.trim()) { ask(inp.value.trim()); inp.value = ""; } };
+  inp.addEventListener("keydown", e => { if (e.key === "Enter") send.onclick(); });
+})();
