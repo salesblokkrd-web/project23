@@ -3,6 +3,7 @@
    → голосовой ответ + действия на странице (скролл к секции). */
 (function () {
   const API = "https://law.radarstats.ru/p23voice/chat";
+  const API_TTS = "https://law.radarstats.ru/p23voice/tts";
   const SECTIONS = {
     "#who": "для кого мы работаем", "#how": "как мы работаем (3 шага)",
     "#works": "живые работы: Новокран, РБУ, метрики", "#bulat": "БУЛАТ — ИИ-помощник руководителя",
@@ -64,16 +65,46 @@
     log.appendChild(d);
     log.scrollTop = log.scrollHeight;
   }
-  function speak(text) {
+  let player = null;
+  async function speak(text) {
+    // студийный голос через наш TTS; браузерная озвучка — только аварийный запасной
     try {
-      speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = "ru-RU";
-      const v = speechSynthesis.getVoices().find(v => v.lang.startsWith("ru"));
-      if (v) u.voice = v;
-      u.rate = 1.05;
-      speechSynthesis.speak(u);
-    } catch (e) {}
+      if (player) { player.pause(); player = null; }
+      st.textContent = "Озвучиваю…";
+      const r = await fetch(API_TTS, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text.slice(0, 400) }),
+      });
+      const d = await r.json();
+      if (!d.url) throw new Error("no url");
+      player = new Audio(d.url);
+      player.onended = () => { st.textContent = "Готов слушать"; };
+      await player.play();
+    } catch (e) {
+      try {
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = "ru-RU";
+        u.rate = 1.05;
+        speechSynthesis.speak(u);
+      } catch (e2) {}
+      st.textContent = "Готов слушать";
+    }
+  }
+  // гарантированная навигация по ключевым словам (даже если мозги забыли action)
+  function localNav(text) {
+    const t = text.toLowerCase();
+    const MAP = [
+      [/цен|стоим|сколько|прайс|тариф/, "#price"],
+      [/работ[ыу]|пример|портфол|кейс|новокран|бетон/, "#works"],
+      [/булат/, "#bulat"],
+      [/агент|автоматиз|механик|рутин/, "#agents"],
+      [/контакт|связ|написать|позвонить|телефон/, "#contact"],
+      [/как.*(работ|дела)|процесс|этап|срок/, "#how"],
+      [/для кого|ниш|отрасл/, "#who"],
+    ];
+    for (const [re, sel] of MAP) if (re.test(t)) return "scroll:" + sel;
+    return null;
   }
   function act(action) {
     if (!action || typeof action !== "string") return;
@@ -104,8 +135,7 @@
       hist.push({ role: "assistant", content: say });
       add("a", say);
       speak(say);
-      act(action);
-      st.textContent = "Готов слушать";
+      act(action || localNav(text));
     } catch (e) {
       st.textContent = "Ошибка сети";
       add("a", "Связь прервалась, попробуйте ещё раз.");
