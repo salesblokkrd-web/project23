@@ -191,65 +191,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
 </section>
 </div>
 
-
-<section id="spin3d" style="border-top:1px solid var(--line)">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <div class="mono">00 · Потрогайте</div>
-      <h2>Покрутите наш логотип — <span class="acc">он настоящий, объёмный</span></h2>
-      <p>Схватите мышкой или пальцем и вертите. Такие живые детали мы встраиваем в сайты клиентов.</p>
-    </div>
-    <div class="spin-stage reveal" id="spinStage">
-      <div class="spin-obj" id="spinObj"></div>
-      <div class="spin-coord">45.03&deg; N &middot; 38.97&deg; E &middot; <b>КРАСНОДАР</b></div>
-    </div>
-  </div>
-</section>
-<style>
-.spin-stage{position:relative;height:340px;border:1px solid var(--line);border-radius:16px;
-  background:rgba(6,12,20,.55);backdrop-filter:blur(10px);overflow:hidden;cursor:grab;
-  perspective:1200px;display:flex;align-items:center;justify-content:center;touch-action:none}
-.spin-stage:active{cursor:grabbing}
-.spin-stage::before{content:"";position:absolute;inset:0;
-  background-image:linear-gradient(rgba(45,212,191,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(45,212,191,.05) 1px,transparent 1px);background-size:28px 28px}
-.spin-obj{position:relative;transform-style:preserve-3d;will-change:transform}
-.spin-obj .sl{position:absolute;left:50%;top:50%;font-family:'Geologica',sans-serif;font-weight:800;
-  font-size:clamp(44px,8vw,84px);line-height:1;white-space:nowrap;
-  transform:translate(-50%,-50%) translateZ(var(--z))}
-.spin-obj .sl b{font-weight:800}
-.spin-obj .sl.b{color:#39434f}.spin-obj .sl.b b{color:#0e5f57}
-.spin-obj .sl.f{color:#e8eef4;text-shadow:0 0 18px rgba(232,238,244,.22)}
-.spin-obj .sl.f b{color:#2DD4BF;text-shadow:0 0 26px rgba(45,212,191,.5)}
-.spin-coord{position:absolute;left:0;right:0;bottom:20px;text-align:center;
-  font-family:'JBMono',monospace;font-size:.72rem;letter-spacing:.3em;color:#8298B0;text-transform:uppercase}
-.spin-coord b{color:#2DD4BF}
-</style>
-<script>
-(function(){
-  const obj=document.getElementById('spinObj'),stage=document.getElementById('spinStage');
-  const N=18,STEP=2.2;
-  for(let i=0;i<N;i++){const d=document.createElement('div');
-    d.className='sl '+(i===N-1?'f':'b');
-    d.style.setProperty('--z',((i-(N-1))*STEP)+'px');
-    d.innerHTML='ПРОЕКТ&nbsp;<b>23</b>';obj.appendChild(d);}
-  let ry=-18,rx=-6,vy=0,drag=false,px=0,py=0,idle=0;
-  function render(){obj.style.transform='rotateX('+rx+'deg) rotateY('+ry+'deg)';}
-  stage.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;py=e.clientY;vy=0;stage.setPointerCapture(e.pointerId);});
-  stage.addEventListener('pointermove',e=>{if(!drag)return;
-    const dx=e.clientX-px,dy=e.clientY-py;px=e.clientX;py=e.clientY;
-    ry+=dx*.45;rx=Math.max(-38,Math.min(38,rx-dy*.3));vy=dx*.45;idle=0;render();});
-  const stop=()=>{drag=false;};
-  stage.addEventListener('pointerup',stop);stage.addEventListener('pointercancel',stop);
-  (function tick(){
-    if(!drag){vy*=.95;ry+=vy;idle++;
-      if(Math.abs(vy)<.05&&idle>90)ry+=.12;   // автоспин в покое
-      render();}
-    requestAnimationFrame(tick);})();
-  render();
-})();
-</script>
-
 <section id="who">
   <div class="wrap">
     <div class="sec-h reveal">
