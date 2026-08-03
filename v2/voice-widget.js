@@ -2,6 +2,8 @@
    Микрофон браузера → расшифровка → мозги (DeepSeek через наш прокси на Beget)
    → голосовой ответ + действия на странице (скролл к секции). */
 (function () {
+  // Телефоны: голосового помощника не показываем — экран перегружен (решение 03.08)
+  if (window.matchMedia && matchMedia('(max-width: 820px)').matches) return;
   const API = "https://law.radarstats.ru/p23voice/chat";
   const API_TTS = "https://law.radarstats.ru/p23voice/tts";
   const SECTIONS = {
