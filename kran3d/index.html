@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кран в 360° — прототип вертушки · ПРОЕКТ 23</title>
+<meta name="robots" content="noindex">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0B1F3A;color:#F0F5F9;font-family:system-ui,sans-serif;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:20px}
+h1{font-size:clamp(1.1rem,3vw,1.6rem);font-weight:800;text-align:center}
+h1 b{color:#2DD4BF}
+.stage{position:relative;width:min(92vw,900px);aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+  border:1px solid rgba(45,212,191,.35);cursor:grab;touch-action:pan-y;user-select:none;background:#08111e}
+.stage:active{cursor:grabbing}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none}
+.stage img.on{opacity:1}
+.hint{font-size:.9rem;color:#8298B0;display:flex;align-items:center;gap:8px}
+.hint b{color:#2DD4BF}
+.load{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;color:#8298B0;background:#08111e;z-index:2;transition:opacity .4s}
+.load.off{opacity:0;pointer-events:none}
+.note{font-size:.78rem;color:#5a6b80;max-width:60ch;text-align:center}
+</style>
+</head>
+<body>
+<h1>Comansa на объекте — <b>покрутите</b> мышкой или пальцем</h1>
+<div class="stage" id="stage"><div class="load" id="load">Загружаю кадры… <span id="pct">0%</span></div></div>
+<div class="hint">⟵ тяните в сторону — кран вращается ⟶</div>
+<div class="note">Прототип фото-вертушки: каждый кадр — фотореалистичный рендер. Дальше: три модели парка с переключением, зум, встройка в раздел «Парк техники».</div>
+<script>
+const N = 60, PAD = 2;                 // кадров в обороте
+const stage = document.getElementById('stage');
+const load = document.getElementById('load');
+const pct = document.getElementById('pct');
+const imgs = [];
+let ready = 0, idx = 0, drag = false, px = 0, vel = 0, acc = 0;
+
+for (let i = 0; i < N; i++) {
+  const im = new Image();
+  im.src = `f${String(i).padStart(PAD, '0')}.jpg`;
+  im.onload = () => { ready++; pct.textContent = Math.round(ready / N * 100) + '%';
+    if (ready === N) { load.classList.add('off'); show(0); } };
+  stage.appendChild(im);
+  imgs.push(im);
+}
+function show(i) {
+  idx = ((i % N) + N) % N;
+  imgs.forEach((im, k) => im.classList.toggle('on', k === Math.round(idx) % N));
+}
+const SENS = 6;                         // px мыши на 1 кадр
+stage.addEventListener('pointerdown', e => { drag = true; px = e.clientX; vel = 0; stage.setPointerCapture(e.pointerId); });
+stage.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const dx = e.clientX - px;
+  if (Math.abs(dx) >= SENS) { const steps = Math.trunc(dx / SENS); show(idx + steps); px += steps * SENS; vel = steps; }
+});
+const stop = () => { drag = false; };
+stage.addEventListener('pointerup', stop); stage.addEventListener('pointercancel', stop);
+(function tick() {                       // инерция + медленное автовращение в покое
+  if (!drag) {
+    vel *= 0.92; acc++;
+    if (Math.abs(vel) > 0.05) { show(idx + vel); acc = 0; }
+    else if (acc > 240) show(idx + 0.25);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
