@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+# Служебные и временные страницы — не для индекса
+Disallow: /v2/
+Disallow: /kran3d/
+Disallow: /intro/
+# Демо клиентов — временные, дублируют контент клиентских сайтов
+Disallow: /novokran/
+Disallow: /rbu-beton/
+
+Sitemap: https://project23.ru/sitemap.xml
