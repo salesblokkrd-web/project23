@@ -2,180 +2,25 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>ПРОЕКТ 23 — веб-студия в Краснодаре: сайты и ИИ-автоматизация для промышленных компаний Юга</title>
-<meta name="description" content="Веб-студия ПРОЕКТ 23: сайты для стройки, техники и заводов Краснодарского края + внедрение ИИ в бизнес-процессы. ИИ-помощник руководителя БУЛАТ. Разбор вашего сайта бесплатно, прототип на ваших данных, внедрение за 2–3 дня.">
+<meta name="description" content="Веб-студия ПРОЕКТ 23: сайты для стройки, техники и заводов Краснодарского края + внедрение ИИ в бизнес-процессы. ИИ-помощник руководителя БУЛАТ. Разбор вашего сайта бесплатно, прототип на ваших данных, запуск от 1 дня.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ПРОЕКТ 23 — сайты и ИИ-автоматизация для промышленных компаний Юга">
-<meta property="og:description" content="Делаем сайты для стройки, техники и заводов + внедряем ИИ в рутину: заявки 24/7, учёт, отчёты. ИИ-помощник руководителя БУЛАТ. Разбор бесплатно, прототип на ваших данных.">
+<meta property="og:description" content="Веб-студия ПРОЕКТ 23: сайты для стройки, техники и заводов Краснодарского края + внедрение ИИ в бизнес-процессы. ИИ-помощник руководителя БУЛАТ. Разбор вашего сайта бесплатно, прототип на ваших данных, запуск от 1 дня.">
 <meta property="og:url" content="https://project23.ru/">
-<link rel="icon" type="image/png" href="assets/favicon-180.png">
-<link rel="apple-touch-icon" href="assets/favicon-180.png">
 <meta property="og:image" content="https://project23.ru/logo-og.png">
-<style>
-@font-face{font-family:'Geologica';font-weight:700 800;font-display:swap;src:url('assets/Geologica-cyr.woff2') format('woff2');
-  unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:'Geologica';font-weight:700 800;font-display:swap;src:url('assets/Geologica-lat.woff2') format('woff2');
-  unicode-range:U+0000-00FF}
-@font-face{font-family:'Onest';font-weight:300 800;font-display:swap;src:url('assets/Onest-cyr.woff2') format('woff2');
-  unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:'Onest';font-weight:300 800;font-display:swap;src:url('assets/Onest-lat.woff2') format('woff2');
-  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+2122,U+2191,U+2193,U+2212}
-@font-face{font-family:'JBMono';font-weight:400 700;font-display:swap;src:url('assets/JetBrainsMono-cyr.woff2') format('woff2');
-  unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
-@font-face{font-family:'JBMono';font-weight:400 700;font-display:swap;src:url('assets/JetBrainsMono-lat.woff2') format('woff2');
-  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+2122,U+2212}
-:root{--ink:#F0F5F9;--mut:#a3b2c0;--line:rgba(255,255,255,.14);--paper:rgba(9,17,27,.62);--soft:rgba(255,255,255,.06);--acc:#2DD4BF;--deep:#060b12}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Onest',system-ui,sans-serif;color:var(--ink);background:var(--deep);line-height:1.6;-webkit-font-smoothing:antialiased}
-/* ── видео-фон: интро крутится за контентом ── */
-.bgvid{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;
-  filter:brightness(1.22) saturate(1.08);background:#060b12}
-.bgtint{position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(6,11,18,.52) 0%,rgba(6,11,18,.28) 40%,rgba(6,11,18,.52) 100%)}
-/* телефон (портрет): показываем кадр целиком — меньше кропа, больше захвата;
-   тинт темнее — светлые кадры видео не съедают контраст текста */
-@media(orientation:portrait){
-  .bgvid{object-fit:cover}
-  .bgtint{background:linear-gradient(180deg,rgba(6,11,18,.74) 0%,rgba(6,11,18,.55) 40%,rgba(6,11,18,.74) 100%)}
-}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:1200px;margin:0 auto;padding:0 28px}
-.mono{font-family:'JBMono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--mut)}
-.acc{color:var(--acc)}
-
-header{position:sticky;top:0;z-index:50;background:rgba(8,14,22,.66);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;gap:30px;height:70px}
-.logo{display:flex;align-items:center;gap:13px}
-.logo .cross{position:relative;width:32px;height:32px;flex:0 0 auto}
-.logo .cross .lx,.logo .cross .ly{position:absolute;left:50%;top:50%;background:var(--acc)}
-.logo .cross .lx{width:26px;height:2px;transform:translate(-50%,-50%)}
-.logo .cross .ly{height:26px;width:2px;transform:translate(-50%,-50%)}
-.logo .cross .sq{position:absolute;left:50%;top:50%;width:16px;height:16px;border:2px solid var(--acc);border-radius:50%;background:#0a121c;transform:translate(-50%,-50%)}
-.logo .wm-stack{display:flex;flex-direction:column;gap:3px}
-.logo .wm{font-family:'Geologica','Onest',sans-serif;font-weight:800;font-size:1.18rem;letter-spacing:-.01em;color:var(--ink);line-height:1}
-.logo .wm b{color:var(--acc)}
-.logo .coord{font-family:'JBMono',monospace;font-size:.56rem;letter-spacing:.1em;color:var(--mut);text-transform:uppercase}
-@media(max-width:520px){.logo .coord{display:none}}
-.nav-links{display:flex;gap:26px;margin-left:auto;font-size:.95rem;color:var(--mut)}
-.nav-links a:hover{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:8px;font-weight:700;font-size:.95rem;transition:.2s;border:1px solid transparent}
-.btn-a{background:var(--acc);color:#06231f}.btn-a:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.btn-o{border-color:rgba(255,255,255,.28);color:var(--ink);background:rgba(8,14,22,.35)}.btn-o:hover{background:var(--soft)}
-.nav .btn{padding:10px 20px}
-
-.hero{padding:96px 0 84px}
-.hero .mono{margin-bottom:22px}
-.hero h1{font-size:clamp(2.6rem,6.2vw,5.4rem);line-height:1.02;letter-spacing:-.035em;font-weight:800;max-width:17ch;text-wrap:balance}
-.hero h1 em{font-style:normal;color:var(--acc)}
-.hero p{margin:26px 0 32px;font-size:clamp(1.05rem,1.5vw,1.28rem);color:var(--mut);max-width:56ch}
-.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
-.hero .free{margin-top:20px;font-size:.92rem;color:var(--mut)}
-.hero .free b{color:var(--ink)}
-
-section{padding:80px 0;border-top:1px solid var(--line)}
-.sec-h{margin-bottom:46px}
-.sec-h .mono{margin-bottom:14px}
-.sec-h h2{font-size:clamp(1.8rem,3.6vw,2.9rem);font-weight:800;letter-spacing:-.03em;max-width:20ch;text-wrap:balance}
-.sec-h p{color:var(--mut);max-width:58ch;margin-top:14px;font-size:1.05rem}
-
-.who{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;backdrop-filter:blur(14px)}
-.who>div{background:var(--paper);display:flex;flex-direction:column}
-.who .ph{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;filter:saturate(.92)}
-.who .tx{padding:22px 26px 26px}
-.who .n{font-family:'JBMono',monospace;font-size:.72rem;color:var(--acc);letter-spacing:.12em;margin-bottom:12px}
-.who b{display:block;font-size:1.12rem;margin-bottom:6px}
-.who p{color:var(--mut);font-size:.94rem}
-
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;counter-reset:s}
-.step{position:relative;border-top:2px solid var(--acc);background:var(--paper);backdrop-filter:blur(14px);border-radius:0 0 12px 12px;overflow:hidden}
-.step .sph{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;filter:saturate(.92)}
-.step .sx{padding:18px 22px 22px}
-.step .sx::before{counter-increment:s;content:"0" counter(s);font-family:'JBMono',monospace;font-weight:700;font-size:.9rem;color:var(--acc)}
-.step h3{font-size:1.3rem;font-weight:800;margin:12px 0 8px;letter-spacing:-.01em}
-.step p{color:var(--mut);font-size:.98rem}
-.step .tag{display:inline-block;margin-top:14px;font-family:'JBMono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--acc);border:1px solid var(--acc);border-radius:20px;padding:5px 12px}
-
-.cases{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:26px}
-.case{border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.25s;background:var(--paper);backdrop-filter:blur(14px)}
-.case:hover{transform:translateY(-4px);box-shadow:0 18px 46px rgba(0,0,0,.5);border-color:rgba(45,212,191,.4)}
-.case .shot{aspect-ratio:16/10;overflow:hidden;background:#0e1116}
-.case .shot img{width:100%;height:100%;object-fit:cover;object-position:top}
-.case .cap{padding:22px 24px}
-.case .cap .mono{margin-bottom:8px}
-.case .cap b{font-size:1.15rem;display:block}
-.case .cap p{color:var(--mut);font-size:.94rem;margin-top:4px}
-
-.price{display:grid;grid-template-columns:1.3fr 1fr;gap:22px}
-.pcard{border:1px solid var(--line);border-radius:16px;padding:36px 34px;background:var(--paper);backdrop-filter:blur(14px)}
-.pcard.main{background:rgba(4,10,18,.8);color:#fff;border-color:rgba(45,212,191,.45)}
-.pcard .mono{color:var(--mut)}
-.pcard.main .mono{color:#8ea0b8}
-.pcard .amt{font-size:2.8rem;font-weight:800;letter-spacing:-.03em;margin:16px 0 4px}
-.pcard .amt span{font-size:1.1rem;color:var(--mut)}
-.pcard.main .amt span{color:#8ea0b8}
-.pcard ul{list-style:none;margin-top:20px}
-.pcard li{padding:9px 0;border-top:1px solid var(--line);font-size:.96rem;display:flex;gap:10px}
-.pcard.main li{border-color:rgba(255,255,255,.12)}
-.pcard li::before{content:"→";color:var(--acc);font-weight:700}
-.pcard.main li::before{color:var(--acc)}
-.pcard .note{color:var(--mut);font-size:.9rem;margin-top:18px}
-.pcard.main .note{color:#8ea0b8}
-
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.contact h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.03em;text-wrap:balance}
-.contact p{color:var(--mut);margin-top:16px;font-size:1.08rem;max-width:44ch}
-.crow{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.crow .l{font-family:'JBMono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--mut);min-width:96px}
-.crow .v{font-weight:700;font-size:1.08rem}
-.crow .v.big{font-size:1.4rem}
-.cbtns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-/* кнопки мессенджеров в фирменных цветах каналов */
-.mbtn{color:#fff;border:none;gap:10px;padding:12px 22px 12px 14px}
-.mbtn img{width:26px;height:26px;border-radius:7px;display:block}
-.mbtn svg{width:22px;height:22px;flex:0 0 auto}
-.mbtn.max{background:linear-gradient(135deg,#38c3f8 0%,#5b3df5 55%,#a62be0 100%)}
-.mbtn.tg{background:linear-gradient(180deg,#2AABEE 0%,#229ED9 100%)}
-.mbtn:hover{filter:brightness(1.1);transform:translateY(-1px)}
-
-footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut);font-size:.88rem}
-footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
-
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
-.reveal.on{opacity:1;transform:none}
-
-@media(max-width:820px){
-  .nav-links{display:none}
-  .cases,.price,.contact{grid-template-columns:1fr}
-  section{padding:56px 0}
-  .hero{padding:60px 0 52px}
-}
-@media(max-width:520px){
-  .nav .btn{padding:9px 14px;font-size:.84rem;white-space:nowrap}
-}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-</style>
 <link rel="canonical" href="https://project23.ru/">
+<link rel="icon" type="image/png" href="/assets/favicon-180.png">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="stylesheet" href="/assets/site.css">
+
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "ПРОЕКТ 23",
-  "alternateName": ["Проект 23", "PROJECT 23", "проект23", "веб-студия ПРОЕКТ 23"],
-  "description": "Веб-студия в Краснодаре: сайты для промышленных компаний Юга России и ИИ-автоматизация бизнес-процессов — заявки 24/7, чат-боты Telegram и MAX, CRM, отчёты и метрики.",
-  "url": "https://project23.ru/",
-  "logo": "https://project23.ru/logo-og.png",
-  "image": "https://project23.ru/logo-og.png",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Краснодар",
-    "addressRegion": "Краснодарский край",
-    "addressCountry": "RU"
-  },
-  "areaServed": ["Краснодар", "Краснодарский край", "Юг России"],
-  "sameAs": ["https://t.me/proekt23_krd"],
-  "knowsAbout": ["создание сайтов", "ИИ-автоматизация", "чат-боты", "Telegram-боты", "боты MAX", "CRM", "промышленные компании", "голосовые помощники"]
-}
+{"@context":"https://schema.org","@type":"ProfessionalService",
+"name":"ПРОЕКТ 23","alternateName":["Проект 23","PROJECT 23","проект23","веб-студия ПРОЕКТ 23"],
+"description":"Веб-студия ПРОЕКТ 23: сайты для стройки, техники и заводов Краснодарского края + внедрение ИИ в бизнес-процессы. ИИ-помощник руководителя БУЛАТ. Разбор вашего сайта бесплатно, прототип на ваших данных, запуск от 1 дня.","url":"https://project23.ru/","logo":"https://project23.ru/logo-og.png","image":"https://project23.ru/logo-og.png",
+"address":{"@type":"PostalAddress","addressLocality":"Краснодар","addressRegion":"Краснодарский край","addressCountry":"RU"},
+"areaServed":["Краснодар","Краснодарский край","Юг России"],"sameAs":["https://t.me/proekt23_krd"],
+"knowsAbout":["создание сайтов","ИИ-автоматизация","чат-боты","Telegram-боты","боты MAX","CRM","промышленные компании","голосовые помощники"]}
 </script>
 <script type="text/javascript">
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
@@ -190,217 +35,61 @@ document.addEventListener('click',function(ev){
 </head>
 <body>
 
-<!-- видео-фон: интро «космос → Краснодар → печать» крутится за контентом -->
-<video class="bgvid" src="intro/intro-bg2.mp4" poster="intro/intro-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
-<div class="bgtint"></div>
-<script>
-/* телефон (портрет): вертикальная версия интро — кадр во весь экран, финал с blur-подложкой */
-(function(){var v=document.querySelector('.bgvid');
-if(v&&matchMedia('(orientation:portrait)').matches){
-  v.src='intro/intro-bg-m.mp4';v.poster='intro/intro-poster-m.jpg';
-  v.load();if(v.play)v.play().catch(function(){});
-}})();
-</script>
+<video class="bgvid" src="/intro/intro-bg2.mp4" poster="/intro/intro-poster.jpg" autoplay muted loop playsinline preload="auto"></video><div class="bgtint"></div><script>(function(){var v=document.querySelector(".bgvid");if(v&&matchMedia("(orientation:portrait)").matches){v.src="/intro/intro-bg-m.mp4";v.poster="/intro/intro-poster-m.jpg";v.load();if(v.play)v.play().catch(function(){});}})();</script>
 
 <header>
   <div class="wrap nav">
-    <div class="logo">
+    <a class="logo" href="/" aria-label="ПРОЕКТ 23 — на главную">
       <span class="cross"><span class="lx"></span><span class="ly"></span><span class="sq"></span></span>
       <span class="wm-stack">
         <span class="wm">ПРОЕКТ&nbsp;<b>23</b></span>
         <span class="coord">45.03° N · 38.97° E · Краснодар</span>
       </span>
-    </div>
-    <nav class="nav-links"><a href="#works">Работы</a><a href="#bulat">БУЛАТ</a><a href="#agents">Агенты</a><a href="#price">Цена</a><a href="#contact">Контакты</a></nav>
-    <a class="btn btn-a" href="#contact">Обсудить сайт</a>
+    </a>
+    <nav class="nav-links"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/blog/">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
+    <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a class="btn btn-a cta-head" href="/kontakty/">Обсудить сайт</a>
   </div>
 </header>
+<nav class="mmenu"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/blog/">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
 
-<div class="wrap">
-<section class="hero" style="border:none">
+<div class="wrap"><section class="hero" style="border:none">
   <div class="mono">Веб-студия · Краснодарский край</div>
   <h1>Сайты и <em>ИИ-автоматизация</em> для промышленных компаний Юга</h1>
   <p>Техника, заводы, стройматериалы, инжиниринг. Делаем сайты, которые приносят заявки,
   и внедряем искусственный интеллект в рутину: приём заявок 24/7, учёт, отчёты, контроль процессов.</p>
-  <div class="cta">
-    <a class="btn btn-a" href="#contact">Обсудить сайт →</a>
-    <a class="btn btn-o" href="#works">Смотреть работы</a>
-  </div>
+  <div class="cta"><a class="btn btn-a" href="/kontakty/">Обсудить сайт →</a>
+    <a class="btn btn-o" href="/keysy/">Смотреть работы</a></div>
   <p class="free">Разбираем ваш текущий сайт по пунктам и присылаем прототип нового —
   <b>бесплатно, даже если работать не будете.</b></p>
-</section>
-</div>
-
-<section id="who">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <div class="mono">01 · Для кого</div>
+</section></div><section id="who"><div class="wrap">
+    <div class="sec-h reveal"><div class="mono">Для кого</div>
       <h2>Знаем, чем живёт производство Юга</h2>
       <p>Сайт для аренды кранов и сайт для бетонного завода — это разные сайты.
-      Мы делаем каждый под то, как в этой нише принимают решение о покупке.</p>
-    </div>
+      Мы делаем каждый под то, как в этой нише принимают решение о покупке.</p></div>
     <div class="who reveal">
-      <div><img class="ph" src="assets/who-tech2.jpg" alt="Парк спецтехники в аренду" loading="lazy"><div class="tx"><div class="n">01</div><b>Техника и аренда</b><p>Краны, спецтехника, оборудование, подъёмники. Парк, ТТХ, допуски, скорость выхода.</p></div></div>
-      <div><img class="ph" src="assets/who-mat2.jpg" alt="Щебень и песок на карьере" loading="lazy"><div class="tx"><div class="n">02</div><b>Стройматериалы</b><p>Бетон, ЖБИ, кирпич, щебень, карьеры. Марка, цена за куб, доставка сегодня.</p></div></div>
-      <div><img class="ph" src="assets/who-build2.jpg" alt="Кровельщик за монтажом кровли" loading="lazy"><div class="tx"><div class="n">03</div><b>Услуги и монтаж</b><p>Строительство, кровля, инженерные системы. Портфолио объектов, доверие к бригаде.</p></div></div>
-      <div><img class="ph" src="assets/who-eng.jpg" alt="Инженеры за чертежами" loading="lazy"><div class="tx"><div class="n">04</div><b>Инжиниринг</b><p>Проектирование, сервис, лаборатории. Компетенция, лицензии, процессы.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="how">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <div class="mono">02 · Как работаем</div>
-      <h2>От разбора до запуска — за неделю</h2>
+      <div><img class="ph" src="/assets/who-tech2.jpg" alt="Парк спецтехники в аренду" loading="lazy"><div class="tx"><div class="n">01</div><b>Техника и аренда</b><p>Краны, спецтехника, оборудование, подъёмники. Парк, ТТХ, допуски, скорость выхода.</p></div></div>
+      <div><img class="ph" src="/assets/who-mat2.jpg" alt="Щебень и песок на карьере" loading="lazy"><div class="tx"><div class="n">02</div><b>Стройматериалы</b><p>Бетон, ЖБИ, кирпич, щебень, карьеры. Марка, цена за куб, доставка сегодня.</p></div></div>
+      <div><img class="ph" src="/assets/who-build2.jpg" alt="Кровельщик за монтажом кровли" loading="lazy"><div class="tx"><div class="n">03</div><b>Услуги и монтаж</b><p>Строительство, кровля, инженерные системы. Портфолио объектов, доверие к бригаде.</p></div></div>
+      <div><img class="ph" src="/assets/who-eng.jpg" alt="Инженеры за чертежами" loading="lazy"><div class="tx"><div class="n">04</div><b>Инжиниринг</b><p>Проектирование, сервис, лаборатории. Компетенция, лицензии, процессы.</p></div></div>
+    </div></div></section><section id="how"><div class="wrap">
+    <div class="sec-h reveal"><div class="mono">Как работаем</div>
+      <h2>От разбора до запуска — от 1 дня до недели</h2>
       <p>Без брифов на 40 вопросов и месяцев согласований. Показываем результат
-      прежде, чем вы заплатите.</p>
-    </div>
+      прежде, чем вы заплатите.</p></div>
     <div class="steps reveal">
-      <div class="step"><img class="sph" src="assets/step-audit.jpg" alt="Разбор сайта с пометками" loading="lazy"><div class="sx"><h3>Разбор вашего сайта</h3><p>Находим, где сайт теряет заявки: скрытые цены, нет мессенджеров, слабый первый экран. Присылаем документ.</p><span class="tag">Бесплатно</span></div></div>
-      <div class="step"><img class="sph" src="assets/step-proto.jpg" alt="Прототип сайта на ноутбуке" loading="lazy"><div class="sx"><h3>Прототип на ваших данных</h3><p>Собираем новый сайт на вашем реальном контенте — товары, цены, объекты. Открываете и смотрите вживую.</p><span class="tag">2–3 дня</span></div></div>
-      <div class="step"><img class="sph" src="assets/step-launch2.jpg" alt="Запуск сайта: аналитика на экранах" loading="lazy"><div class="sx"><h3>Внедрение и запуск</h3><p>Переносим весь контент, ставим домен, аналитику, мессенджеры. Дальше сайт ваш — правки сами или через нас.</p><span class="tag">Под ключ</span></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="works">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <div class="mono">03 · Работы</div>
-      <h2>Живые сайты — откройте и посмотрите сами</h2>
-      <p>Не скриншоты и не обещания. Нажмите на любую работу — откроется настоящий рабочий сайт. Так же и с вашим: сначала покажем прототип, потом решаете.</p>
-    </div>
-    <div class="cases reveal">
-      <a class="case" href="https://project23.ru/novokran/" target="_blank" rel="noopener">
-        <div class="shot"><img src="assets/work-novokran.jpg" alt="Сайт аренды башенных кранов" loading="lazy"></div>
-        <div class="cap"><div class="mono">Аренда башенных кранов · Краснодар</div><b>НОВОКРАН</b><p>Парк техники с ценами, объекты с фото ЖК, логотипы застройщиков, кнопки MAX/Telegram, интерактивный «подъём вдоль крана».</p></div>
-      </a>
-      <a class="case" href="https://project23.ru/rbu-beton/" target="_blank" rel="noopener">
-        <div class="shot"><img src="assets/work-rbu.jpg" alt="Сайт бетонного завода" loading="lazy"></div>
-        <div class="cap"><div class="mono">Бетонный завод · доставка</div><b>РБУ БетонСервис</b><p>Живое видео заливки бетононасосом, прайс марок сразу на виду, счётчики объёмов, расчёт в мессенджере.</p></div>
-      </a>
-      <a class="case" href="https://project23.ru/demo-metrics/" target="_blank" rel="noopener">
-        <div class="shot"><img src="assets/work-metrics.jpg" alt="Дашборд медиа-метрик по всем каналам" loading="lazy"></div>
-        <div class="cap"><div class="mono">ИИ-автоматизация · медиа-аналитика</div><b>Метрики блогера: все каналы в одной коробке</b><p>Instagram, YouTube, Likee — автосбор статистики в единый дашборд + автоотчёт в Telegram каждое утро. Нажмите — откроется живой демо-дашборд, посмотрите сами.</p></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section id="bulat">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <div class="mono">04 · Продукт</div>
-      <h2>БУЛАТ — <span class="acc">ИИ-помощник</span> руководителя</h2>
-      <div class="mono" style="margin-top:10px;font-size:.64rem;opacity:.72;letter-spacing:.1em">(Бизнес-Управляющий Логичный Автономный Терминал)</div>
-      <p>Личный помощник на искусственном интеллекте, который живёт у вас в Telegram и MAX.
-      Помнит дела и договорённости, понимает голосовые, ведёт задачи и напоминания,
-      ищет информацию и готовит отчёты. Работает круглосуточно — и уже работает у реальных клиентов.</p>
-    </div>
-    <div class="who reveal">
-      <div><img class="ph" src="assets/ai-chat.jpg" alt="Чат с ИИ-помощником в телефоне" loading="lazy"><div class="tx"><div class="n">01</div><b>Всегда на связи</b><p>Живёт в Telegram и MAX, отвечает 24/7. Спросили — ответил, поручили — сделал и отчитался.</p></div></div>
-      <div><img class="ph" src="assets/ai-mem.jpg" alt="Нейросеть — долгая память" loading="lazy"><div class="tx"><div class="n">02</div><b>Долгая память</b><p>Помнит контекст ваших дел, людей и договорённостей. Не нужно объяснять одно и то же дважды.</p></div></div>
-      <div><img class="ph" src="assets/ai-voice.jpg" alt="Голосовое управление" loading="lazy"><div class="tx"><div class="n">03</div><b>Понимает голос</b><p>Наговорите поручение голосовым сообщением на ходу — распознает, поймёт и выполнит.</p></div></div>
-      <div><img class="ph" src="assets/ai-docs.jpg" alt="Отчёты и документы" loading="lazy"><div class="tx"><div class="n">04</div><b>Задачи и документы</b><p>Напоминания, поиск в интернете, работа с файлами и таблицами, ежедневные сводки по делам.</p></div></div>
-    </div>
-    <div class="reveal" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-top:26px">
-      <span class="mono">По подписке · внедрение под ключ · уже работает у клиентов</span>
-      <a class="btn btn-a" href="#contact">Хочу такого помощника →</a>
-    </div>
-  </div>
-</section>
-
-<section id="agents">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <div class="mono">05 · Агенты под каждый отдел</div>
-      <h2>Рутину отделов забирают ИИ-агенты</h2>
-      <p>Каждый агент — не фантазия, а решение, которое уже работает у нас или у клиентов.
-      Вот примеры: узнаёте свой отдел — значит, это автоматизируется.</p>
-    </div>
-    <div class="who reveal" style="margin-bottom:26px">
-      <div><img class="ph" src="assets/ag-mech.jpg" alt="Агент-механик автопарка" loading="lazy"><div class="tx"><div class="n">01</div><b>Механик автопарка</b><p>Помнит болячки и историю каждой машины, напоминает про ТО и регламенты, следит за износом резины. Видит технику через ГЛОНАСС: где встала, превышения, подозрения на слив топлива.</p></div></div>
-      <div><img class="ph" src="assets/ag-docs.jpg" alt="Агент документооборота" loading="lazy"><div class="tx"><div class="n">02</div><b>Документы и письма</b><p>Разбирает входящие письма и документы, напоминает о сроках, готовит договоры по шаблону и ведёт реестр контрагентов.</p></div></div>
-      <div><img class="ph" src="assets/ag-sales.jpg" alt="Агент отдела продаж" loading="lazy"><div class="tx"><div class="n">03</div><b>Отдел продаж</b><p>Принимает заявки в мессенджерах 24/7, задаёт уточняющие вопросы, считает стоимость и передаёт менеджеру готовую заявку со статусом в воронке.</p></div></div>
-      <div><img class="ph" src="assets/ag-metrics.jpg" alt="Агент метрик и отчётов" loading="lazy"><div class="tx"><div class="n">04</div><b>Метрики и отчёты</b><p>Сам собирает статистику сайта, рекламы и соцсетей и каждое утро присылает руководителю одну понятную сводку.</p></div></div>
-      <div><img class="ph" src="assets/ag-content.jpg" alt="Контент-агент" loading="lazy"><div class="tx"><div class="n">05</div><b>Контент и соцсети</b><p>Пишет статьи и посты под вашу нишу, публикует по расписанию, ведёт сообщество — без копирайтера в штате.</p></div></div>
-      <div><img class="ph" src="assets/ag-fin.jpg" alt="Финансовый агент" loading="lazy"><div class="tx"><div class="n">06</div><b>Финансы и учёт</b><p>Сводит выручку и затраты из таблиц и выписок, готовит отчёты и подсвечивает, куда утекают деньги.</p></div></div>
-      <div><img class="ph" src="assets/ag-crm.jpg" alt="Порядок в CRM" loading="lazy"><div class="tx"><div class="n">07</div><b>Порядок в CRM</b><p>Наведём порядок в вашей CRM — Битрикс24, amoCRM и других: почистим дубли и зависшие сделки, перестроим воронки, настроим автоматику и свяжем CRM с сайтом и мессенджерами. Заявки перестанут теряться.</p></div></div>
-    </div>
-    <div class="reveal" style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:14px;padding:24px 28px;background:var(--paper);backdrop-filter:blur(14px)">
-      <div style="max-width:56ch">
-        <b style="font-size:1.15rem">Не нашли свой отдел?</b>
-        <p style="color:var(--mut);font-size:.96rem;margin-top:6px">Пришлите голосовое сообщение — в двух словах опишите, какая рутина съедает время.
-        Вернём разбор: что здесь автоматизируется и какие «мозги» для этого нужны. Бесплатно.</p>
-      </div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn mbtn max" href="https://max.ru/u/f9LHodD0cOJ7cMmQoh4egr7enPpbkNIUGy3YNLuXKOxxM4m5zstTKnVnRtw" target="_blank" rel="noopener"><img src="assets/ic-max.png" alt="MAX">Голосовое в MAX</a>
-        <a class="btn mbtn tg" href="https://t.me/proekt23_krd" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.4 2.9 10.6c-1.1.4-1.1 1 0 1.3l4.7 1.5 1.8 5.5c.2.6.4.6.9.2l2.6-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.2-1.5ZM8.6 13.1l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.2-.3 3-1.7-4.5Z"/></svg>Голосовое в TG</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="price">
-  <div class="wrap">
-    <div class="sec-h reveal">
-      <div class="mono">06 · Цена</div>
-      <h2>Честно и без вилок</h2>
-      <p>Одна цена за сайт под ключ. Никаких «от» и доплат по ходу.</p>
-    </div>
-    <div class="price reveal">
-      <div class="pcard main">
-        <div class="mono">Сайт под ключ</div>
-        <div class="amt">25 000 <span>₽</span></div>
-        <ul>
-          <li>Дизайн и вёрстка под вашу нишу</li>
-          <li>Перенос всего контента: товары, цены, объекты</li>
-          <li>Домен, хостинг, аналитика</li>
-          <li>Кнопки WhatsApp, MAX, Telegram, звонок</li>
-          <li>Мобильная версия и адаптив</li>
-        </ul>
-        <div class="note">Срок 2–3 дня. Оплата 50/50: половина вперёд, половина после сдачи.</div>
-      </div>
-      <div class="pcard">
-        <div class="mono">Дополнительно</div>
-        <div class="amt">+25 000 <span>₽</span></div>
-        <ul>
-          <li>Агент в Telegram и MAX 24/7</li>
-          <li>Сам отвечает клиентам</li>
-          <li>Считает и передаёт заявки</li>
-        </ul>
-        <div class="note">Отдельный продукт. Бот, который держит первую линию, пока вы на объекте.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="contact reveal">
-      <div>
-        <div class="mono" style="margin-bottom:14px">07 · Контакты</div>
-        <h2>Разберём ваш сайт бесплатно</h2>
-        <p>Напишите название компании — пришлём разбор текущего сайта и прототип нового. Ни к чему не обязывает.</p>
-        <div class="cbtns">
-          <a class="btn mbtn max" href="https://max.ru/u/f9LHodD0cOJ7cMmQoh4egr7enPpbkNIUGy3YNLuXKOxxM4m5zstTKnVnRtw" target="_blank" rel="noopener"><img src="assets/ic-max.png" alt="MAX">Написать в MAX</a>
-          <a class="btn mbtn tg" href="https://t.me/proekt23_krd" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.4 2.9 10.6c-1.1.4-1.1 1 0 1.3l4.7 1.5 1.8 5.5c.2.6.4.6.9.2l2.6-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.2-1.5ZM8.6 13.1l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.2-.3 3-1.7-4.5Z"/></svg>Telegram</a>
-        </div>
-      </div>
-      <div>
-        <div class="crow"><span class="l">MAX</span><a class="v big" href="https://max.ru/u/f9LHodD0cOJ7cMmQoh4egr7enPpbkNIUGy3YNLuXKOxxM4m5zstTKnVnRtw" target="_blank" rel="noopener">Написать в MAX</a></div>
-        <div class="crow"><span class="l">Telegram</span><a class="v" href="https://t.me/proekt23_krd" target="_blank" rel="noopener">@proekt23_krd</a></div>
-        <div class="crow"><span class="l">Почта</span><a class="v" href="mailto:info@project23.ru">info@project23.ru</a></div>
-        <div class="crow"><span class="l">Регион</span><span class="v">Краснодар и Юг России</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="step"><img class="sph" src="/assets/step-audit.jpg" alt="Разбор сайта с пометками" loading="lazy"><div class="sx"><h3>Разбор вашего сайта</h3><p>Находим, где сайт теряет заявки: скрытые цены, нет мессенджеров, слабый первый экран. Присылаем документ.</p><span class="tag">Бесплатно</span></div></div>
+      <div class="step"><img class="sph" src="/assets/step-proto.jpg" alt="Прототип сайта на ноутбуке" loading="lazy"><div class="sx"><h3>Прототип на ваших данных</h3><p>Собираем новый сайт на вашем реальном контенте — товары, цены, объекты. Открываете и смотрите вживую.</p><span class="tag">от 1 дня</span></div></div>
+      <div class="step"><img class="sph" src="/assets/step-launch2.jpg" alt="Запуск сайта: аналитика на экранах" loading="lazy"><div class="sx"><h3>Внедрение и запуск</h3><p>Переносим весь контент, ставим домен, аналитику, мессенджеры. Дальше сайт ваш — правки сами или через нас.</p><span class="tag">Под ключ</span></div></div>
+    </div></div></section><section><div class="wrap"><div class="sec-h reveal"><div class="mono">Блог</div><h2>Разбираем сайты и автоматизацию — по делу</h2><p>Как промышленной компании Юга собирать заявки онлайн, где сайт их теряет и что реально автоматизируется. <a class="acc" href="/blog/">Все статьи →</a></p></div><div class="bgrid reveal"><!-- HOME-ARTICLES --></div></div></section><section><div class="wrap"><div class="ctaband reveal">
+    <div><h2>Разберём ваш сайт бесплатно</h2><p>Напишите название компании — пришлём разбор текущего сайта и прототип нового. Ни к чему не обязывает.</p></div>
+    <div class="cbtns" style="margin:0"><a class="btn mbtn max" href="https://max.ru/u/f9LHodD0cOJ7cMmQoh4egr7enPpbkNIUGy3YNLuXKOxxM4m5zstTKnVnRtw" target="_blank" rel="noopener"><img src="/assets/ic-max.png" alt="MAX">Написать в MAX</a><a class="btn mbtn tg" href="https://t.me/proekt23_krd" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.4 2.9 10.6c-1.1.4-1.1 1 0 1.3l4.7 1.5 1.8 5.5c.2.6.4.6.9.2l2.6-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.2-1.5ZM8.6 13.1l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.2-.3 3-1.7-4.5Z"/></svg>Telegram</a></div>
+  </div></div></section>
 
 <footer>
   <div class="wrap">
     <span>© 2026 ПРОЕКТ 23 · Веб-студия для промышленных компаний Юга</span>
+    <nav class="fnav"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/blog/">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
     <span class="mono">project23.ru</span>
   </div>
 </footer>
@@ -408,8 +97,10 @@ if(v&&matchMedia('(orientation:portrait)').matches){
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+(function(){var b=document.querySelector('.burger'),m=document.querySelector('.mmenu');
+if(b&&m){b.addEventListener('click',function(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o)});}})();
 </script>
-<script src="voice-widget.js"></script>
+<script src="/voice-widget.js"></script>
 
 </body>
 </html>

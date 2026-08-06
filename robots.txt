@@ -1,11 +1,24 @@
 User-agent: *
 Allow: /
-# Служебные и временные страницы — не для индекса
+# Служебные и временные прототипы — не для индекса
 Disallow: /v2/
 Disallow: /kran3d/
 Disallow: /intro/
 # Демо клиентов — временные, дублируют контент клиентских сайтов
 Disallow: /novokran/
 Disallow: /rbu-beton/
+Disallow: /demo-metrics/
+
+# ИИ-поисковики и колдунщики — пускаем явно
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: YandexAdditional
+Allow: /
 
 Sitemap: https://project23.ru/sitemap.xml
