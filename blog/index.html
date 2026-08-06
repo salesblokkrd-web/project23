@@ -32,7 +32,8 @@ document.addEventListener('click',function(ev){
 </head>
 <body>
 
-<div class="bgstatic"></div>
+<div class="bgstatic"></div><div class="bgtint bgtint-page"></div>
+<script>(function(){if(!matchMedia("(min-width:821px)").matches)return;var v=document.createElement("video");v.className="bgvid pagevid";v.src="/intro/pages/blog.mp4";v.poster="/intro/pages/blog-poster.jpg";v.autoplay=v.muted=v.loop=v.playsInline=true;v.setAttribute("preload","metadata");document.body.insertBefore(v,document.body.firstChild);if(v.play)v.play().catch(function(){});})();</script>
 
 <header>
   <div class="wrap nav">
