@@ -77,6 +77,20 @@ header{position:sticky;top:0;z-index:50;background:rgba(8,14,22,.66);backdrop-fi
 .hero .free{margin-top:20px;font-size:.92rem;color:var(--mut)}
 .hero .free b{color:var(--ink)}
 
+/* прайс на первом экране — главное преимущество не прячем */
+.pricerow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;
+  margin:30px 0 14px;max-width:840px}
+.pitem{display:flex;flex-direction:column;gap:3px;padding:16px 18px;border-radius:12px;
+  border:1px solid var(--line);background:var(--paper);backdrop-filter:blur(14px);transition:.2s}
+.pitem:hover{border-color:rgba(45,212,191,.5);transform:translateY(-2px)}
+.pitem .pl{font-size:.86rem;color:var(--mut)}
+.pitem .pv{font-family:'Geologica','Onest',sans-serif;font-weight:800;font-size:1.72rem;
+  letter-spacing:-.03em;line-height:1.1}
+.pitem .pv i{font-style:normal;font-size:1rem;color:var(--mut)}
+.pitem .pd{font-family:'JBMono',monospace;font-size:.66rem;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--acc)}
+.pnote{max-width:64ch;font-size:.86rem;color:var(--mut);margin-bottom:26px}
+
 /* шапка внутренней страницы: собственный H1 (важно для SEO — у каждой страницы свой) */
 .page-head{padding:92px 0 6px}
 .page-head .mono{margin-bottom:16px}
