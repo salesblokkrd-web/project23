@@ -3,465 +3,461 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VIDECAR — выбери машину | демо-концепт ПРОЕКТ 23</title>
+<title>VIDECAR — гараж | демо-концепт ПРОЕКТ 23</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Демонстрационный макет первой страницы для автопроката VIDECAR. Подготовлен студией ПРОЕКТ 23.">
 <style>
 :root{
-  --orange:#F7A21B;
-  --orange-soft:#FFB94A;
-  --bg:#05060a;
-  --panel:rgba(255,255,255,.045);
-  --line:rgba(255,255,255,.10);
-  --text:#EDEFF3;
-  --dim:#8A9099;
-  --font:'Segoe UI Variable Display','Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --y:#F7A21B;            /* фирменный VIDECAR */
+  --y-soft:#FFC24D;
+  --bg:#07080b;
+  --panel:rgba(14,16,21,.86);
+  --line:rgba(255,255,255,.13);
+  --text:#F2F4F7;
+  --dim:#868D96;
+  --font:'Segoe UI','SF Pro Display',system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --skew:-11deg;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased}
 body{overflow-x:hidden}
 a{color:inherit;text-decoration:none}
+.it{font-style:italic}
 
-/* ---------- шапка ---------- */
-.top{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;gap:28px;
-  padding:16px 34px;backdrop-filter:blur(14px);background:linear-gradient(180deg,rgba(5,6,10,.92),rgba(5,6,10,.35) 70%,transparent);}
-.logo{font-weight:800;font-size:23px;letter-spacing:.09em}
-.logo b{color:var(--orange)}
-.logo small{display:block;font-size:9px;letter-spacing:.42em;color:var(--dim);font-weight:600;margin-top:2px}
-.nav{display:flex;gap:26px;font-size:13.5px;color:#B9BFC7;letter-spacing:.04em;margin-left:8px}
-.nav a{transition:color .2s}
-.nav a:hover{color:var(--orange)}
-.top-right{margin-left:auto;display:flex;align-items:center;gap:18px}
-.phone{font-weight:700;font-size:17px;letter-spacing:.02em;white-space:nowrap}
-.btn-ghost{border:1px solid var(--line);border-radius:2px;padding:10px 20px;font-size:12.5px;letter-spacing:.09em;
-  font-weight:600;transition:.25s;white-space:nowrap}
-.btn-ghost:hover{border-color:var(--orange);color:var(--orange)}
+/* фон-«гараж» */
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bg::before{content:'';position:absolute;inset:-20%;
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 62%,rgba(247,162,27,.13),transparent 62%),
+    radial-gradient(ellipse 90% 60% at 50% 0%,rgba(80,90,110,.14),transparent 60%),
+    #07080b}
+.bg::after{content:'';position:absolute;inset:0;opacity:.5;
+  background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.035) 0 2px,transparent 2px 9px)}
+.floor{position:absolute;left:-30%;right:-30%;bottom:0;height:46%;
+  background-image:linear-gradient(rgba(247,162,27,.15) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(247,162,27,.15) 1px,transparent 1px);
+  background-size:90px 90px;
+  transform:perspective(600px) rotateX(76deg);transform-origin:bottom center;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 50%,transparent 95%);
+          mask-image:linear-gradient(180deg,transparent,#000 50%,transparent 95%);opacity:.5}
 
-/* ---------- сцена выбора ---------- */
-.stage{position:relative;height:100svh;min-height:640px;overflow:hidden;display:flex;flex-direction:column}
-.grid-floor{position:absolute;left:-25%;right:-25%;bottom:0;height:52%;
-  background-image:linear-gradient(rgba(247,162,27,.16) 1px,transparent 1px),
-                   linear-gradient(90deg,rgba(247,162,27,.16) 1px,transparent 1px);
-  background-size:78px 78px;
-  transform:perspective(520px) rotateX(74deg);transform-origin:bottom center;
-  -webkit-mask-image:linear-gradient(180deg,transparent,rgba(0,0,0,.85) 45%,transparent 92%);
-          mask-image:linear-gradient(180deg,transparent,rgba(0,0,0,.85) 45%,transparent 92%);
-  animation:floor 9s linear infinite;opacity:.55}
-@keyframes floor{to{background-position:0 78px,0 0}}
-.glow{position:absolute;left:50%;top:52%;width:1100px;height:620px;transform:translate(-50%,-50%);
-  background:radial-gradient(ellipse at center,rgba(247,162,27,.15),transparent 62%);filter:blur(28px);pointer-events:none}
-.vignette{position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 78% 70% at 50% 48%,transparent 40%,rgba(0,0,0,.75) 100%)}
+/* ---------- верхняя лента ---------- */
+.hud-top{position:relative;z-index:20;display:flex;align-items:center;gap:26px;padding:14px 26px;
+  border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(7,8,11,.96),rgba(7,8,11,.55))}
+.brand{font-weight:900;font-size:21px;letter-spacing:.06em;font-style:italic;line-height:1}
+.brand b{color:var(--y)}
+.brand small{display:block;font-size:8.5px;letter-spacing:.42em;color:var(--dim);font-weight:700;font-style:normal;margin-top:3px}
+.tabs{display:flex;gap:4px;margin-left:10px}
+.tab{padding:9px 17px;font-size:12px;font-weight:800;letter-spacing:.11em;font-style:italic;color:#98A0AA;
+  clip-path:polygon(9px 0,100% 0,calc(100% - 9px) 100%,0 100%);transition:.2s;cursor:pointer}
+.tab:hover{color:#fff}
+.tab.on{background:var(--y);color:#0a0b0e}
+.hud-top .right{margin-left:auto;display:flex;align-items:center;gap:16px}
+.tel{font-weight:800;font-size:16px;font-style:italic;letter-spacing:.01em;white-space:nowrap}
+.chip{border:1px solid var(--line);padding:8px 14px;font-size:11px;font-weight:800;letter-spacing:.12em;
+  color:#B6BDC6;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);white-space:nowrap}
 
-.stage-head{position:relative;z-index:5;text-align:center;padding:104px 20px 0}
-.kicker{font-size:11.5px;letter-spacing:.44em;color:var(--orange);font-weight:700}
-.stage-head h1{font-size:clamp(30px,4.6vw,58px);font-weight:800;letter-spacing:.01em;margin-top:12px;line-height:1.04}
-.stage-head h1 span{color:var(--orange)}
-.stage-head p{color:var(--dim);font-size:14.5px;margin-top:12px}
+/* ---------- рабочая зона ---------- */
+.garage{position:relative;z-index:10;display:grid;
+  grid-template-columns:300px minmax(0,1fr) 330px;gap:20px;
+  padding:18px 26px 0;height:calc(100svh - 296px);min-height:430px}
+.garage > section{min-width:0}
+
+.col-title{font-size:10.5px;font-weight:800;letter-spacing:.3em;color:var(--dim);margin-bottom:11px;
+  display:flex;align-items:center;gap:9px}
+.col-title::after{content:'';flex:1;height:1px;background:var(--line)}
+
+/* список машин слева */
+.list{display:flex;flex-direction:column;gap:7px;overflow:auto;padding-right:4px;min-height:0}
+.list::-webkit-scrollbar{width:3px}
+.list::-webkit-scrollbar-thumb{background:rgba(247,162,27,.4)}
+.row{position:relative;display:flex;align-items:center;gap:11px;padding:9px 12px;cursor:pointer;
+  background:rgba(255,255,255,.035);border-left:2px solid transparent;transition:.18s;
+  clip-path:polygon(0 0,100% 0,calc(100% - 13px) 100%,0 100%)}
+.row:hover{background:rgba(255,255,255,.075)}
+.row.on{background:linear-gradient(90deg,var(--y),rgba(247,162,27,.72));border-left-color:#fff}
+.row img{width:56px;height:34px;object-fit:cover;object-position:center 60%;flex:none;filter:contrast(1.05)}
+.row.mirrored img{transform:scaleX(-1)}
+.row .txt{min-width:0}
+.row .nm{font-size:12.5px;font-weight:800;font-style:italic;letter-spacing:.02em;line-height:1.15;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .pr{font-size:11px;color:var(--dim);font-weight:700;margin-top:2px}
+.row.on .nm,.row.on .pr{color:#0a0b0e}
+.row .cls{margin-left:auto;font-size:9px;font-weight:800;letter-spacing:.14em;color:var(--y);
+  padding-left:6px;text-align:right}
+.row.on .cls{color:#0a0b0e}
 
 /* сцена с машиной */
-.arena{position:relative;flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
-.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.podium{position:absolute;left:50%;top:64%;width:min(760px,84vw);height:190px;transform:translate(-50%,-50%);pointer-events:none}
-.podium::before{content:'';position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(ellipse at center,rgba(247,162,27,.30),rgba(247,162,27,.06) 55%,transparent 72%);filter:blur(16px)}
-.ring{position:absolute;inset:14% 4%;border-radius:50%;border:1.5px solid rgba(247,162,27,.34);
-  box-shadow:0 0 34px rgba(247,162,27,.20),inset 0 0 34px rgba(247,162,27,.12)}
-.ring::after{content:'';position:absolute;inset:-2px;border-radius:50%;
-  background:conic-gradient(from 0deg,transparent 0 72%,rgba(255,255,255,.85) 82%,transparent 92%);
-  -webkit-mask:radial-gradient(closest-side,transparent 96%,#000 97%);
-          mask:radial-gradient(closest-side,transparent 96%,#000 97%);
-  animation:spin 3.4s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-.cars{position:relative;width:min(1180px,96vw);height:100%;z-index:4;
-  touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
-.cars.grabbing{cursor:grabbing}
-.cars img{-webkit-user-drag:none;user-drag:none;pointer-events:none}
-
-/* подсказка «покрутить» */
-.spin-hint{position:absolute;left:50%;bottom:2px;transform:translateX(-50%);z-index:9;
-  display:flex;align-items:center;gap:9px;padding:8px 15px;border:1px solid var(--line);
-  border-radius:40px;background:rgba(10,12,16,.72);backdrop-filter:blur(8px);
-  font-size:11.5px;letter-spacing:.09em;color:#B9BFC7;white-space:nowrap;
-  transition:opacity .4s;pointer-events:none}
-.spin-hint.hide{opacity:0}
-.spin-hint svg{width:15px;height:15px;flex:none;stroke:var(--orange);fill:none;stroke-width:1.7}
-.spin-hint b{color:var(--orange);font-weight:700}
-.spin-load{position:absolute;left:0;bottom:-7px;height:2px;width:0;background:var(--orange);
-  border-radius:2px;transition:width .25s}
-.car{position:absolute;left:50%;top:50%;width:min(1000px,92vw);
-  transform:translate(-50%,-50%);opacity:0;pointer-events:none;
-  -webkit-mask-image:radial-gradient(ellipse 62% 58% at 50% 56%,#000 52%,transparent 76%);
-          mask-image:radial-gradient(ellipse 62% 58% at 50% 56%,#000 52%,transparent 76%);
-  transition:transform .60s cubic-bezier(.17,.92,.26,1.015), opacity .34s ease, filter .42s ease;}
-.car img{width:100%;display:block}
+.stage{position:relative;display:flex;flex-direction:column;min-width:0}
+.scene{position:relative;flex:1;min-height:0;min-width:0;overflow:hidden;touch-action:pan-y;cursor:grab;
+  user-select:none;-webkit-user-select:none}
+.scene::before{content:'';position:absolute;left:50%;top:52%;width:118%;height:112%;transform:translate(-50%,-50%);
+  background:radial-gradient(ellipse at center,#000 38%,rgba(0,0,0,.72) 58%,transparent 76%);pointer-events:none}
+.scene.grabbing{cursor:grabbing}
+.car{position:absolute;left:50%;top:50%;width:90%;transform:translate(-50%,-50%);opacity:0;
+  -webkit-mask-image:radial-gradient(ellipse 60% 56% at 50% 55%,#000 54%,transparent 78%);
+          mask-image:radial-gradient(ellipse 60% 56% at 50% 55%,#000 54%,transparent 78%);
+  transition:transform .55s cubic-bezier(.17,.92,.26,1.01),opacity .3s,filter .4s}
+.car img{width:100%;display:block;-webkit-user-drag:none;pointer-events:none}
 .car.mirrored img{transform:scaleX(-1)}
 .car.active{opacity:1;transform:translate(-50%,-50%);filter:blur(0)}
-.car.enter-right{opacity:0;transform:translate(8%,-50%) scale(.97);filter:blur(7px)}
-.car.enter-left{opacity:0;transform:translate(-108%,-50%) scale(.97);filter:blur(7px)}
-.car.exit-left{opacity:0;transform:translate(-112%,-50%) scale(.97);filter:blur(8px)}
-.car.exit-right{opacity:0;transform:translate(12%,-50%) scale(.97);filter:blur(8px)}
+.car.in-r{opacity:0;transform:translate(6%,-50%) scale(.97);filter:blur(7px)}
+.car.in-l{opacity:0;transform:translate(-106%,-50%) scale(.97);filter:blur(7px)}
+.car.out-l{opacity:0;transform:translate(-110%,-50%) scale(.97);filter:blur(8px)}
+.car.out-r{opacity:0;transform:translate(10%,-50%) scale(.97);filter:blur(8px)}
 
-.flash{position:absolute;left:50%;top:64%;width:min(700px,80vw);height:120px;transform:translate(-50%,-50%);
-  border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,214,150,.30),transparent 66%);
-  opacity:0;pointer-events:none;z-index:3}
-.flash.on{animation:flash .5s ease-out}
-@keyframes flash{0%{opacity:.55;transform:translate(-50%,-50%) scaleX(1.18)}100%{opacity:0;transform:translate(-50%,-50%) scaleX(1)}}
+.plate{position:absolute;left:50%;top:8px;transform:translateX(-50%);text-align:center;pointer-events:none;z-index:6}
+.plate .mk{font-size:12px;font-weight:800;letter-spacing:.36em;color:var(--y)}
+.plate .md{font-size:clamp(26px,3.6vw,46px);font-weight:900;font-style:italic;line-height:1;margin-top:5px;
+  text-shadow:0 6px 30px rgba(0,0,0,.85)}
+.turn{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);z-index:7;display:flex;align-items:center;
+  gap:9px;padding:7px 15px;background:rgba(10,12,16,.7);border:1px solid var(--line);backdrop-filter:blur(7px);
+  font-size:11px;letter-spacing:.1em;color:#B6BDC6;white-space:nowrap;transition:opacity .4s;pointer-events:none;
+  clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%)}
+.turn.hide{opacity:0}
+.turn svg{width:15px;height:15px;stroke:var(--y);fill:none;stroke-width:1.8;flex:none}
+.turn b{color:var(--y)}
+.bar-load{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--y);transition:width .25s}
 
-/* ---------- панель характеристик (левая) ---------- */
-.hud{position:absolute;z-index:8;pointer-events:none}
-.hud-left{left:max(34px,4vw);top:50%;transform:translateY(-50%);width:290px}
-.car-class{display:inline-block;font-size:10.5px;letter-spacing:.3em;font-weight:700;color:#0b0c10;
-  background:var(--orange);padding:5px 11px;border-radius:2px}
-.car-name{font-size:34px;font-weight:800;line-height:1.05;margin:14px 0 4px}
-.car-sub{color:var(--dim);font-size:13px;margin-bottom:22px}
-.spec{margin-bottom:15px}
-.spec-row{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em;color:#AEB4BC;margin-bottom:6px}
-.spec-row b{color:#fff;font-weight:700}
-.bar{height:4px;background:rgba(255,255,255,.10);border-radius:3px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;border-radius:3px;
-  background:linear-gradient(90deg,var(--orange),var(--orange-soft));
-  box-shadow:0 0 12px rgba(247,162,27,.7);transition:width .8s cubic-bezier(.2,.9,.2,1)}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px 10px;margin-top:20px;
-  border-top:1px solid var(--line);padding-top:18px}
-.fact span{display:block;font-size:10.5px;letter-spacing:.14em;color:var(--dim)}
-.fact b{font-size:15px;font-weight:700}
+/* правая панель характеристик */
+.spec-panel{display:flex;flex-direction:column;min-height:0;overflow:auto}
+.card{background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(8px);
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);padding:17px 18px}
+.stat{margin-bottom:13px}
+.stat-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.stat-h span{font-size:10px;font-weight:800;letter-spacing:.2em;color:#9AA1AA}
+.stat-h b{font-size:12px;font-weight:800;font-style:italic;background:#fff;color:#0a0b0e;padding:2px 9px;
+  transform:skewX(var(--skew));display:inline-block;min-width:64px;text-align:center}
+.track{height:7px;background:rgba(255,255,255,.09);transform:skewX(var(--skew));overflow:hidden}
+.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--y),#FFD166);
+  box-shadow:0 0 14px rgba(247,162,27,.75);transition:width .75s cubic-bezier(.2,.9,.2,1)}
+.grid2{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.grid2 div span{display:block;font-size:9.5px;letter-spacing:.18em;color:var(--dim);font-weight:700}
+.grid2 div b{font-size:14px;font-weight:800;font-style:italic}
 
-/* ---------- панель цены (правая) ---------- */
-.hud-right{right:max(34px,4vw);top:50%;transform:translateY(-50%);width:280px;text-align:right;pointer-events:auto}
-.price-label{font-size:10.5px;letter-spacing:.3em;color:var(--dim)}
-.price{font-size:52px;font-weight:800;line-height:1;margin:8px 0 2px;letter-spacing:-.02em}
-.price em{font-style:normal;font-size:19px;color:var(--dim);font-weight:600}
-.price-note{font-size:12px;color:var(--dim);margin-bottom:20px}
-.btn-book{display:block;width:100%;background:var(--orange);color:#0b0c10;border:0;cursor:pointer;
-  padding:17px;font-weight:800;font-size:13.5px;letter-spacing:.14em;font-family:var(--font);
-  border-radius:2px;transition:.22s;box-shadow:0 12px 34px rgba(247,162,27,.28)}
-.btn-book:hover{background:var(--orange-soft);transform:translateY(-2px);box-shadow:0 16px 40px rgba(247,162,27,.4)}
-.msgs{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
-.msgs a{border:1px solid var(--line);border-radius:2px;padding:9px 14px;font-size:11.5px;letter-spacing:.08em;
-  color:#B9BFC7;transition:.22s}
-.msgs a:hover{border-color:var(--orange);color:var(--orange)}
+.price-card{margin-top:12px;background:var(--panel);border:1px solid var(--line);padding:16px 18px;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%)}
+.price-card .lbl{font-size:9.5px;letter-spacing:.24em;color:var(--dim);font-weight:700}
+.price-card .val{font-size:40px;font-weight:900;font-style:italic;line-height:1;margin:6px 0 3px;letter-spacing:-.02em}
+.price-card .val em{font-style:normal;font-size:15px;color:var(--dim);font-weight:700}
+.price-card .note{font-size:11px;color:var(--dim);line-height:1.45}
+.book{display:block;width:100%;margin-top:14px;background:var(--y);color:#0a0b0e;border:0;cursor:pointer;
+  padding:15px;font-weight:900;font-style:italic;font-size:13.5px;letter-spacing:.14em;font-family:var(--font);
+  clip-path:polygon(11px 0,100% 0,calc(100% - 11px) 100%,0 100%);transition:.2s}
+.book:hover{background:#FFC24D;box-shadow:0 0 30px rgba(247,162,27,.5)}
 
-/* ---------- нижний селектор ---------- */
-.picker{position:relative;z-index:9;padding:0 24px 28px;display:flex;flex-direction:column;align-items:center;gap:14px}
-.slots{display:flex;gap:12px;align-items:center}
-.arrow{width:44px;height:44px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#fff;
-  cursor:pointer;font-size:17px;border-radius:2px;transition:.22s;display:grid;place-items:center}
-.arrow:hover{border-color:var(--orange);color:var(--orange);background:rgba(247,162,27,.08)}
-.slot{position:relative;width:112px;height:66px;border:1px solid var(--line);border-radius:2px;overflow:hidden;
-  cursor:pointer;background:#0b0d12;transition:.25s;flex:none}
-.slot img{width:100%;height:100%;object-fit:cover;object-position:center 58%;opacity:.5;transition:.25s;transform:scale(1.15)}
-.slot.mirrored img{transform:scale(1.15) scaleX(-1)}
-.slot:hover img{opacity:.85}
-.slot.on{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange),0 0 26px rgba(247,162,27,.35)}
-.slot.on img{opacity:1}
-.slot-price{position:absolute;left:0;right:0;bottom:0;font-size:10.5px;font-weight:700;text-align:center;
-  padding:3px 0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));letter-spacing:.04em}
-.hint{font-size:11.5px;color:#5F666F;letter-spacing:.1em}
-.hint kbd{border:1px solid var(--line);border-radius:3px;padding:1px 6px;font-family:var(--font);font-size:11px}
+/* нижняя лента действий */
+.actions{position:relative;z-index:10;display:grid;grid-template-columns:repeat(4,1fr);gap:9px;padding:14px 26px 0}
+.act{display:flex;align-items:center;gap:11px;padding:13px 16px;background:rgba(255,255,255,.045);
+  border:1px solid var(--line);cursor:pointer;transition:.18s;
+  clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.act:hover{background:rgba(247,162,27,.14);border-color:var(--y)}
+.act svg{width:21px;height:21px;stroke:var(--y);fill:none;stroke-width:1.7;flex:none}
+.act b{font-size:12px;font-weight:800;font-style:italic;letter-spacing:.09em;display:block}
+.act span{font-size:10px;color:var(--dim);letter-spacing:.05em}
+.keys{position:relative;z-index:10;display:flex;gap:22px;justify-content:center;flex-wrap:wrap;
+  padding:14px 26px 18px;font-size:10.5px;letter-spacing:.14em;color:#5D646D;font-weight:700}
+.keys kbd{border:1px solid var(--line);padding:2px 7px;margin-right:6px;font-family:var(--font);font-size:10px;color:#98A0AA}
 
-/* ---------- условия ---------- */
-.terms{position:relative;z-index:5;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-  background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.term{background:var(--bg);padding:26px 28px}
-.term b{display:block;font-size:26px;font-weight:800;color:var(--orange);letter-spacing:-.01em}
-.term span{display:block;font-size:13px;color:var(--dim);margin-top:6px}
+/* нижние секции */
+.strip{position:relative;z-index:10;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:8px}
+.strip div{background:var(--bg);padding:24px 26px}
+.strip b{display:block;font-size:25px;font-weight:900;font-style:italic;color:var(--y)}
+.strip span{display:block;font-size:12.5px;color:var(--dim);margin-top:5px;line-height:1.45}
 
-/* ---------- расчёт ---------- */
-.calc{position:relative;z-index:5;padding:56px 34px 74px;text-align:center}
-.calc h2{font-size:clamp(22px,2.6vw,32px);font-weight:800}
-.calc h2 span{color:var(--orange)}
-.calc-box{display:inline-flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:center;margin-top:26px;
-  background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:20px 22px}
-.field{text-align:left}
-.field label{display:block;font-size:10.5px;letter-spacing:.16em;color:var(--dim);margin-bottom:7px}
-.field input{background:#0b0d12;border:1px solid var(--line);color:#fff;padding:12px 14px;font-size:14px;
-  border-radius:2px;font-family:var(--font);color-scheme:dark;min-width:158px}
-.field input:focus{outline:0;border-color:var(--orange)}
-.total{font-size:15px;color:var(--dim);align-self:center;padding:0 6px}
-.total b{display:block;font-size:30px;color:#fff;font-weight:800;letter-spacing:-.01em}
-.calc .btn-book{width:auto;padding:17px 32px}
+.calc{position:relative;z-index:10;padding:52px 26px 60px;text-align:center}
+.calc h2{font-size:clamp(21px,2.5vw,30px);font-weight:900;font-style:italic;letter-spacing:.01em}
+.calc h2 span{color:var(--y)}
+.calc-box{display:inline-flex;flex-wrap:wrap;gap:13px;align-items:flex-end;justify-content:center;margin-top:22px;
+  background:var(--panel);border:1px solid var(--line);padding:19px 21px;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 18px),calc(100% - 18px) 100%,0 100%)}
+.fld{text-align:left}
+.fld label{display:block;font-size:9.5px;letter-spacing:.18em;color:var(--dim);font-weight:700;margin-bottom:6px}
+.fld input{background:#0c0e13;border:1px solid var(--line);color:#fff;padding:11px 13px;font-size:14px;
+  font-family:var(--font);color-scheme:dark;min-width:152px}
+.fld input:focus{outline:0;border-color:var(--y)}
+.sum{align-self:center;padding:0 8px;font-size:10px;letter-spacing:.2em;color:var(--dim);font-weight:700}
+.sum b{display:block;font-size:27px;color:#fff;font-weight:900;font-style:italic;margin-top:4px}
+.calc .book{width:auto;padding:15px 30px;margin-top:0}
+.foot{position:relative;z-index:10;padding:20px 26px 38px;text-align:center;color:#4A515A;font-size:11.5px;line-height:1.6}
 
-.foot{padding:22px 34px 40px;text-align:center;color:#4E555E;font-size:12px;letter-spacing:.04em}
-
-/* ---------- мобильная ---------- */
-@media(max-width:1080px){
-  .nav{display:none}
-  .stage{height:auto;min-height:0;padding-bottom:8px}
-  .arena{flex:none;flex-direction:column;align-items:stretch}
-  .scene{position:relative;inset:auto;width:100%;height:clamp(190px,58vw,300px)}
-  .hud-left,.hud-right{position:static;transform:none;width:auto;max-width:430px;margin:0 auto;text-align:center}
-  .hud-left{padding:10px 22px 0}
-  .hud-right{padding:18px 22px 0}
-  .msgs{justify-content:center}
-  .picker{padding-top:22px}
-  .stage-head{padding-top:112px}
-  .facts{text-align:left}
-  .car-name{font-size:27px}
-  .price{font-size:42px}
-  .podium{top:64%;width:min(420px,74vw);height:96px}
-  .ring{display:none}
-  .terms{grid-template-columns:1fr 1fr}
-  .slot{width:88px;height:54px}
-  .top{padding:14px 18px;gap:14px}
-  .phone{font-size:15px}
-  .btn-ghost{display:none}
+/* ---------- планшет / телефон ---------- */
+@media(max-width:1180px){
+  .garage{grid-template-columns:1fr;height:auto;min-height:0;padding:14px 16px 0;gap:14px}
+  .list{flex-direction:row;overflow-x:auto;overflow-y:hidden;gap:8px;padding-bottom:6px}
+  .row{flex:none;width:176px;padding:8px 10px;clip-path:polygon(0 0,100% 0,calc(100% - 11px) 100%,0 100%)}
+  .row .cls{display:none}
+  .list-wrap{order:1}
+  .stage{order:2}
+  .scene{flex:none;height:clamp(210px,56vw,320px)}
+  .spec-panel{order:3}
+  .plate{position:static;transform:none;margin-bottom:4px}
+  .actions{grid-template-columns:1fr 1fr;padding:12px 16px 0}
+  .strip{grid-template-columns:1fr 1fr}
+  .plate .md{font-size:clamp(23px,6.5vw,34px)}
+  .tabs,.chip{display:none}
+  .hud-top{padding:12px 16px;gap:12px}
+  .keys{gap:14px;padding:12px 16px 16px;font-size:10px}
 }
-@media(max-width:520px){
-  .terms{grid-template-columns:1fr}
-  .slots{gap:8px}
-  .slot{width:74px;height:48px}
+@media(max-width:560px){
+  .strip{grid-template-columns:1fr}
+  .actions{grid-template-columns:1fr}
+  .tel{font-size:14px}
+  .price-card .val{font-size:34px}
 }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="logo">VIDE<b>CAR</b><small>АВТОПРОКАТ</small></div>
-  <nav class="nav">
-    <a href="#">Автопарк</a><a href="#">Условия</a><a href="#">Услуги</a><a href="#">Отзывы</a><a href="#">Контакты</a>
+<div class="bg"><div class="floor"></div></div>
+
+<header class="hud-top">
+  <div class="brand">VIDE<b>CAR</b><small>АВТОПРОКАТ</small></div>
+  <nav class="tabs">
+    <div class="tab on">ГАРАЖ</div><div class="tab">АВТОПАРК</div><div class="tab">УСЛОВИЯ</div><div class="tab">КОНТАКТЫ</div>
   </nav>
-  <div class="top-right">
-    <span class="phone">+7 (938) 413-35-55</span>
-    <a class="btn-ghost" href="#calc">ЗАКАЗАТЬ ЗВОНОК</a>
+  <div class="right">
+    <span class="chip">КРАСНОДАР</span>
+    <span class="tel">+7 (938) 413-35-55</span>
   </div>
 </header>
 
-<section class="stage">
-  <div class="grid-floor"></div>
-  <div class="glow"></div>
-  <div class="vignette"></div>
+<main class="garage">
+  <section class="list-wrap">
+    <div class="col-title">ВЫБОР МАШИНЫ</div>
+    <div class="list" id="list"></div>
+  </section>
 
-  <div class="stage-head">
-    <div class="kicker">КРАСНОДАР · АРЕНДА БЕЗ ВОДИТЕЛЯ</div>
-    <h1>Выбери <span>свою</span> машину</h1>
-    <p>Оформление за 30 минут · подача в любую точку города · минимальный залог</p>
-  </div>
-
-  <div class="arena">
-    <div class="scene">
-      <div class="podium"><div class="ring"></div></div>
-      <div class="flash" id="flash"></div>
-      <div class="cars" id="cars"></div>
-      <div class="spin-hint" id="spinHint">
+  <section class="stage">
+    <div class="plate">
+      <div class="mk" id="cMake">BMW</div>
+      <div class="md" id="cModel">730</div>
+    </div>
+    <div class="scene" id="scene">
+      <div class="turn" id="turn">
         <svg viewBox="0 0 24 24"><path d="M3 12a9 4.6 0 0 0 18 0a9 4.6 0 0 0-18 0"/><path d="M15.6 8.2 21 12l-5.4 3.8"/></svg>
         <span>Потяните машину — <b>осмотрите со всех сторон</b></span>
-        <i class="spin-load" id="spinLoad"></i>
+        <i class="bar-load" id="barLoad"></i>
+      </div>
+    </div>
+  </section>
+
+  <section class="spec-panel">
+    <div class="col-title">ХАРАКТЕРИСТИКИ</div>
+    <div class="card">
+      <div class="stat">
+        <div class="stat-h"><span>МОЩНОСТЬ</span><b id="vPwr">258 л.с.</b></div>
+        <div class="track"><i id="bPwr"></i></div>
+      </div>
+      <div class="stat">
+        <div class="stat-h"><span>КЛАСС</span><b id="vCls">ПРЕМИУМ</b></div>
+        <div class="track"><i id="bCls"></i></div>
+      </div>
+      <div class="stat">
+        <div class="stat-h"><span>ГОД ВЫПУСКА</span><b id="vAge">2017 г.</b></div>
+        <div class="track"><i id="bAge"></i></div>
+      </div>
+      <div class="grid2">
+        <div><span>КУЗОВ</span><b id="fBody">Седан</b></div>
+        <div><span>ПРИВОД</span><b id="fDrive">Задний</b></div>
+        <div><span>ЦВЕТ</span><b id="fColor">Чёрный</b></div>
       </div>
     </div>
 
-    <div class="hud hud-left">
-      <span class="car-class" id="cClass">ПРЕМИУМ</span>
-      <div class="car-name" id="cName">BMW 730</div>
-      <div class="car-sub" id="cSub">Седан · 2017 · задний привод</div>
-
-      <div class="spec">
-        <div class="spec-row"><span>МОЩНОСТЬ</span><b id="pwrTxt">258 л.с.</b></div>
-        <div class="bar"><i id="pwrBar"></i></div>
-      </div>
-      <div class="spec">
-        <div class="spec-row"><span>КЛАСС КОМФОРТА</span><b id="cmfTxt">5 / 5</b></div>
-        <div class="bar"><i id="cmfBar"></i></div>
-      </div>
-
-      <div class="facts">
-        <div class="fact"><span>ГОД</span><b id="fYear">2017</b></div>
-        <div class="fact"><span>КУЗОВ</span><b id="fBody">Седан</b></div>
-        <div class="fact"><span>ПРИВОД</span><b id="fDrive">Задний</b></div>
-        <div class="fact"><span>ЦВЕТ</span><b id="fColor">Чёрный</b></div>
-      </div>
+    <div class="price-card">
+      <div class="lbl">СТОИМОСТЬ АРЕНДЫ</div>
+      <div class="val"><span id="vPrice">12 000</span> <em>₽/сут</em></div>
+      <div class="note" id="vNote">залог от 15 000 ₽ · без ограничения пробега</div>
+      <button class="book" onclick="document.getElementById('calc').scrollIntoView({behavior:'smooth'})">ЗАБРОНИРОВАТЬ</button>
     </div>
+  </section>
+</main>
 
-    <div class="hud hud-right">
-      <div class="price-label">СТОИМОСТЬ АРЕНДЫ</div>
-      <div class="price"><span id="cPrice">12 000</span> <em>₽/сут</em></div>
-      <div class="price-note" id="cNote">залог от 15 000 ₽ · без ограничения пробега</div>
-      <button class="btn-book" onclick="document.getElementById('calc').scrollIntoView({behavior:'smooth'})">ЗАБРОНИРОВАТЬ</button>
-      <div class="msgs"><a href="#">WhatsApp</a><a href="#">Telegram</a></div>
-    </div>
+<section class="actions">
+  <div class="act" onclick="document.getElementById('calc').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+    <div><b>РАССЧИТАТЬ</b><span>цена за ваши даты</span></div>
   </div>
-
-  <div class="picker">
-    <div class="slots">
-      <button class="arrow" id="prev" aria-label="Предыдущая">‹</button>
-      <div class="slots" id="slots"></div>
-      <button class="arrow" id="next" aria-label="Следующая">›</button>
-    </div>
-    <div class="hint">Сменить машину: <kbd>←</kbd> <kbd>→</kbd> или выберите ниже · осмотреть — потяните машину</div>
+  <div class="act">
+    <svg viewBox="0 0 24 24"><path d="M21 15.5v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 2.7 2 2 0 0 1 3.1.5h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.1 8.4a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+    <div><b>ПОЗВОНИТЬ</b><span>+7 (938) 413-35-55</span></div>
+  </div>
+  <div class="act">
+    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>
+    <div><b>WHATSAPP</b><span>ответим за минуту</span></div>
+  </div>
+  <div class="act">
+    <svg viewBox="0 0 24 24"><path d="M22 3 2 10.5l6 2.2L20 6l-9 8.4V21l3.2-3.9 5.3 2.3z"/></svg>
+    <div><b>TELEGRAM</b><span>бронь в переписке</span></div>
   </div>
 </section>
 
-<section class="terms">
-  <div class="term"><b>15</b><span>машин в каталоге — каждая с фото и живой ценой</span></div>
-  <div class="term"><b>30 мин</b><span>от заявки до ключей в руках</span></div>
-  <div class="term"><b>0 ₽</b><span>доставка авто при аренде от 7 суток</span></div>
-  <div class="term"><b>24/7</b><span>техподдержка на всё время аренды</span></div>
+<div class="keys">
+  <span><kbd>←</kbd><kbd>→</kbd>СМЕНИТЬ МАШИНУ</span>
+  <span><kbd>ТЯНИ</kbd>ОСМОТРЕТЬ КРУГОМ</span>
+  <span><kbd>ENTER</kbd>ЗАБРОНИРОВАТЬ</span>
+</div>
+
+<section class="strip">
+  <div><b>15</b><span>машин в каталоге — каждая с фото и живой ценой</span></div>
+  <div><b>30 мин</b><span>от заявки до ключей в руках</span></div>
+  <div><b>0 ₽</b><span>доставка авто при аренде от 7 суток</span></div>
+  <div><b>24/7</b><span>техподдержка на всё время аренды</span></div>
 </section>
 
 <section class="calc" id="calc">
-  <h2>Посчитайте <span>стоимость</span> прямо сейчас</h2>
+  <h2>ПОСЧИТАЙТЕ <span>СТОИМОСТЬ</span> ПРЯМО СЕЙЧАС</h2>
   <div class="calc-box">
-    <div class="field"><label>МАШИНА</label>
-      <input id="calcCar" readonly value="BMW 730"></div>
-    <div class="field"><label>С КАКОГО ЧИСЛА</label><input type="date" id="d1"></div>
-    <div class="field"><label>ПО КАКОЕ</label><input type="date" id="d2"></div>
-    <div class="total">ИТОГО<b id="sum">—</b></div>
-    <button class="btn-book">ЗАБРОНИРОВАТЬ</button>
+    <div class="fld"><label>МАШИНА</label><input id="calcCar" readonly value="BMW 730"></div>
+    <div class="fld"><label>С КАКОГО ЧИСЛА</label><input type="date" id="d1"></div>
+    <div class="fld"><label>ПО КАКОЕ</label><input type="date" id="d2"></div>
+    <div class="sum">ИТОГО<b id="sum">—</b></div>
+    <button class="book">ЗАБРОНИРОВАТЬ</button>
   </div>
 </section>
 
 <footer class="foot">
   Демо-концепт первой страницы для VIDECAR · Краснодар, ул. Красных партизан 168 · +7 (938) 413-35-55<br>
-  <span style="color:#3E444C">Это демонстрационный макет студии ПРОЕКТ 23, а не официальный сайт компании.
-  Действующий сайт — videcar.ru</span>
+  <span style="color:#363C44">Это демонстрационный макет студии ПРОЕКТ 23, а не официальный сайт компании.
+  Действующий сайт — videcar.ru · <a href="classic.html" style="color:#5D646D;text-decoration:underline">вариант 1</a></span>
 </footer>
 
 <script>
 const CARS = [
-  { id:'bmw730', name:'BMW 730', cls:'ПРЕМИУМ', img:'img/bmw730.jpg', mirror:false,
-    year:2017, body:'Седан', drive:'Задний', color:'Чёрный', power:258, comfort:5,
-    price:12000, note:'залог от 15 000 ₽ · без ограничения пробега', lastFrame:40 },
-  { id:'merc', name:'Mercedes-Benz E-Класс', cls:'БИЗНЕС', img:'img/merc.jpg', mirror:true,
-    year:2018, body:'Седан', drive:'Передний', color:'Чёрный', power:184, comfort:5,
-    price:10000, note:'W213 · залог от 12 000 ₽ · подача в аэропорт', lastFrame:40 },
-  { id:'stinger', name:'Kia Stinger', cls:'СПОРТ', img:'img/stinger.jpg', mirror:false,
-    year:2021, body:'Седан', drive:'Полный', color:'Синий', power:304, comfort:4,
-    price:7000, note:'304 л.с. · полный привод · залог от 10 000 ₽', lastFrame:24 }
+  { id:'bmw730', make:'BMW', model:'730', name:'BMW 730', listName:'BMW 730', cls:'ПРЕМИУМ', clsRank:5,
+    img:'img/bmw730.jpg', mirror:false, year:2017, body:'Седан', drive:'Задний', color:'Чёрный', power:258,
+    price:12000, note:'минимальный залог · подача в любую точку города', lastFrame:40 },
+  { id:'merc', make:'MERCEDES-BENZ', model:'E-КЛАСС W213', name:'Mercedes-Benz E-Класс', listName:'Mercedes E-Класс',
+    cls:'БИЗНЕС', clsRank:4, img:'img/merc.jpg', mirror:true, year:2018, body:'Седан', drive:'Передний',
+    color:'Чёрный', power:184, price:10000, note:'оформление за 30 минут · подача в аэропорт', lastFrame:40 },
+  { id:'stinger', make:'KIA', model:'STINGER', name:'Kia Stinger', listName:'Kia Stinger', cls:'СПОРТ', clsRank:4,
+    img:'img/stinger.jpg', mirror:false, year:2021, body:'Седан', drive:'Полный', color:'Синий', power:304,
+    price:7000, note:'304 л.с. · полный привод · минимальный залог', lastFrame:24 }
 ];
+const MAXPWR = 350, NOW = 2026;
 const frameSrc = (c, i) => `img/spin/${c.id}/${String(i).padStart(2,'0')}.webp`;
-const MAXPWR = 350;
-let idx = 0, busy = false;
 
-const wrap = document.getElementById('cars');
-const slots = document.getElementById('slots');
-const flash = document.getElementById('flash');
+let idx = 0, busy = false;
+const scene = document.getElementById('scene');
+const list  = document.getElementById('list');
+const turn  = document.getElementById('turn');
+const bar   = document.getElementById('barLoad');
 
 CARS.forEach((c, i) => {
   const d = document.createElement('div');
-  d.className = 'car enter-right' + (c.mirror ? ' mirrored' : '');
+  d.className = 'car in-r' + (c.mirror ? ' mirrored' : '');
   d.innerHTML = `<img src="${frameSrc(c, 0)}" alt="${c.name}" ${i ? 'loading="lazy"' : ''}>`;
-  wrap.appendChild(d); c.el = d; c.pic = d.querySelector('img');
-  c.frame = 0; c.ready = false; c.cache = [];
+  scene.appendChild(d);
+  c.el = d; c.pic = d.querySelector('img'); c.frame = 0; c.ready = false; c.cache = [];
 
-  const s = document.createElement('div');
-  s.className = 'slot' + (c.mirror ? ' mirrored' : '');
-  s.innerHTML = `<img src="${c.img}" alt=""><div class="slot-price">${c.price.toLocaleString('ru')} ₽</div>`;
-  s.onclick = () => go(i);
-  slots.appendChild(s); c.slot = s;
+  const r = document.createElement('div');
+  r.className = 'row' + (c.mirror ? ' mirrored' : '');
+  r.innerHTML = `<img src="${c.img}" alt=""><div class="txt"><div class="nm">${c.listName}</div>
+                 <div class="pr">${c.price.toLocaleString('ru')} ₽/сут</div></div><div class="cls">${c.cls}</div>`;
+  r.onclick = () => go(i);
+  list.appendChild(r); c.row = r;
 });
 
 function paint(c) {
-  document.getElementById('cClass').textContent = c.cls;
-  document.getElementById('cName').textContent  = c.name;
-  document.getElementById('cSub').textContent   = `${c.body} · ${c.year} · ${c.drive.toLowerCase()} привод`;
-  document.getElementById('pwrTxt').textContent = c.power + ' л.с.';
-  document.getElementById('cmfTxt').textContent = c.comfort + ' / 5';
-  document.getElementById('fYear').textContent  = c.year;
+  document.getElementById('cMake').textContent  = c.make;
+  document.getElementById('cModel').textContent = c.model;
+  document.getElementById('vPwr').textContent   = c.power + ' л.с.';
+  document.getElementById('vCls').textContent   = c.cls;
+  document.getElementById('vAge').textContent   = c.year + ' г.';
   document.getElementById('fBody').textContent  = c.body;
   document.getElementById('fDrive').textContent = c.drive;
   document.getElementById('fColor').textContent = c.color;
-  document.getElementById('cPrice').textContent = c.price.toLocaleString('ru');
-  document.getElementById('cNote').textContent  = c.note;
+  document.getElementById('vPrice').textContent = c.price.toLocaleString('ru');
+  document.getElementById('vNote').textContent  = c.note;
   document.getElementById('calcCar').value      = c.name;
-  // шкалы — с задержкой, чтобы заполнялись на глазах
-  const pwr = document.getElementById('pwrBar'), cmf = document.getElementById('cmfBar');
-  pwr.style.width = '0'; cmf.style.width = '0';
+
+  const bars = [
+    [document.getElementById('bPwr'), c.power / MAXPWR],
+    [document.getElementById('bCls'), c.clsRank / 5],
+    [document.getElementById('bAge'), Math.max(.12, 1 - (NOW - c.year) / 12)]   // свежее авто — длиннее шкала
+  ];
+  bars.forEach(([el]) => el.style.width = '0');
   requestAnimationFrame(() => requestAnimationFrame(() => {
-    pwr.style.width = Math.round(c.power / MAXPWR * 100) + '%';
-    cmf.style.width = (c.comfort / 5 * 100) + '%';
+    bars.forEach(([el, v]) => el.style.width = Math.round(Math.min(1, v) * 100) + '%');
   }));
-  CARS.forEach(x => x.slot.classList.toggle('on', x === c));
+
+  CARS.forEach(x => x.row.classList.toggle('on', x === c));
   calc();
   loadSpin(c);
 }
 
-/* ---------- крутилка: подгрузка кадров и вращение ---------- */
-const hint = document.getElementById('spinHint');
-const loadBar = document.getElementById('spinLoad');
-
+/* ---------- крутилка ---------- */
 function setFrame(c, i) {
   i = Math.max(0, Math.min(c.lastFrame, i));
   if (i === c.frame && c.pic.dataset.f) return;
-  c.frame = i;
-  c.pic.src = frameSrc(c, i);
-  c.pic.dataset.f = i;
+  c.frame = i; c.pic.src = frameSrc(c, i); c.pic.dataset.f = i;
 }
 
-/* кадры тянем порциями: 41 параллельный запрос хостинг иногда режет 503-й */
 function loadSpin(c) {
-  if (c.ready || c.loading) { if (c.ready) showHint(); return; }
+  if (c.ready || c.loading) { if (c.ready) showTurn(); return; }
   c.loading = true;
   const total = c.lastFrame + 1;
   let done = 0, next = 0;
-  const LANES = 5;
-
   const grab = (i, retry) => new Promise(res => {
     const im = new Image();
     im.onload = () => { c.cache[i] = im; res(true); };
     im.onerror = () => retry ? setTimeout(() => grab(i, false).then(res), 700) : res(false);
-    im.src = frameSrc(c, i) + (retry ? '' : '?r=1');   // повтор мимо кеша неудачи
+    im.src = frameSrc(c, i) + (retry ? '' : '?r=1');
   });
-
   const lane = async () => {
     while (next <= c.lastFrame) {
-      const i = next++;
-      await grab(i, true);
+      await grab(next++, true);
       done++;
-      if (c === CARS[idx]) loadBar.style.width = Math.round(done / total * 100) + '%';
+      if (c === CARS[idx]) bar.style.width = Math.round(done / total * 100) + '%';
     }
   };
-
-  Promise.all(Array.from({length: LANES}, lane)).then(() => {
+  Promise.all(Array.from({length: 5}, lane)).then(() => {
     c.ready = true; c.loading = false;
-    if (c === CARS[idx]) { loadBar.style.width = '0'; teaser(c); }
+    if (c === CARS[idx]) { bar.style.width = '0'; teaser(c); }
   });
 }
 
-/* один раз показываем, что машину можно крутить */
-let teased = false;
+let teased = false, turnTimer = null;
+function showTurn() {
+  turn.classList.remove('hide');
+  clearTimeout(turnTimer);
+  turnTimer = setTimeout(() => turn.classList.add('hide'), 5200);
+}
 function teaser(c) {
-  showHint();
+  showTurn();
   if (teased) return;
   teased = true;
-  const seq = [2, 4, 6, 8, 6, 4, 2, 0];
-  seq.forEach((f, k) => setTimeout(() => { if (!dragging && CARS[idx] === c) setFrame(c, f); }, 420 + k * 105));
-}
-let hintTimer = null;
-function showHint() {
-  hint.classList.remove('hide');
-  clearTimeout(hintTimer);
-  hintTimer = setTimeout(() => hint.classList.add('hide'), 5200);
+  [2,4,6,8,6,4,2,0].forEach((f, k) =>
+    setTimeout(() => { if (!dragging && CARS[idx] === c) setFrame(c, f); }, 420 + k * 105));
 }
 
-let dragging = false, dragX = 0, dragFrom = 0, moved = false;
-wrap.addEventListener('pointerdown', e => {
+let dragging = false, dragX = 0, dragFrom = 0;
+scene.addEventListener('pointerdown', e => {
   const c = CARS[idx];
   if (!c.ready) return;
-  dragging = true; moved = false;
-  dragX = e.clientX; dragFrom = c.frame;
-  wrap.classList.add('grabbing');
-  wrap.setPointerCapture(e.pointerId);
-  hint.classList.add('hide');
+  dragging = true; dragX = e.clientX; dragFrom = c.frame;
+  scene.classList.add('grabbing');
+  scene.setPointerCapture(e.pointerId);
+  turn.classList.add('hide');
 });
-wrap.addEventListener('pointermove', e => {
+scene.addEventListener('pointermove', e => {
   if (!dragging) return;
   const c = CARS[idx];
-  const dx = e.clientX - dragX;
-  if (Math.abs(dx) > 3) moved = true;
-  const span = Math.min(560, innerWidth * 0.55);          // столько тянуть на полный разворот
-  setFrame(c, dragFrom + Math.round(-dx / span * (c.lastFrame + 1)));
+  const span = Math.min(560, innerWidth * 0.55);
+  setFrame(c, dragFrom + Math.round(-(e.clientX - dragX) / span * (c.lastFrame + 1)));
 });
 const stopDrag = e => {
   if (!dragging) return;
   dragging = false;
-  wrap.classList.remove('grabbing');
-  try { wrap.releasePointerCapture(e.pointerId); } catch (_) {}
+  scene.classList.remove('grabbing');
+  try { scene.releasePointerCapture(e.pointerId); } catch (_) {}
 };
-wrap.addEventListener('pointerup', stopDrag);
-wrap.addEventListener('pointercancel', stopDrag);
-wrap.addEventListener('lostpointercapture', stopDrag);
+scene.addEventListener('pointerup', stopDrag);
+scene.addEventListener('pointercancel', stopDrag);
+scene.addEventListener('lostpointercapture', stopDrag);
 
+/* ---------- смена машины ---------- */
 function go(to, dir) {
   if (busy || to === idx) return;
   busy = true;
@@ -470,49 +466,42 @@ function go(to, dir) {
   const next = CARS[to];
 
   from.el.classList.remove('active');
-  from.el.classList.add(dir > 0 ? 'exit-left' : 'exit-right');
+  from.el.classList.add(dir > 0 ? 'out-l' : 'out-r');
+  next.el.classList.remove('out-l', 'out-r', 'active');
+  next.el.classList.add(dir > 0 ? 'in-r' : 'in-l');
+  setFrame(next, 0);
 
-  next.el.classList.remove('exit-left', 'exit-right', 'active');
-  next.el.classList.add(dir > 0 ? 'enter-right' : 'enter-left');
-  setFrame(next, 0);                       // новая машина въезжает в исходном ракурсе
-
-  // машина «подъезжает» с небольшой задержкой — как в игре
   setTimeout(() => {
-    next.el.classList.remove('enter-right', 'enter-left');
+    next.el.classList.remove('in-r', 'in-l');
     next.el.classList.add('active');
-    flash.classList.remove('on'); void flash.offsetWidth; flash.classList.add('on');
     paint(next);
+    if (innerWidth <= 1180) next.row.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
   }, 90);
 
   idx = to;
-  setTimeout(() => { busy = false; }, 780);
+  setTimeout(() => { busy = false; }, 720);
 }
-
 const step = d => go((idx + d + CARS.length) % CARS.length, d);
-document.getElementById('next').onclick = () => step(1);
-document.getElementById('prev').onclick = () => step(-1);
 addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') step(1);
   if (e.key === 'ArrowLeft')  step(-1);
+  if (e.key === 'Enter') document.getElementById('calc').scrollIntoView({behavior:'smooth'});
 });
 
-// расчёт стоимости
+/* ---------- расчёт ---------- */
 const d1 = document.getElementById('d1'), d2 = document.getElementById('d2');
 function calc() {
-  const a = new Date(d1.value), b = new Date(d2.value);
-  const out = document.getElementById('sum');
+  const a = new Date(d1.value), b = new Date(d2.value), out = document.getElementById('sum');
   if (!d1.value || !d2.value || isNaN(a) || isNaN(b) || b <= a) { out.textContent = '—'; return; }
   const days = Math.round((b - a) / 86400000);
   out.textContent = (days * CARS[idx].price).toLocaleString('ru') + ' ₽';
   out.title = days + ' сут.';
 }
 d1.oninput = d2.oninput = calc;
-const today = new Date(), plus = new Date(Date.now() + 3 * 86400000);
-d1.value = today.toISOString().slice(0, 10);
-d2.value = plus.toISOString().slice(0, 10);
+d1.value = new Date().toISOString().slice(0, 10);
+d2.value = new Date(Date.now() + 3 * 86400000).toISOString().slice(0, 10);
 
-// старт
-CARS[0].el.classList.remove('enter-right');
+CARS[0].el.classList.remove('in-r');
 CARS[0].el.classList.add('active');
 paint(CARS[0]);
 </script>
