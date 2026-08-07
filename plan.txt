@@ -1,0 +1,21 @@
+=== УДАЛЯЕМ ИЗ АРХИВА (на сайте этих файлов нет) ===
+    58.0 МБ  novokran/cand-vert.mp4
+    52.2 МБ  intro/intro-full.mp4
+    24.9 МБ  intro/test-fly-hd.mp4
+    24.3 МБ  intro/intro-web.mp4
+    13.8 МБ  novokran/bg2.mp4
+    11.0 МБ  intro/intro-bg.mp4
+     9.0 МБ  intro/space-real.mp4
+     8.4 МБ  intro/test-parade.mp4
+     2.3 МБ  brand/logo-frame-iron.png
+     1.3 МБ  assets/case-arhip.png
+     1.0 МБ  intro/planets/2k_moon.jpg
+  всего путей: 11
+
+=== ОСТАВЛЯЕМ (сайт их использует) ===
+    16.7 МБ  rbu-beton/bg2.mp4
+     7.7 МБ  brand/t1000-b.mp4
+     5.6 МБ  brand/t1000-a.mp4
+     3.7 МБ  intro/intro-bg2.mp4
+     3.0 МБ  intro/intro-bg-m.mp4
+     1.2 МБ  novokran/hero.mp4
