@@ -388,24 +388,34 @@ function setFrame(c, i) {
   c.pic.dataset.f = i;
 }
 
+/* кадры тянем порциями: 41 параллельный запрос хостинг иногда режет 503-й */
 function loadSpin(c) {
   if (c.ready || c.loading) { if (c.ready) showHint(); return; }
   c.loading = true;
-  let done = 0;
   const total = c.lastFrame + 1;
-  for (let i = 0; i <= c.lastFrame; i++) {
+  let done = 0, next = 0;
+  const LANES = 5;
+
+  const grab = (i, retry) => new Promise(res => {
     const im = new Image();
-    im.onload = im.onerror = () => {
+    im.onload = () => { c.cache[i] = im; res(true); };
+    im.onerror = () => retry ? setTimeout(() => grab(i, false).then(res), 700) : res(false);
+    im.src = frameSrc(c, i) + (retry ? '' : '?r=1');   // повтор мимо кеша неудачи
+  });
+
+  const lane = async () => {
+    while (next <= c.lastFrame) {
+      const i = next++;
+      await grab(i, true);
       done++;
       if (c === CARS[idx]) loadBar.style.width = Math.round(done / total * 100) + '%';
-      if (done === total) {
-        c.ready = true; c.loading = false;
-        if (c === CARS[idx]) { loadBar.style.width = '0'; teaser(c); }
-      }
-    };
-    im.src = frameSrc(c, i);
-    c.cache.push(im);
-  }
+    }
+  };
+
+  Promise.all(Array.from({length: LANES}, lane)).then(() => {
+    c.ready = true; c.loading = false;
+    if (c === CARS[idx]) { loadBar.style.width = '0'; teaser(c); }
+  });
 }
 
 /* один раз показываем, что машину можно крутить */
