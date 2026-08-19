@@ -37,7 +37,7 @@ document.addEventListener('click',function(ev){
 </head>
 <body>
 
-<video class="bgvid" src="/intro/intro-bg2.mp4" poster="/intro/intro-poster.jpg" autoplay muted loop playsinline preload="auto"></video><div class="bgtint"></div><script>(function(){var v=document.querySelector(".bgvid");if(v&&matchMedia("(orientation:portrait)").matches){v.src="/intro/intro-bg-m.mp4";v.poster="/intro/intro-poster-m.jpg";v.load();if(v.play)v.play().catch(function(){});}})();</script>
+<video class="bgvid" src="/intro/intro-bg2.mp4" poster="/intro/intro-poster.jpg" autoplay muted loop playsinline preload="metadata"></video><div class="bgtint"></div><script>(function(){var v=document.querySelector(".bgvid");if(!v)return;if(matchMedia("(orientation:portrait),(max-width:768px)").matches){v.src="/intro/intro-bg-m.mp4";v.poster="/intro/intro-poster-m.jpg";}v.muted=true;v.setAttribute("playsinline","");function p(){try{var r=v.play();if(r&&r.catch)r.catch(function(){});}catch(e){}}v.addEventListener("canplay",p);v.addEventListener("loadeddata",p);v.load();p();})();</script>
 
 <header>
   <div class="wrap nav">
