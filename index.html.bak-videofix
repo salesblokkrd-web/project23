@@ -21,7 +21,7 @@
 "description":"Сайт для бизнеса за 1 день: лендинг под ключ 25 000 ₽, переделка сайта 50 000 ₽ — фиксированная цена без доплат. Веб-студия ПРОЕКТ 23, Краснодар: сайты для стройки, техники и заводов + ИИ-агенты для приёма заявок 24/7.","url":"https://project23.ru/","logo":"https://project23.ru/logo-og.png","image":"https://project23.ru/logo-og.png",
 "address":{"@type":"PostalAddress","addressLocality":"Краснодар","addressRegion":"Краснодарский край","addressCountry":"RU"},
 "telephone":"+79286633535",
-"areaServed":["Краснодар","Краснодарский край","Юг России"],"sameAs":["https://t.me/project23pochtabot"],
+"areaServed":["Краснодар","Краснодарский край","Юг России"],"sameAs":["https://t.me/proekt23_krd"],
 "knowsAbout":["создание сайтов","ИИ-автоматизация","чат-боты","Telegram-боты","боты MAX","CRM","промышленные компании","голосовые помощники"]}
 </script>
 <script type="text/javascript">
@@ -29,15 +29,15 @@
 ym(111259689,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 document.addEventListener('click',function(ev){
   var a=ev.target.closest&&ev.target.closest('a[href]');if(!a)return;
-  if(a.href.indexOf('max.ru/')>-1)ym(111259689,'reachGoal','max_click');
-  else if(a.href.indexOf('t.me/')>-1)ym(111259689,'reachGoal','tg_click');
+  if(a.href.indexOf('max.ru/u/')>-1)ym(111259689,'reachGoal','max_click');
+  else if(a.href.indexOf('t.me/proekt23_krd')>-1)ym(111259689,'reachGoal','tg_click');
 });
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/111259689" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
 </head>
 <body>
 
-<video class="bgvid" src="/intro/intro-bg2.mp4" poster="/intro/intro-poster.jpg" autoplay muted loop playsinline preload="metadata"></video><div class="bgtint"></div><script>(function(){var v=document.querySelector(".bgvid");if(!v)return;if(matchMedia("(orientation:portrait),(max-width:768px)").matches){v.src="/intro/intro-bg-m.mp4";v.poster="/intro/intro-poster-m.jpg";}v.muted=true;v.setAttribute("playsinline","");function p(){try{var r=v.play();if(r&&r.catch)r.catch(function(){});}catch(e){}}v.addEventListener("canplay",p);v.addEventListener("loadeddata",p);v.load();p();})();</script>
+<video class="bgvid" src="/intro/intro-bg2.mp4" poster="/intro/intro-poster.jpg" autoplay muted loop playsinline preload="auto"></video><div class="bgtint"></div><script>(function(){var v=document.querySelector(".bgvid");if(v&&matchMedia("(orientation:portrait)").matches){v.src="/intro/intro-bg-m.mp4";v.poster="/intro/intro-poster-m.jpg";v.load();if(v.play)v.play().catch(function(){});}})();</script>
 
 <header>
   <div class="wrap nav">
@@ -96,11 +96,11 @@ document.addEventListener('click',function(ev){
       <div class="step"><img class="sph" src="/assets/step-audit.jpg" alt="Разбор сайта с пометками" loading="lazy"><div class="sx"><h3>Разбор вашего сайта</h3><p>Находим, где сайт теряет заявки: скрытые цены, нет мессенджеров, слабый первый экран. Присылаем документ.</p><span class="tag">Бесплатно</span></div></div>
       <div class="step"><img class="sph" src="/assets/step-proto.jpg" alt="Прототип сайта на ноутбуке" loading="lazy"><div class="sx"><h3>Прототип на ваших данных</h3><p>Собираем новый сайт на вашем реальном контенте — товары, цены, объекты. Открываете и смотрите вживую.</p><span class="tag">от 1 дня</span></div></div>
       <div class="step"><img class="sph" src="/assets/step-launch2.jpg" alt="Запуск сайта: аналитика на экранах" loading="lazy"><div class="sx"><h3>Внедрение и запуск</h3><p>Переносим весь контент, ставим домен, аналитику, мессенджеры. Дальше сайт ваш — правки сами или через нас.</p><span class="tag">Под ключ</span></div></div>
-    </div></div></section><section><div class="wrap"><div class="sec-h reveal"><div class="mono">Блог</div><h2>Разбираем сайты и автоматизацию — по делу</h2><p>Как промышленной компании Юга собирать заявки онлайн, где сайт их теряет и что реально автоматизируется. <a class="acc" href="/blog/">Все статьи →</a></p></div><div class="bgrid reveal"><a class="bcard" data-t="uslugi" href="/blog/zachem-saytu-konkurirovat-s-avito.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="Зачем сайту конкурировать с Авито?" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>Зачем сайту конкурировать с Авито?</b><p>Разбираем преимущества собственного сайта перед площадками вроде Авито и 2ГИС для промышленного бизнеса.</p></div></a>
-<a class="bcard" data-t="novosti" href="/blog/ii-novosti-2026-08-17.html"><div class="shot"><img src="/assets/ai-chat.jpg" alt="Новости ИИ за неделю: 11–17 августа" loading="lazy"></div><div class="cap"><div class="mono">Новости ИИ</div><b>Новости ИИ за неделю: 11–17 августа</b><p>Главные события в сфере ИИ за неделю: ускорение моделей, внедрение агентных систем и доступность новых решений для безопасности.</p></div></a>
-<a class="bcard" data-t="uslugi" href="/blog/stoimost-sayta-pod-klyuch-v-krasnodare.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="Стоимость сайта под ключ в Краснодаре" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>Стоимость сайта под ключ в Краснодаре</b><p>Почему создание сайта под ключ для промышленного предприятия в Краснодаре стоит именно столько?</p></div></a></div></div></section><section><div class="wrap"><div class="ctaband reveal">
+    </div></div></section><section><div class="wrap"><div class="sec-h reveal"><div class="mono">Блог</div><h2>Разбираем сайты и автоматизацию — по делу</h2><p>Как промышленной компании Юга собирать заявки онлайн, где сайт их теряет и что реально автоматизируется. <a class="acc" href="/blog/">Все статьи →</a></p></div><div class="bgrid reveal"><a class="bcard" data-t="novosti" href="/blog/ii-novosti-2026-08-17.html"><div class="shot"><img src="/assets/ai-chat.jpg" alt="Новости ИИ за неделю: 11–17 августа" loading="lazy"></div><div class="cap"><div class="mono">Новости ИИ</div><b>Новости ИИ за неделю: 11–17 августа</b><p>Главные события в сфере ИИ за неделю: ускорение моделей, внедрение агентных систем и доступность новых решений для безопасности.</p></div></a>
+<a class="bcard" data-t="uslugi" href="/blog/stoimost-sayta-pod-klyuch-v-krasnodare.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="Стоимость сайта под ключ в Краснодаре" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>Стоимость сайта под ключ в Краснодаре</b><p>Почему создание сайта под ключ для промышленного предприятия в Краснодаре стоит именно столько?</p></div></a>
+<a class="bcard" data-t="novosti" href="/blog/ii-novosti-2026-08-10.html"><div class="shot"><img src="/assets/ai-chat.jpg" alt="Новости ИИ за неделю: 4–10 августа" loading="lazy"></div><div class="cap"><div class="mono">Новости ИИ</div><b>Новости ИИ за неделю: 4–10 августа</b><p>Главные события ИИ за неделю: пауза в разработке новой модели OpenAI, выход браузера для ИИ-агентов и использование ChatGPT в налоговом консультировании.</p></div></a></div></div></section><section><div class="wrap"><div class="ctaband reveal">
     <div><h2>Разберём ваш сайт бесплатно</h2><p>Напишите название компании — пришлём разбор текущего сайта и прототип нового. Ни к чему не обязывает.</p></div>
-    <div class="cbtns" style="margin:0"><a class="btn mbtn max" href="https://max.ru/id232308800054_bot" target="_blank" rel="noopener"><img src="/assets/ic-max.png" alt="MAX">Написать в MAX</a><a class="btn mbtn tg" href="https://t.me/project23pochtabot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.4 2.9 10.6c-1.1.4-1.1 1 0 1.3l4.7 1.5 1.8 5.5c.2.6.4.6.9.2l2.6-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.2-1.5ZM8.6 13.1l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.2-.3 3-1.7-4.5Z"/></svg>Telegram</a></div>
+    <div class="cbtns" style="margin:0"><a class="btn mbtn max" href="https://max.ru/u/f9LHodD0cOJ7cMmQoh4egr7enPpbkNIUGy3YNLuXKOxxM4m5zstTKnVnRtw" target="_blank" rel="noopener"><img src="/assets/ic-max.png" alt="MAX">Написать в MAX</a><a class="btn mbtn tg" href="https://t.me/proekt23_krd" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.4 2.9 10.6c-1.1.4-1.1 1 0 1.3l4.7 1.5 1.8 5.5c.2.6.4.6.9.2l2.6-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.2-1.5ZM8.6 13.1l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.2-.3 3-1.7-4.5Z"/></svg>Telegram</a></div>
   </div></div></section>
 
 <footer>
