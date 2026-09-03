@@ -61,6 +61,7 @@ document.addEventListener('click',function(ev){
     </div>
     <div class="bgrid reveal" id="bgrid">
       <!-- ARTICLES:START (блог-агент вставляет карточки статей между маркерами) -->
+<a class="bcard" data-t="uslugi" href="/blog/zapusk-sayta-za-nedelyu.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="Запуск сайта за неделю" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>Запуск сайта за неделю</b><p>Делимся опытом быстрой разработки сайтов под ключ для промышленности Юга России.</p></div></a>
 <a class="bcard" data-t="novosti" href="/blog/ii-novosti-2026-08-31.html"><div class="shot"><img src="/assets/ai-chat.jpg" alt="Новости ИИ за неделю: 25–31 августа" loading="lazy"></div><div class="cap"><div class="mono">Новости ИИ</div><b>Новости ИИ за неделю: 25–31 августа</b><p>Главные новости ИИ: налог на контекст, автономность агентов, рост затрат на чипы, расширение функций Google и проблемы безопасности.</p></div></a>
 <a class="bcard" data-t="uslugi" href="/blog/ii-agent-vmesto-menedzhera.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="ИИ-агент вместо менеджера" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>ИИ-агент вместо менеджера</b><p>Узнайте, почему стоит доверить общение с клиентами искусственному интеллекту</p></div></a>
 <a class="bcard" data-t="uslugi" href="/blog/zachem-saytu-konkurirovat-s-avito.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="Зачем сайту конкурировать с Авито?" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>Зачем сайту конкурировать с Авито?</b><p>Разбираем преимущества собственного сайта перед площадками вроде Авито и 2ГИС для промышленного бизнеса.</p></div></a>
@@ -82,7 +83,7 @@ document.addEventListener('click',function(ev){
 <footer>
   <div class="wrap">
     <span>© 2026 ПРОЕКТ 23 · Веб-студия для промышленных компаний Юга</span>
-    <nav class="fnav"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/blog/" class="act">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
+    <nav class="fnav"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/blog/" class="act">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a><a href="/politika/">Политика обработки персональных данных</a></nav>
     <span class="mono">project23.ru</span>
   </div>
 </footer>
@@ -93,7 +94,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 (function(){var b=document.querySelector('.burger'),m=document.querySelector('.mmenu');
 if(b&&m){b.addEventListener('click',function(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o)});}})();
 </script>
-<script src="/voice-widget.js"></script>
+<script src="/voice-widget.js?v=3"></script>
 
 </body>
 </html>
