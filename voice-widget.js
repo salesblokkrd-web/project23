@@ -63,6 +63,8 @@
   .vw-in{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:9px;
     color:#F0F5F9;padding:9px 12px;font:400 13px 'Onest',sans-serif;outline:none}
   .vw-send{border:none;border-radius:9px;background:#2DD4BF;color:#06231f;font-weight:800;padding:0 14px;cursor:pointer}
+  .vw-pd{margin-top:9px;font:400 10.5px/1.45 system-ui,sans-serif;color:#8fa2b3}
+  .vw-pd a{color:#2DD4BF;text-decoration:underline}
   .vw-hl{outline:3px solid rgba(45,212,191,.75);outline-offset:6px;border-radius:8px;transition:outline .3s}`;
   document.head.appendChild(css);
 
@@ -74,7 +76,8 @@
   panel.innerHTML = `<div class="vw-status" id="vwst">Готов слушать</div>
     <div class="vw-log" id="vwlog"></div>
     <div class="vw-row"><input class="vw-in" id="vwin" placeholder="Или напишите текстом…">
-    <button class="vw-send" id="vwsend">→</button></div>`;
+    <button class="vw-send" id="vwsend">→</button></div>
+    <div class="vw-pd">Отправляя сообщение, вы соглашаетесь с <a href="/politika/" target="_blank" rel="noopener">политикой обработки персональных данных</a></div>`;
   document.body.append(panel, btn);
   const st = panel.querySelector("#vwst"), log = panel.querySelector("#vwlog"),
         inp = panel.querySelector("#vwin"), send = panel.querySelector("#vwsend");
@@ -152,7 +155,7 @@
     try {
       const r = await fetch(API, {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: hist.slice(0, 1).concat(hist.slice(-9)) }),
+        body: JSON.stringify({ messages: hist.filter(m => m.role !== "system").slice(-9) }),
       });
       const d = await r.json();
       let say = d.text || "Не расслышал, повторите, пожалуйста.";
