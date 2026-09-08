@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сайт за 1 день от 25 000 ₽ — веб-студия ПРОЕКТ 23, Краснодар</title>
+<meta name="description" content="Сайт для бизнеса за 1 день: лендинг под ключ 25 000 ₽, переделка сайта 50 000 ₽ — фиксированная цена без доплат. Веб-студия ПРОЕКТ 23, Краснодар: сайты для стройки, техники и заводов + ИИ-агенты для приёма заявок 24/7.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Сайт для бизнеса за один день — 25 000 ₽ | ПРОЕКТ 23, Краснодар">
+<meta property="og:description" content="Сайт для бизнеса за 1 день: лендинг под ключ 25 000 ₽, переделка сайта 50 000 ₽ — фиксированная цена без доплат. Веб-студия ПРОЕКТ 23, Краснодар: сайты для стройки, техники и заводов + ИИ-агенты для приёма заявок 24/7.">
+<meta property="og:url" content="https://project23.ru/">
+<meta property="og:image" content="https://project23.ru/logo-og.png">
+<link rel="canonical" href="https://project23.ru/">
+<meta name="yandex-verification" content="d2366b5c0f43c3b6">
+<link rel="icon" type="image/png" href="/assets/favicon-180.png">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService",
+"name":"ПРОЕКТ 23","alternateName":["Проект 23","PROJECT 23","проект23","веб-студия ПРОЕКТ 23"],
+"description":"Сайт для бизнеса за 1 день: лендинг под ключ 25 000 ₽, переделка сайта 50 000 ₽ — фиксированная цена без доплат. Веб-студия ПРОЕКТ 23, Краснодар: сайты для стройки, техники и заводов + ИИ-агенты для приёма заявок 24/7.","url":"https://project23.ru/","logo":"https://project23.ru/logo-og.png","image":"https://project23.ru/logo-og.png",
+"address":{"@type":"PostalAddress","addressLocality":"Краснодар","addressRegion":"Краснодарский край","addressCountry":"RU"},
+"telephone":"+79286633535",
+"areaServed":["Краснодар","Краснодарский край","Юг России"],"sameAs":["https://t.me/proekt23_krd"],
+"knowsAbout":["создание сайтов","ИИ-автоматизация","чат-боты","Telegram-боты","боты MAX","CRM","промышленные компании","голосовые помощники"]}
+</script>
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym(111259689,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
+document.addEventListener('click',function(ev){
+  var a=ev.target.closest&&ev.target.closest('a[href]');if(!a)return;
+  if(a.href.indexOf('max.ru/u/')>-1)ym(111259689,'reachGoal','max_click');
+  else if(a.href.indexOf('t.me/proekt23_krd')>-1)ym(111259689,'reachGoal','tg_click');
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/111259689" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<video class="bgvid" src="/intro/intro-bg2.mp4" poster="/intro/intro-poster.jpg" autoplay muted loop playsinline preload="auto"></video><div class="bgtint"></div><script>(function(){var v=document.querySelector(".bgvid");if(v&&matchMedia("(orientation:portrait)").matches){v.src="/intro/intro-bg-m.mp4";v.poster="/intro/intro-poster-m.jpg";v.load();if(v.play)v.play().catch(function(){});}})();</script>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="ПРОЕКТ 23 — на главную">
+      <span class="cross"><span class="lx"></span><span class="ly"></span><span class="sq"></span></span>
+      <span class="wm-stack">
+        <span class="wm">ПРОЕКТ&nbsp;<b>23</b></span>
+        <span class="coord">45.03° N · 38.97° E · Краснодар</span>
+      </span>
+    </a>
+    <nav class="nav-links"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/blog/">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
+    <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a class="btn btn-a cta-head" href="/kontakty/">Обсудить сайт</a>
+  </div>
+</header>
+<nav class="mmenu"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/blog/">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
+
+<div class="wrap"><section class="hero" style="border:none">
+  <div class="mono">Веб-студия · Краснодарский край</div>
+  <h1>Сайт для бизнеса <em>за один день</em></h1>
+  <p>Техника, заводы, стройматериалы, инжиниринг. Делаем сайты, которые приносят заявки,
+  и внедряем искусственный интеллект в рутину: приём заявок 24/7, учёт, отчёты.</p>
+
+  <div class="pricerow reveal" style="max-width:360px">
+    <a class="pitem" href="/tseny/"><span class="pl">Лендинг под ключ</span>
+      <span class="pv">25 000 <i>₽</i></span><span class="pd">за 1 день</span></a>
+  </div>
+  <p class="pnote">Одна цена, без «от» и доплат по ходу. Срок «за день» —
+  когда материалы (тексты, фото, прайс) у вас есть. Нет материалов — соберём сами,
+  это займёт до недели, цена та же.<br>
+  <a class="acc" href="/tseny/">Переделка сайта, ИИ-агент, ведение — весь прайс →</a></p>
+
+  <div class="cta"><a class="btn btn-a" href="/kontakty/">Обсудить сайт →</a>
+    <a class="btn btn-o" href="/keysy/">Смотреть работы</a></div>
+  <p class="free">Разбираем ваш текущий сайт по пунктам и присылаем прототип нового —
+  <b>бесплатно, даже если работать не будете.</b></p>
+</section></div><section id="who"><div class="wrap">
+    <div class="sec-h reveal"><div class="mono">Для кого</div>
+      <h2>Делаем под нишу, а не «сайт вообще»</h2>
+      <p>Сайт для базы отдыха и сайт для автосервиса устроены по-разному: у них
+      разные вопросы клиента и разный путь к заявке. Мы знаем эти вопросы —
+      и собираем страницу под них.</p></div>
+    <div class="who reveal">
+      <div><img class="ph" src="/assets/who-otdyh.jpg" alt="База отдыха: домик у реки в лесу" loading="lazy"><div class="tx"><div class="n">01</div><b>Базы отдыха и глэмпинги</b><p>Гость выбирает глазами: фото домиков, цены, свободные даты. Свой сайт — это брони напрямую, мимо комиссии агрегаторов в 15–20%.</p></div></div>
+      <div><img class="ph" src="/assets/who-torg.jpg" alt="Склад с товаром" loading="lazy"><div class="tx"><div class="n">02</div><b>Торговля и склады</b><p>Прайс сразу на виду, наличие, доставка сегодня. Покупатель не звонит уточнять цену — он сразу пишет в мессенджер.</p></div></div>
+      <div><img class="ph" src="/assets/who-uslugi.jpg" alt="Салон красоты: работа мастера" loading="lazy"><div class="tx"><div class="n">03</div><b>Услуги: салоны, клиники, юристы</b><p>Здесь покупают доверие: живые фото, мастера, отзывы, понятная запись. Без этого человек уходит к тому, кто показал себя.</p></div></div>
+      <div><img class="ph" src="/assets/who-avto.jpg" alt="Автосервис: мастер у машины" loading="lazy"><div class="tx"><div class="n">04</div><b>Авто: прокат, сервисы, мойки</b><p>Цены, наличие машин, как проехать, запись на время. Клиент выбирает по трём вещам: близко, понятно сколько, можно приехать сейчас. Наш кейс — VIDECAR.</p></div></div>
+      <div><img class="ph" src="/assets/who-tech2.jpg" alt="Парк спецтехники в аренду" loading="lazy"><div class="tx"><div class="n">05</div><b>Техника и аренда</b><p>Краны, спецтехника, оборудование. Парк, ТТХ, допуски, скорость выхода на объект. Наш кейс — НОВОКРАН.</p></div></div>
+      <div><img class="ph" src="/assets/who-mat2.jpg" alt="Щебень и песок на карьере" loading="lazy"><div class="tx"><div class="n">06</div><b>Производство и материалы</b><p>Бетон, ЖБИ, щебень, карьеры. Марка, цена за куб, доставка. Наш кейс — карьер под Краснодаром.</p></div></div>
+    </div></div></section><section id="how"><div class="wrap">
+    <div class="sec-h reveal"><div class="mono">Как работаем</div>
+      <h2>От разбора до запуска — от 1 дня до недели</h2>
+      <p>Без брифов на 40 вопросов и месяцев согласований. Показываем результат
+      прежде, чем вы заплатите.</p></div>
+    <div class="steps reveal">
+      <div class="step"><img class="sph" src="/assets/step-audit.jpg" alt="Разбор сайта с пометками" loading="lazy"><div class="sx"><h3>Разбор вашего сайта</h3><p>Находим, где сайт теряет заявки: скрытые цены, нет мессенджеров, слабый первый экран. Присылаем документ.</p><span class="tag">Бесплатно</span></div></div>
+      <div class="step"><img class="sph" src="/assets/step-proto.jpg" alt="Прототип сайта на ноутбуке" loading="lazy"><div class="sx"><h3>Прототип на ваших данных</h3><p>Собираем новый сайт на вашем реальном контенте — товары, цены, объекты. Открываете и смотрите вживую.</p><span class="tag">от 1 дня</span></div></div>
+      <div class="step"><img class="sph" src="/assets/step-launch2.jpg" alt="Запуск сайта: аналитика на экранах" loading="lazy"><div class="sx"><h3>Внедрение и запуск</h3><p>Переносим весь контент, ставим домен, аналитику, мессенджеры. Дальше сайт ваш — правки сами или через нас.</p><span class="tag">Под ключ</span></div></div>
+    </div></div></section><section><div class="wrap"><div class="sec-h reveal"><div class="mono">Блог</div><h2>Разбираем сайты и автоматизацию — по делу</h2><p>Как промышленной компании Юга собирать заявки онлайн, где сайт их теряет и что реально автоматизируется. <a class="acc" href="/blog/">Все статьи →</a></p></div><div class="bgrid reveal"><a class="bcard" data-t="novosti" href="/blog/ii-novosti-2026-08-17.html"><div class="shot"><img src="/assets/ai-chat.jpg" alt="Новости ИИ за неделю: 11–17 августа" loading="lazy"></div><div class="cap"><div class="mono">Новости ИИ</div><b>Новости ИИ за неделю: 11–17 августа</b><p>Главные события в сфере ИИ за неделю: ускорение моделей, внедрение агентных систем и доступность новых решений для безопасности.</p></div></a>
+<a class="bcard" data-t="uslugi" href="/blog/stoimost-sayta-pod-klyuch-v-krasnodare.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="Стоимость сайта под ключ в Краснодаре" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>Стоимость сайта под ключ в Краснодаре</b><p>Почему создание сайта под ключ для промышленного предприятия в Краснодаре стоит именно столько?</p></div></a>
+<a class="bcard" data-t="novosti" href="/blog/ii-novosti-2026-08-10.html"><div class="shot"><img src="/assets/ai-chat.jpg" alt="Новости ИИ за неделю: 4–10 августа" loading="lazy"></div><div class="cap"><div class="mono">Новости ИИ</div><b>Новости ИИ за неделю: 4–10 августа</b><p>Главные события ИИ за неделю: пауза в разработке новой модели OpenAI, выход браузера для ИИ-агентов и использование ChatGPT в налоговом консультировании.</p></div></a></div></div></section><section><div class="wrap"><div class="ctaband reveal">
+    <div><h2>Разберём ваш сайт бесплатно</h2><p>Напишите название компании — пришлём разбор текущего сайта и прототип нового. Ни к чему не обязывает.</p></div>
+    <div class="cbtns" style="margin:0"><a class="btn mbtn max" href="https://max.ru/u/f9LHodD0cOJ7cMmQoh4egr7enPpbkNIUGy3YNLuXKOxxM4m5zstTKnVnRtw" target="_blank" rel="noopener"><img src="/assets/ic-max.png" alt="MAX">Написать в MAX</a><a class="btn mbtn tg" href="https://t.me/proekt23_krd" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.4 2.9 10.6c-1.1.4-1.1 1 0 1.3l4.7 1.5 1.8 5.5c.2.6.4.6.9.2l2.6-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.2-1.5ZM8.6 13.1l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.2-.3 3-1.7-4.5Z"/></svg>Telegram</a></div>
+  </div></div></section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 ПРОЕКТ 23 · Веб-студия для промышленных компаний Юга</span>
+    <nav class="fnav"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/blog/">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
+    <span class="mono">project23.ru</span>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+(function(){var b=document.querySelector('.burger'),m=document.querySelector('.mmenu');
+if(b&&m){b.addEventListener('click',function(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o)});}})();
+</script>
+<script src="/voice-widget.js"></script>
+
+</body>
+</html>
