@@ -20,15 +20,26 @@
 "publisher":{"@type":"ProfessionalService","name":"ПРОЕКТ 23","url":"https://project23.ru/"}}
 </script>
 <script type="text/javascript">
-(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
-ym(111259689,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
-document.addEventListener('click',function(ev){
-  var a=ev.target.closest&&ev.target.closest('a[href]');if(!a)return;
-  if(a.href.indexOf('max.ru/')>-1)ym(111259689,'reachGoal','max_click');
-  else if(a.href.indexOf('t.me/')>-1)ym(111259689,'reachGoal','tg_click');
-});
+/* Метрика включается только после согласия на cookie (20.09.2026): счётчик —
+   не строго необходимый cookie, до кнопки «Принять» он не грузится. Выбор
+   хранится в localStorage; «Только необходимые» — счётчика нет вовсе. */
+(function(){
+  var K='p23_cookie',ID=111259689;
+  function st(){try{return localStorage.getItem(K)}catch(e){return null}}
+  function initYm(){if(window.__p23ym)return;window.__p23ym=1;
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+    ym(ID,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});}
+  function hide(){var d=document.getElementById('ckb');if(d&&d.parentNode)d.parentNode.removeChild(d);}
+  window.p23Cookie=function(v){var s=v?'1':'0';try{localStorage.setItem(K,s)}catch(e){}hide();if(s==='1')initYm();};
+  if(st()==='1')initYm();
+  document.addEventListener('DOMContentLoaded',function(){if(st()!==null)return;
+    var d=document.createElement('div');d.id='ckb';d.className='ckb';d.setAttribute('role','dialog');d.setAttribute('aria-label','Cookie');
+    d.innerHTML="<p>Сайт использует cookie и Яндекс.Метрику для статистики посещений. Счётчик включится только после вашего согласия. <a href='/politika/'>Подробнее</a></p><div class='ckb-b'><button type='button' class='btn btn-a' onclick='p23Cookie(1)'>Принять</button><button type='button' class='btn btn-o' onclick='p23Cookie(0)'>Только необходимые</button></div>";
+    document.body.appendChild(d);});
+  document.addEventListener('click',function(ev){var a=ev.target.closest&&ev.target.closest('a[href]');if(!a||!window.ym)return;
+    if(a.href.indexOf('max.ru/')>-1)ym(ID,'reachGoal','max_click');else if(a.href.indexOf('t.me/')>-1)ym(ID,'reachGoal','tg_click');});
+})();
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/111259689" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
 </head>
 <body>
 
@@ -61,6 +72,8 @@ document.addEventListener('click',function(ev){
     </div>
     <div class="bgrid reveal" id="bgrid">
       <!-- ARTICLES:START (блог-агент вставляет карточки статей между маркерами) -->
+<a class="bcard" data-t="uslugi" href="/blog/navedenie-poryadka-v-crm.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="Наведение порядка в CRM" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>Наведение порядка в CRM</b><p>Простые шаги к порядку в вашей CRM-системе: перестаньте терять заявки и повышайте эффективность отдела продаж.</p></div></a>
+<a class="bcard" data-t="uslugi" href="/blog/chat-bot-v-telegram-i-max-dlya-priema-zayavok-24-7.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="Чат-бот в Telegram и MAX для приёма заявок 24/7" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>Чат-бот в Telegram и MAX для приёма заявок 24/7</b><p>Рассказываем, какие задачи решает чат-бот и почему это выгодно промышленным компаниям Юга России.</p></div></a>
 <a class="bcard" data-t="novosti" href="/blog/ii-novosti-2026-09-07.html"><div class="shot"><img src="/assets/ai-chat.jpg" alt="Новости ИИ за неделю: 1–7 сентября" loading="lazy"></div><div class="cap"><div class="mono">Новости ИИ</div><b>Новости ИИ за неделю: 1–7 сентября</b><p>Искусственный интеллект развивается стремительно, но владельцам бизнеса важно помнить о рисках и возможностях новых технологий.</p></div></a>
 <a class="bcard" data-t="uslugi" href="/blog/zapusk-sayta-za-nedelyu.html"><div class="shot"><img src="/assets/ag-content.jpg" alt="Запуск сайта за неделю" loading="lazy"></div><div class="cap"><div class="mono">Наши услуги</div><b>Запуск сайта за неделю</b><p>Делимся опытом быстрой разработки сайтов под ключ для промышленности Юга России.</p></div></a>
 <a class="bcard" data-t="novosti" href="/blog/ii-novosti-2026-08-31.html"><div class="shot"><img src="/assets/ai-chat.jpg" alt="Новости ИИ за неделю: 25–31 августа" loading="lazy"></div><div class="cap"><div class="mono">Новости ИИ</div><b>Новости ИИ за неделю: 25–31 августа</b><p>Главные новости ИИ: налог на контекст, автономность агентов, рост затрат на чипы, расширение функций Google и проблемы безопасности.</p></div></a>
