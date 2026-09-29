@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Обмен 1С с сайтом: каталог, цены, остатки, заказы | ПРОЕКТ 23</title>
+<meta name="description" content="Настраиваем обмен 1С с сайтом: выгрузка каталога, цен и остатков, приём заказов обратно в 1С. УНФ, УТ, Розница, Бухгалтерия, облачная Фреш. Краснодар, ПРОЕКТ 23.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Обмен 1С с сайтом: четыре способа и когда какой подходит">
+<meta property="og:description" content="Настраиваем обмен 1С с сайтом: выгрузка каталога, цен и остатков, приём заказов обратно в 1С. УНФ, УТ, Розница, Бухгалтерия, облачная Фреш. Краснодар, ПРОЕКТ 23.">
+<meta property="og:url" content="https://project23.ru/integraciya-1c/">
+<meta property="og:image" content="https://project23.ru/logo-og.png">
+<link rel="canonical" href="https://project23.ru/integraciya-1c/">
+<meta name="yandex-verification" content="d2366b5c0f43c3b6">
+<link rel="icon" type="image/png" href="/assets/favicon-180.png">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Service", "serviceType": "Обмен 1С с сайтом", "provider": {"@type": "ProfessionalService", "name": "ПРОЕКТ 23", "url": "https://project23.ru/"}, "areaServed": ["Краснодар", "Краснодарский край", "Сочи", "Новороссийск", "Анапа", "Юг России"], "description": "Настраиваем обмен 1С с сайтом: выгрузка каталога, цен и остатков, приём заказов обратно в 1С. УНФ, УТ, Розница, Бухгалтерия, облачная Фреш. Краснодар, ПРОЕКТ 23.", "url": "https://project23.ru/integraciya-1c/"}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Можно ли связать 1С с сайтом?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Способ зависит от конфигурации: для типовых (УНФ, УТ, Розница) есть штатный обмен, для остальных — веб-сервисы, API или выгрузка файлами по расписанию."}}, {"@type": "Question", "name": "Нужен ли для обмена Битрикс?", "acceptedAnswer": {"@type": "Answer", "text": "Нет. С Битриксом штатный обмен ставится быстрее всего, но связать 1С можно и с сайтом на другой системе, и со статическим каталогом."}}, {"@type": "Question", "name": "Что можно выгружать на сайт?", "acceptedAnswer": {"@type": "Answer", "text": "Номенклатуру с описаниями и картинками, типы цен, остатки по складам. Обратно с сайта в 1С — заказы и контакты покупателя."}}, {"@type": "Question", "name": "Как часто обновляются цены и остатки?", "acceptedAnswer": {"@type": "Answer", "text": "По расписанию — от раза в сутки до нескольких раз в час, либо в реальном времени через API. Чем чаще, тем выше требования к базе."}}, {"@type": "Question", "name": "Работаете ли с облачной 1С:Фреш?", "acceptedAnswer": {"@type": "Answer", "text": "Да, работаем. Но у арендованных баз возможности обмена ограничены тарифом, поэтому сначала проверяем доступ и только потом говорим, что получится."}}]}
+</script>
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym(111259689,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
+document.addEventListener('click',function(ev){
+  var a=ev.target.closest&&ev.target.closest('a[href]');if(!a)return;
+  if(a.href.indexOf('max.ru/')>-1)ym(111259689,'reachGoal','max_click');
+  else if(a.href.indexOf('t.me/')>-1)ym(111259689,'reachGoal','tg_click');
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/111259689" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<div class="bgstatic"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="ПРОЕКТ 23 — на главную">
+      <span class="cross"><span class="lx"></span><span class="ly"></span><span class="sq"></span></span>
+      <span class="wm-stack">
+        <span class="wm">ПРОЕКТ&nbsp;<b>23</b></span>
+        <span class="coord">45.03° N · 38.97° E · Краснодар</span>
+      </span>
+    </a>
+    <nav class="nav-links"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/bulat/">БУЛАТ</a><a href="/blog/">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
+    <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a class="btn btn-a cta-head" href="/kontakty/">Обсудить задачу</a>
+  </div>
+</header>
+<nav class="mmenu"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/bulat/">БУЛАТ</a><a href="/blog/">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
+<div class="wrap"><div class="page-head reveal"><div class="mono">1С</div><h1>Обмен 1С с сайтом</h1><p>Каталог, цены и остатки живут в 1С, а сайт должен показывать их без ручного переноса. Разбираем вашу конфигурацию и настраиваем обмен в одну или обе стороны.</p></div></div>
+<section><div class="wrap">
+    <div class="sec-h reveal"><div class="mono">Способы</div>
+      <h2>Четыре способа связать 1С и сайт</h2>
+      <p>Выбор зависит не от желания, а от конфигурации, места размещения базы и того, нужен ли обратный поток заказов. Разбираем это до начала работ, чтобы не переделывать.</p></div>
+    <div class="grid3 reveal">
+      <div class="card"><h3>Штатный обмен CommerceML</h3>
+        <p>Типовой для 1С и Битрикса: выгрузка товаров, цен и остатков по расписанию, заказы возвращаются в базу. Самый предсказуемый путь, если конфигурация типовая.</p></div>
+      <div class="card"><h3>Через веб-сервисы и API</h3>
+        <p>Подходит, когда нужен живой остаток и свои правила: сайт спрашивает 1С напрямую. Требует опубликованной базы и аккуратной настройки прав.</p></div>
+      <div class="card"><h3>Выгрузка файлами по расписанию</h3>
+        <p>Прайс и остатки уходят файлом, сайт забирает его по таймеру. Дёшево и надёжно там, где живые остатки не критичны.</p></div>
+    </div>
+    </div></section>
+<section><div class="wrap">
+    <div class="sec-h reveal"><div class="mono">Что учитываем</div>
+      <h2>Где такие проекты обычно ломаются</h2>
+      <p>Проблема почти никогда не в самой выгрузке. Ломается на совпадении номенклатуры, на нескольких типах цен, на складах и на том, что база лежит в облаке с ограниченным доступом.</p></div>
+    <div class="grid3 reveal">
+      <div class="card"><h3>Сопоставление номенклатуры</h3>
+        <p>На сайте товар один, в базе — три позиции с разными названиями. Решаем до запуска обмена, иначе каталог поедет.</p></div>
+      <div class="card"><h3>Цены и склады</h3>
+        <p>Типов цен несколько, складов тоже. Договариваемся, что именно видит клиент и что делать при нулевом остатке.</p></div>
+      <div class="card"><h3>Облачная 1С</h3>
+        <p>С Фреш и арендованными базами работаем, но возможности выгрузки там ограничены тарифом — проверяем до обещаний.</p></div>
+    </div>
+    </div></section>
+<section id="faq"><div class="wrap">
+    <div class="sec-h reveal"><div class="mono">Частые вопросы</div>
+      <h2>Что спрашивают до начала работы</h2></div>
+    <div class="grid3 reveal">
+      <div class="card"><h3>Можно ли связать 1С с сайтом?</h3>
+        <p>Да. Способ зависит от конфигурации: для типовых (УНФ, УТ, Розница) есть штатный обмен, для остальных — веб-сервисы, API или выгрузка файлами по расписанию.</p></div>
+      <div class="card"><h3>Нужен ли для обмена Битрикс?</h3>
+        <p>Нет. С Битриксом штатный обмен ставится быстрее всего, но связать 1С можно и с сайтом на другой системе, и со статическим каталогом.</p></div>
+      <div class="card"><h3>Что можно выгружать на сайт?</h3>
+        <p>Номенклатуру с описаниями и картинками, типы цен, остатки по складам. Обратно с сайта в 1С — заказы и контакты покупателя.</p></div>
+      <div class="card"><h3>Как часто обновляются цены и остатки?</h3>
+        <p>По расписанию — от раза в сутки до нескольких раз в час, либо в реальном времени через API. Чем чаще, тем выше требования к базе.</p></div>
+      <div class="card"><h3>Работаете ли с облачной 1С:Фреш?</h3>
+        <p>Да, работаем. Но у арендованных баз возможности обмена ограничены тарифом, поэтому сначала проверяем доступ и только потом говорим, что получится.</p></div>
+    </div></div></section>
+<section><div class="wrap"><p class="reveal" style="color:var(--mut)">Смежные услуги: <a class="acc" href="/vnedrenie-crm/">Внедрение CRM</a> · <a class="acc" href="/sayt-pod-klyuch/">Сайт под ключ</a> · <a class="acc" href="/avtomatizaciya/">Автоматизация бизнеса</a>.</p></div></section>
+<section><div class="wrap"><div class="ctaband reveal">
+    <div><h2>Разберём вашу конфигурацию</h2><p>Скажите, какая у вас 1С и где она лежит, — ответим, какой способ обмена применим и что для него нужно.</p></div>
+    <div class="cbtns" style="margin:0"><a class="btn mbtn max" href="https://max.ru/id232308800054_bot" target="_blank" rel="noopener"><img src="/assets/ic-max.png" alt="MAX">Написать в MAX</a><a class="btn mbtn tg" href="https://t.me/project23pochtabot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.4 2.9 10.6c-1.1.4-1.1 1 0 1.3l4.7 1.5 1.8 5.5c.2.6.4.6.9.2l2.6-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.2-1.5ZM8.6 13.1l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.2-.3 3-1.7-4.5Z"/></svg>Telegram</a></div>
+  </div></div></section>
+<footer>
+  <div class="wrap">
+    <span>© 2026 ПРОЕКТ 23 · Веб-студия для промышленных компаний Юга</span>
+    <nav class="fnav"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/bulat/">БУЛАТ</a><a href="/blog/">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a><a href="/vedenie-sayta/">Ведение сайта</a><a href="/podderzhka-sayta/">Поддержка сайта</a><a href="/sayt-pod-klyuch/">Сайт под ключ</a><a href="/prodvizhenie-sayta/">Продвижение сайта</a><a href="/ii-agenty/">ИИ-агенты</a><a href="/avtomatizaciya/">Автоматизация</a><a href="/chat-bot-max/">Чат-бот в MAX</a><a href="/bot-priem-zayavok/">Бот приёма заявок</a><a href="/vnedrenie-crm/">Внедрение CRM</a><a href="/integraciya-1c/" class="act">Обмен 1С с сайтом</a><a href="/politika/">Политика обработки персональных данных</a></nav>
+    <span class="mono">project23.ru</span>
+  </div>
+  <div class="wrap req">Индивидуальный предприниматель Размашкина Анастасия Алексеевна · ИНН 232308800054 · ОГРНИП 322237500189335<br />Краснодарский край, г. Краснодар, ул. Спасская, д. 31/1 · <a href="mailto:info@project23.ru">info@project23.ru</a> · <a href="tel:+79286633535">+7 928 663-35-35</a><br />Цены на сайте приведены справочно и не являются публичной офертой (ст. 437 ГК РФ).</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+(function(){var b=document.querySelector('.burger'),m=document.querySelector('.mmenu');
+if(b&&m){b.addEventListener('click',function(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o)});}})();
+</script>
+<script src="/voice-widget.js?v=3"></script>
+
+</body>
+</html>

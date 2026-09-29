@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Запись к врачу через чат-бот в MAX: как работает и что может клиника | ПРОЕКТ 23</title>
+<meta name="description" content="Как записаться к врачу через чат-бот в MAX по ОМС, в каких регионах работает государственный бот и как частной клинике сделать свой бот записи: сценарий, данные пациента, цена.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Запись к врачу через чат-бот в MAX: как это работает">
+<meta property="og:description" content="Как записаться к врачу через чат-бот в MAX по ОМС, в каких регионах работает государственный бот и как частной клинике сделать свой бот записи: сценарий, данные пациента, цена.">
+<meta property="og:url" content="https://project23.ru/blog/zapis-k-vrachu-cherez-chat-bot-v-max.html">
+<meta property="og:image" content="https://project23.ru/logo-og.png">
+<link rel="canonical" href="https://project23.ru/blog/zapis-k-vrachu-cherez-chat-bot-v-max.html">
+<meta name="yandex-verification" content="d2366b5c0f43c3b6">
+<link rel="icon" type="image/png" href="/assets/favicon-180.png">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<link rel="stylesheet" href="/assets/site.css">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Запись к врачу через чат-бот в MAX: как работает и что может клиника","description":"Как записаться к врачу через чат-бот в MAX по ОМС, в каких регионах работает государственный бот и как частной клинике сделать свой бот записи: сценарий, данные пациента, цена.","datePublished":"2026-09-29","author":{"@type":"Organization","name":"ПРОЕКТ 23"},"publisher":{"@type":"Organization","name":"ПРОЕКТ 23","logo":{"@type":"ImageObject","url":"https://project23.ru/logo-og.png"}},"mainEntityOfPage":"https://project23.ru/blog/zapis-k-vrachu-cherez-chat-bot-v-max.html"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Можно ли записаться к врачу через MAX по ОМС?","acceptedAnswer":{"@type":"Answer","text":"Да, если в вашем регионе запущен бот записи регионального минздрава. Нужен полис ОМС или СНИЛС, запись отображается в личном кабинете Госуслуг."}},{"@type":"Question","name":"В каких регионах работает запись к врачу через MAX?","acceptedAnswer":{"@type":"Answer","text":"Сервис запускается регионами постепенно. На сентябрь 2026 года он есть, в частности, в Бурятии, Дагестане, Тыве, Башкортостане, Марий Эл, Белгородской и Ростовской областях."}},{"@type":"Question","name":"Может ли частная клиника сделать свой бот записи в MAX?","acceptedAnswer":{"@type":"Answer","text":"Да. Нужен верифицированный профиль организации или ИП на business.max.ru/self, затем бот проходит модерацию платформы до 48 часов и получает токен."}},{"@type":"Question","name":"Какие данные пациента бот записи может спрашивать?","acceptedAnswer":{"@type":"Answer","text":"Для записи достаточно имени, телефона и услуги. Диагнозы, результаты исследований и фотографии — специальная категория данных, их сбор в переписке лучше не заводить без отдельного разбора."}},{"@type":"Question","name":"Бот заменит администратора клиники?","acceptedAnswer":{"@type":"Answer","text":"Нет. Он снимает типовое — запись, перенос, напоминание, адрес и подготовку к приёму. Нетиповой вопрос уходит человеку, и это правильный сценарий."}}]}</script>
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym(111259689,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
+document.addEventListener('click',function(ev){
+  var a=ev.target.closest&&ev.target.closest('a[href]');if(!a)return;
+  if(a.href.indexOf('max.ru/')>-1)ym(111259689,'reachGoal','max_click');
+  else if(a.href.indexOf('t.me/')>-1)ym(111259689,'reachGoal','tg_click');
+});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/111259689" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<div class="bgstatic"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="ПРОЕКТ 23 — на главную">
+      <span class="cross"><span class="lx"></span><span class="ly"></span><span class="sq"></span></span>
+      <span class="wm-stack">
+        <span class="wm">ПРОЕКТ&nbsp;<b>23</b></span>
+        <span class="coord">45.03° N · 38.97° E · Краснодар</span>
+      </span>
+    </a>
+    <nav class="nav-links"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/bulat/">БУЛАТ</a><a href="/blog/" class="act">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
+    <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <a class="btn btn-a cta-head" href="/kontakty/">Обсудить сайт</a>
+  </div>
+</header>
+<nav class="mmenu"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/bulat/">БУЛАТ</a><a href="/blog/" class="act">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a></nav>
+
+<div class="wrap"><article class="article reveal" style="padding:92px 0 20px">
+    <div class="backlink"><a href="/blog/">← Все статьи</a></div>
+    <div class="meta mono acc">Наши услуги</div>
+    <h1>Запись к врачу через чат-бот в MAX: как это работает</h1>
+    <p class="lead">MAX · Запись на приём · Клиники</p>
+    <div class="body">
+<p class="lead">Коротко: в MAX есть два разных бота записи. <b>Государственный</b> — региональный бот Минздрава: записывает по полису ОМС в поликлиники региона, запись видна в личном кабинете Госуслуг. <b>Бот частной клиники</b> — собственный бот на расписании самой клиники: он не работает с ОМС, зато показывает своих врачей, свои цены и своё свободное время.</p>
+<h2>Как записаться к врачу через государственный бот в MAX</h2>
+<ol><li>установить MAX и войти по номеру телефона;</li><li>найти в поиске бота записи своего региона (его публикует региональный минздрав или центр цифрового развития);</li><li>пройти авторизацию и указать номер полиса ОМС или СНИЛС;</li><li>выбрать специализацию, подразделение, врача и свободное время;</li><li>при необходимости посмотреть свои записи и отменить приём — тут же в чате.</li></ol>
+<p>Сервис уже запущен в ряде регионов — среди них Бурятия, Дагестан, Тыва, Башкортостан, Марий Эл, Белгородская и Ростовская области. Список расширяется, поэтому проверять стоит по сообщению своего минздрава; данные актуальны на сентябрь 2026 года.</p>
+<div class="tip">💡 Если бот региона просит паспортные данные целиком или оплату «за запись» — это не государственный сервис. Настоящая запись по ОМС бесплатна, а для авторизации достаточно полиса или СНИЛС.</div>
+<h2>Почему частной клинике государственный бот не подходит</h2>
+<ul><li>он работает по ОМС и по расписанию государственных учреждений, платных приёмов там нет;</li><li>клиника не может добавить своих врачей, услуги и цены;</li><li>пациент попадает в общий сервис региона, а не к вам;</li><li>напоминания, повторный приём, акции и отзывы никак не настраиваются.</li></ul>
+<h2>Что умеет бот записи для частной клиники</h2>
+<ul><li>показывает врачей и услуги с ценами из вашего прайса;</li><li>отдаёт свободное время из расписания и фиксирует запись;</li><li>напоминает о приёме за сутки и за два часа — это главный способ снизить неявку;</li><li>переносит и отменяет запись без звонка в регистратуру;</li><li>отвечает на типовые вопросы: адрес, парковка, документы, подготовка к процедуре;</li><li>передаёт нетиповой вопрос администратору;</li><li>складывает обращения в одно место, чтобы было видно, откуда пришёл пациент.</li></ul>
+<h2>Данные пациента: что решить до запуска</h2>
+<p>Сведения о здоровье — это специальная категория персональных данных (ст. 10 152-ФЗ), а факт обращения в клинику защищён врачебной тайной (ст. 13 323-ФЗ). Практический вывод простой: бот не должен собирать лишнего. Для записи достаточно имени, телефона и выбранной услуги; диагнозы, результаты анализов и фотографии в переписке — уже другой уровень ответственности.</p>
+<p>С 30 мая 2025 года ответственность за утечку резко выросла: штраф считается по числу пострадавших и доходит до 15 млн ₽, а при повторной утечке включается оборотный — от 1 до 3 % годовой выручки, но не менее 20 млн ₽. Поэтому до запуска стоит договориться о трёх вещах: какие поля бот вообще спрашивает, где хранится переписка и кто из сотрудников имеет к ней доступ.</p>
+<div class="tip">💡 Отдельная тонкость про облако: самая частая дыра в клиниках — не подрядчик, а старые публичные ссылки «поделиться» на файлы с фотографиями пациентов. Они живут до отзыва и открыты любому, кто знает адрес.</div>
+<h2>Сколько стоит бот записи и что входит</h2>
+<p>Бот в MAX или Telegram — <b>25 000 ₽</b>: сценарий записи, услуги и врачи, приём заявки, уведомление администратору, выгрузка обращений. Синхронизация с медицинской системой или онлайн-расписанием считается отдельно — зависит от того, что у клиники уже стоит.</p>
+<p>Мы делаем сайты и ботов для клиник Краснодара и Юга России и отдельно разбираем правовую рамку: сайт врача и сайт медорганизации живут по разным правилам, и лишний раздел на сайте создаёт обязанность, которой можно было не брать.</p>
+<p style="color:var(--mut)">Читайте также: <a class="acc" href="/chat-bot-max/">Чат-бот в MAX для бизнеса — 25 000 ₽</a> · <a class="acc" href="/blog/kak-sozdat-chat-bota-v-max.html">Как создать чат-бота в MAX</a> · <a class="acc" href="/ii-agenty/">ИИ-агенты и чат-боты</a>.</p>
+    </div>
+  </article></div><section><div class="wrap"><div class="sec-h reveal"><h2>Частые вопросы</h2></div><div class="faq reveal"><details><summary>Можно ли записаться к врачу через MAX по ОМС?</summary><p>Да, если в вашем регионе запущен бот записи регионального минздрава. Нужен полис ОМС или СНИЛС, запись отображается в личном кабинете Госуслуг.</p></details><details><summary>В каких регионах работает запись к врачу через MAX?</summary><p>Сервис запускается регионами постепенно. На сентябрь 2026 года он есть, в частности, в Бурятии, Дагестане, Тыве, Башкортостане, Марий Эл, Белгородской и Ростовской областях.</p></details><details><summary>Может ли частная клиника сделать свой бот записи в MAX?</summary><p>Да. Нужен верифицированный профиль организации или ИП на business.max.ru/self, затем бот проходит модерацию платформы до 48 часов и получает токен.</p></details><details><summary>Какие данные пациента бот записи может спрашивать?</summary><p>Для записи достаточно имени, телефона и услуги. Диагнозы, результаты исследований и фотографии — специальная категория данных, их сбор в переписке лучше не заводить без отдельного разбора.</p></details><details><summary>Бот заменит администратора клиники?</summary><p>Нет. Он снимает типовое — запись, перенос, напоминание, адрес и подготовку к приёму. Нетиповой вопрос уходит человеку, и это правильный сценарий.</p></details></div></div></section><section><div class="wrap"><div class="ctaband reveal">
+    <div><h2>Разберём ваш сайт бесплатно</h2><p>Напишите название компании — пришлём разбор текущего сайта и прототип нового. Ни к чему не обязывает.</p></div>
+    <div class="cbtns" style="margin:0"><a class="btn mbtn max" href="https://max.ru/id232308800054_bot" target="_blank" rel="noopener"><img src="/assets/ic-max.png" alt="MAX">Написать в MAX</a><a class="btn mbtn tg" href="https://t.me/project23pochtabot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.7 3.4 2.9 10.6c-1.1.4-1.1 1 0 1.3l4.7 1.5 1.8 5.5c.2.6.4.6.9.2l2.6-2.1 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.6c.3-1.2-.4-1.8-1.2-1.5ZM8.6 13.1l9.4-5.9c.4-.3.8-.1.5.2l-7.9 7.2-.3 3-1.7-4.5Z"/></svg>Telegram</a></div>
+  </div></div></section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 ПРОЕКТ 23 · Веб-студия для промышленных компаний Юга</span>
+    <nav class="fnav"><a href="/uslugi/">Услуги</a><a href="/keysy/">Кейсы</a><a href="/bulat/">БУЛАТ</a><a href="/blog/" class="act">Блог</a><a href="/tseny/">Цена</a><a href="/kontakty/">Контакты</a><a href="/vedenie-sayta/">Ведение сайта</a><a href="/podderzhka-sayta/">Поддержка сайта</a><a href="/sayt-pod-klyuch/">Сайт под ключ</a><a href="/prodvizhenie-sayta/">Продвижение сайта</a><a href="/ii-agenty/">ИИ-агенты</a><a href="/avtomatizaciya/">Автоматизация</a><a href="/chat-bot-max/">Чат-бот в MAX</a><a href="/bot-priem-zayavok/">Бот приёма заявок</a><a href="/vnedrenie-crm/">Внедрение CRM</a><a href="/integraciya-1c/">Обмен 1С с сайтом</a><a href="/politika/">Политика обработки персональных данных</a></nav>
+    <span class="mono">project23.ru</span>
+  </div>
+  <div class="wrap req">Индивидуальный предприниматель Размашкина Анастасия Алексеевна · ИНН 232308800054 · ОГРНИП 322237500189335<br />Краснодарский край, г. Краснодар, ул. Спасская, д. 31/1 · <a href="mailto:info@project23.ru">info@project23.ru</a> · <a href="tel:+79286633535">+7 928 663-35-35</a><br />Цены на сайте приведены справочно и не являются публичной офертой (ст. 437 ГК РФ).</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+(function(){var b=document.querySelector('.burger'),m=document.querySelector('.mmenu');
+if(b&&m){b.addEventListener('click',function(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o)});}})();
+</script>
+<script src="/voice-widget.js?v=3"></script>
+
+</body>
+</html>
