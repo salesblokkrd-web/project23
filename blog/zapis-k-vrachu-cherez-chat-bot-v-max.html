@@ -11,12 +11,17 @@
 <meta property="og:image" content="https://project23.ru/logo-og.png">
 <link rel="canonical" href="https://project23.ru/blog/zapis-k-vrachu-cherez-chat-bot-v-max.html">
 <meta name="yandex-verification" content="d2366b5c0f43c3b6">
+<meta name="yandex-verification" content="a8139288ae2ff897">
+<meta name="google-site-verification" content="dsPXvwQTyYsTQxRHYuvD4m-icjixxhM7sMMzg1COl4w">
 <link rel="icon" type="image/png" href="/assets/favicon-180.png">
 <link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <link rel="stylesheet" href="/assets/site.css">
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Запись к врачу через чат-бот в MAX: как работает и что может клиника","description":"Как записаться к врачу через чат-бот в MAX по ОМС, в каких регионах работает государственный бот и как частной клинике сделать свой бот записи: сценарий, данные пациента, цена.","datePublished":"2026-09-29","author":{"@type":"Organization","name":"ПРОЕКТ 23"},"publisher":{"@type":"Organization","name":"ПРОЕКТ 23","logo":{"@type":"ImageObject","url":"https://project23.ru/logo-og.png"}},"mainEntityOfPage":"https://project23.ru/blog/zapis-k-vrachu-cherez-chat-bot-v-max.html"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Можно ли записаться к врачу через MAX по ОМС?","acceptedAnswer":{"@type":"Answer","text":"Да, если в вашем регионе запущен бот записи регионального минздрава. Нужен полис ОМС или СНИЛС, запись отображается в личном кабинете Госуслуг."}},{"@type":"Question","name":"В каких регионах работает запись к врачу через MAX?","acceptedAnswer":{"@type":"Answer","text":"Сервис запускается регионами постепенно. На сентябрь 2026 года он есть, в частности, в Бурятии, Дагестане, Тыве, Башкортостане, Марий Эл, Белгородской и Ростовской областях."}},{"@type":"Question","name":"Может ли частная клиника сделать свой бот записи в MAX?","acceptedAnswer":{"@type":"Answer","text":"Да. Нужен верифицированный профиль организации или ИП на business.max.ru/self, затем бот проходит модерацию платформы до 48 часов и получает токен."}},{"@type":"Question","name":"Какие данные пациента бот записи может спрашивать?","acceptedAnswer":{"@type":"Answer","text":"Для записи достаточно имени, телефона и услуги. Диагнозы, результаты исследований и фотографии — специальная категория данных, их сбор в переписке лучше не заводить без отдельного разбора."}},{"@type":"Question","name":"Бот заменит администратора клиники?","acceptedAnswer":{"@type":"Answer","text":"Нет. Он снимает типовое — запись, перенос, напоминание, адрес и подготовку к приёму. Нетиповой вопрос уходит человеку, и это правильный сценарий."}}]}</script>
 <script type="text/javascript">
+/* 12.10.2026: счётчик только на боевом адресе. Копии сайта на компьютере сборки (file://, localhost)
+   давали Метрике ложные визиты — 62 за 10 недель при 110 настоящих. */
+if (/^(www\.)?project23\.ru$/.test(location.hostname)) {
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
 ym(111259689,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
 document.addEventListener('click',function(ev){
@@ -24,6 +29,7 @@ document.addEventListener('click',function(ev){
   if(a.href.indexOf('max.ru/')>-1)ym(111259689,'reachGoal','max_click');
   else if(a.href.indexOf('t.me/')>-1)ym(111259689,'reachGoal','tg_click');
 });
+}
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/111259689" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
 </head>
