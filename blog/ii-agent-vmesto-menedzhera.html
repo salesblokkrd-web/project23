@@ -106,6 +106,24 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 (function(){var b=document.querySelector('.burger'),m=document.querySelector('.mmenu');
 if(b&&m){b.addEventListener('click',function(){var o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o)});}})();
 </script>
+<!-- 2026-10-16: уведомление о cookie (решение Виталия «куки 2»: Метрика работает сразу, окно только сообщает).
+     Слева внизу — справа голосовой виджет. Закрыли «Понятно» — больше не показывается (localStorage p23-kuki). -->
+<div class="kuki" id="kuki" role="region" aria-label="Уведомление о cookie" hidden>
+  <p>Сайт использует cookie и&nbsp;Яндекс Метрику, чтобы считать посещения. Продолжая пользоваться сайтом, вы&nbsp;соглашаетесь с&nbsp;этим. Подробнее&nbsp;— в&nbsp;<a href="/politika/">политике обработки персональных&nbsp;данных</a>.</p>
+  <button type="button" class="btn btn-a" id="kuki-ok">Понятно</button>
+</div>
+<style>
+.kuki{position:fixed;left:22px;bottom:22px;z-index:100;max-width:420px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:rgba(6,11,18,.95);color:var(--ink);font-size:.9rem;line-height:1.45;box-shadow:0 10px 30px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.kuki[hidden]{display:none}
+.kuki p{margin:0}
+.kuki a{color:var(--acc)}
+.kuki .btn{padding:10px 20px}
+@media (max-width:640px){.kuki{left:12px;right:84px;bottom:12px;max-width:none;font-size:.85rem;padding:14px}}
+</style>
+<script>
+(function(){var k=document.getElementById('kuki');if(!k)return;try{if(localStorage.getItem('p23-kuki')==='ok')return;}catch(e){}
+k.hidden=false;document.getElementById('kuki-ok').addEventListener('click',function(){try{localStorage.setItem('p23-kuki','ok');}catch(e){}k.hidden=true;});})();
+</script>
 <script src="/voice-widget.js?v=3"></script>
 
 </body>
