@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://project23.ru/</loc><lastmod>2026-10-22</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://project23.ru/</loc><lastmod>2026-10-26</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://project23.ru/uslugi/</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/keysy/</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/bulat/</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://project23.ru/blog/</loc><lastmod>2026-10-22</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://project23.ru/blog/</loc><lastmod>2026-10-26</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/tseny/</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/kontakty/</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/vedenie-sayta/</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -19,6 +19,7 @@
   <url><loc>https://project23.ru/vnedrenie-crm/</loc><lastmod>2026-09-29</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/integraciya-1c/</loc><lastmod>2026-09-29</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/politika/</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://project23.ru/blog/avtomatizatsiya-biznesa-v-sochi-novorossiyske-i-anape-chto-u.html</loc><lastmod>2026-10-26</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/blog/chat-bot-v-max-svoimi-rukami-chto-realno-mozhno-sdelat-a-cht.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/blog/chat-bot-v-telegram-i-max-dlya-priema-zayavok-24-7.html</loc><lastmod>2026-10-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://project23.ru/blog/crm-bez-razrabotchikov-chto-sdelayut-za-vas-a-chto-sami.html</loc><lastmod>2026-10-22</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
