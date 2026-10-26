@@ -9,6 +9,8 @@ Disallow: /novokran/
 Disallow: /rbu-beton/
 Disallow: /videcar/
 Disallow: /demo-metrics/
+Disallow: /gmk/
+Disallow: /knyagnitskaya/
 
 # ИИ-поисковики и колдунщики — пускаем явно
 User-agent: GPTBot
